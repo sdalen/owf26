@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-malt-50: #fbf6ee;
+  --color-malt-100: #f3e6d0;
+  --color-malt-300: #dcb27a;
+  --color-malt-500: #b8783a;
+  --color-malt-700: #7a4a20;
+  --color-malt-900: #2a1a0e;
+  --color-malt-950: #170e07;
+}
+
+html {
+  color-scheme: dark;
+  scroll-padding-top: 9rem;
+}
+
+body {
+  @apply bg-malt-950 text-malt-50 antialiased;
+}
