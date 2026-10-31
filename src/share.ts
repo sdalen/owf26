@@ -2,8 +2,8 @@ import type { Notes, WhiskyNote } from './types'
 
 const HASH_KEY = 'liste'
 
-// Kompakt format per whisky: [id, vilSmake (0/1), rating (0 = ingen), whiskybase-url?]
-type Entry = [string, 0 | 1, number, string?]
+// Kompakt format per whisky: [id, flagg (1 = vil smake, 2 = smakt), rating (0 = ingen), whiskybase-url?]
+type Entry = [string, number, number, string?]
 
 async function compress(text: string): Promise<Uint8Array> {
   const stream = new Blob([text]).stream().pipeThrough(new CompressionStream('deflate-raw'))
@@ -29,7 +29,7 @@ function fromBase64Url(s: string): Uint8Array {
 /** Lager en lenke til denne siden med lista innbakt i #-delen (sendes aldri til serveren) */
 export async function createShareUrl(notes: Notes): Promise<string> {
   const entries: Entry[] = Object.entries(notes).map(([id, n]) => {
-    const e: Entry = [id, n.wantToTaste ? 1 : 0, n.rating ?? 0]
+    const e: Entry = [id, (n.wantToTaste ? 1 : 0) | (n.tasted ? 2 : 0), n.rating ?? 0]
     if (n.whiskybaseUrl) e.push(n.whiskybaseUrl)
     return e
   })
@@ -46,9 +46,10 @@ export async function readSharedNotes(hash: string): Promise<Notes | null> {
   try {
     const entries = JSON.parse(await decompress(fromBase64Url(match[1]))) as Entry[]
     const notes: Notes = {}
-    for (const [id, want, rating, url] of entries) {
+    for (const [id, flags, rating, url] of entries) {
       const note: WhiskyNote = {}
-      if (want) note.wantToTaste = true
+      if (flags & 1) note.wantToTaste = true
+      if (flags & 2) note.tasted = true
       if (rating >= 1 && rating <= 5) note.rating = rating
       if (typeof url === 'string' && url.startsWith('https://')) note.whiskybaseUrl = url
       notes[id] = note
@@ -66,6 +67,7 @@ export function mergeNotes(mine: Notes, shared: Notes): Notes {
     result[id] = {
       ...mine[id],
       ...(n.wantToTaste && { wantToTaste: true }),
+      ...(n.tasted && { tasted: true }),
       ...(n.rating && { rating: n.rating }),
       ...(n.whiskybaseUrl && { whiskybaseUrl: n.whiskybaseUrl }),
     }

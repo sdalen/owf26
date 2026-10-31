@@ -10,7 +10,8 @@ interface Props {
 }
 
 export function BarCard({ bar, whiskies, notes, onUpdate }: Props) {
-  const wanted = bar.whiskies.filter((w) => notes[w.id]?.wantToTaste).length
+  const wanted = bar.whiskies.filter((w) => notes[w.id]?.wantToTaste && !notes[w.id]?.tasted).length
+  const tasted = bar.whiskies.filter((w) => notes[w.id]?.tasted).length
 
   return (
     <section id={bar.id} className="overflow-hidden rounded-xl border border-malt-900 bg-malt-900/40">
@@ -20,7 +21,9 @@ export function BarCard({ bar, whiskies, notes, onUpdate }: Props) {
           {bar.distributor !== bar.name && <p className="text-xs text-malt-300">{bar.distributor}</p>}
         </div>
         <p className="shrink-0 text-xs text-malt-300">
-          {bar.whiskies.length} whisky{wanted > 0 && <span className="text-amber-400"> · {wanted} på lista</span>}
+          {bar.whiskies.length} whisky
+          {wanted > 0 && <span className="text-amber-400"> · {wanted} vil smake</span>}
+          {tasted > 0 && <span className="text-emerald-400"> · {tasted} smakt</span>}
         </p>
       </header>
       <ul className="divide-y divide-malt-900">

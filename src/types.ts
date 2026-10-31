@@ -24,6 +24,7 @@ export interface Bar {
 /** Det brukeren selv har lagt inn for en whisky */
 export interface WhiskyNote {
   wantToTaste?: boolean
+  tasted?: boolean
   rating?: number
   whiskybaseUrl?: string
 }

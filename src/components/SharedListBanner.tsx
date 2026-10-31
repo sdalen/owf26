@@ -1,4 +1,4 @@
-import { bars } from '../data/bars'
+import { whiskyById } from '../data/lookup'
 import type { Notes } from '../types'
 
 interface Props {
@@ -8,27 +8,25 @@ interface Props {
   onDismiss: () => void
 }
 
-const whiskyById = new Map(bars.flatMap((b) => b.whiskies.map((w) => [w.id, { ...w, barName: b.name, floor: b.floor }])))
-
 export function SharedListBanner({ shared, onMerge, onReplace, onDismiss }: Props) {
   const wanted = Object.entries(shared)
     .filter(([, n]) => n.wantToTaste)
     .map(([id]) => whiskyById.get(id))
     .filter((w) => w !== undefined)
-  const rated = Object.values(shared).filter((n) => n.rating).length
+  const tasted = Object.values(shared).filter((n) => n.tasted).length
 
   return (
     <section className="mb-6 rounded-xl border border-amber-400/60 bg-amber-400/10 p-4">
       <h2 className="font-semibold text-amber-300">Du har åpnet en delt liste</h2>
       <p className="mt-1 text-sm text-malt-100">
-        {wanted.length} på smakelista · {rated} ratet · {wanted.reduce((sum, w) => sum + w.bonger, 0)} bonger
+        {wanted.length} vil smake · {tasted} smakt · {wanted.reduce((sum, w) => sum + w.bonger, 0)} bonger
       </p>
       {wanted.length > 0 && (
         <ul className="mt-3 max-h-60 space-y-1 overflow-y-auto text-sm">
           {wanted.map((w) => (
             <li key={w.id} className="flex justify-between gap-3">
               <span>
-                {w.name} <span className="text-malt-500">· {w.barName}, {w.floor}. etg</span>
+                {w.name} <span className="text-malt-500">· {w.bar.name}, {w.bar.floor}. etg</span>
               </span>
               <span className="shrink-0 tabular-nums text-malt-300">{w.bonger}</span>
             </li>
