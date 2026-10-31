@@ -17,10 +17,13 @@ export interface Stats {
   mustBongerLeft: number
   maybeBongerLeft: number
   tastedBonger: number
+  /** Bonger for alt på «Vil smake» (må + kanskje), og hvor mye av det som er smakt */
+  wishBonger: number
+  wishBongerDone: number
 }
 
 export function statsFor(whiskies: Whisky[], notes: Notes): Stats {
-  const s: Stats = { must: 0, mustDone: 0, maybe: 0, maybeDone: 0, tasted: 0, mustBongerLeft: 0, maybeBongerLeft: 0, tastedBonger: 0 }
+  const s: Stats = { must: 0, mustDone: 0, maybe: 0, maybeDone: 0, tasted: 0, mustBongerLeft: 0, maybeBongerLeft: 0, tastedBonger: 0, wishBonger: 0, wishBongerDone: 0 }
   for (const w of whiskies) {
     const note = notes[w.id]
     const wish = wishOf(note)
@@ -28,6 +31,10 @@ export function statsFor(whiskies: Whisky[], notes: Notes): Stats {
     if (tasted) {
       s.tasted++
       s.tastedBonger += w.bonger
+    }
+    if (wish) {
+      s.wishBonger += w.bonger
+      if (tasted) s.wishBongerDone += w.bonger
     }
     if (wish === 'must') {
       s.must++
