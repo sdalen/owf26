@@ -1,20 +1,44 @@
 @import "tailwindcss";
+@import "@fontsource-variable/fraunces";
 
 @theme {
-  --color-malt-50: #fbf6ee;
-  --color-malt-100: #f3e6d0;
-  --color-malt-300: #dcb27a;
-  --color-malt-500: #b8783a;
-  --color-malt-700: #7a4a20;
-  --color-malt-900: #2a1a0e;
-  --color-malt-950: #170e07;
+  /* Varm, nesten nøytral mørk palett – fargene brukes som aksenter, ikke flater */
+  --color-malt-50: #f6f1e9;
+  --color-malt-100: #e4ddd2;
+  --color-malt-300: #a99f92;
+  --color-malt-500: #776e63;
+  --color-malt-700: #3a342e;
+  --color-malt-800: #26221e;
+  --color-malt-900: #1b1815;
+  --color-malt-950: #100e0c;
+
+  /* Gull i stedet for Tailwinds gule amber */
+  --color-amber-100: #f7e7c6;
+  --color-amber-200: #f0d49c;
+  --color-amber-300: #e8bd6c;
+  --color-amber-400: #dda447;
+  --color-amber-500: #c2862a;
+
+  --color-emerald-200: #b5e6cc;
+  --color-emerald-300: #8fd9b3;
+  --color-emerald-400: #5cc495;
+
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
 }
 
 html {
   color-scheme: dark;
   scroll-padding-top: 9rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   @apply bg-malt-950 text-malt-50 antialiased;
+  background-image: radial-gradient(120% 60% at 50% -10%, rgb(221 164 71 / 0.09), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Kort/flate som brukes overalt */
+@utility card {
+  @apply rounded-2xl bg-malt-900 ring-1 ring-white/5;
 }

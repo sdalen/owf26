@@ -11,7 +11,7 @@ export function FloorsView({ notes }: { notes: Notes }) {
   return (
     <>
       <TopBar title="Barer" subtitle="Velg etasje" back={href({ view: 'home' })} />
-      <div className="space-y-3">
+      <div className="space-y-2">
         {floors.map((f) => {
           const floorBars = bars.filter((b) => b.floor === f.floor)
           const whiskies = floorBars.flatMap((b) => b.whiskies)
@@ -19,8 +19,9 @@ export function FloorsView({ notes }: { notes: Notes }) {
             <NavButton
               key={f.floor}
               href={href({ view: 'floor', floor: f.floor })}
-              title={`${f.floor}. etasje · ${f.name}`}
-              subtitle={`${floorBars.length} barer · ${whiskies.length} whisky`}
+              icon={<span className="font-display font-semibold">{f.floor}</span>}
+              title={f.name}
+              subtitle={`${f.floor}. etasje · ${floorBars.length} barer · ${whiskies.length} whisky`}
               aside={<StatusCounts stats={statsFor(whiskies, notes)} />}
             />
           )

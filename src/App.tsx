@@ -10,6 +10,7 @@ import { FloorsView } from './views/FloorsView'
 import { FloorView } from './views/FloorView'
 import { HomeView } from './views/HomeView'
 import { ListView } from './views/ListView'
+import { PitStopView } from './views/PitStopView'
 import { SearchView } from './views/SearchView'
 
 export default function App() {
@@ -77,6 +78,9 @@ export default function App() {
       break
     case 'search':
       content = <SearchView notes={notes} onUpdate={update} />
+      break
+    case 'pitstop':
+      content = <PitStopView day={route.day} notes={notes} onUpdate={update} />
       break
     default:
       content = (

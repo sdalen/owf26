@@ -91,14 +91,13 @@ export function ListView({ mode, notes, onUpdate }: Props) {
     <>
       <TopBar title={{ wishlist: 'Vil smake', maybe: 'Kanskje', tasted: 'Har smakt' }[mode]} subtitle={subtitle} back={href({ view: 'home' })}>
         {all.length > 1 && (
-          <div className="flex flex-wrap items-center gap-2 text-sm">
-            <span className="text-malt-300">Sorter:</span>
+          <div className="flex gap-1 rounded-xl bg-malt-900 p-1 text-sm ring-1 ring-white/5">
             {sorts.map((s) => (
               <button
                 key={s}
                 type="button"
                 onClick={() => changeSort(s)}
-                className={`rounded-full px-3 py-1 ${sort === s ? 'bg-malt-100 text-malt-950' : 'bg-malt-900 text-malt-100 hover:bg-malt-700'}`}
+                className={`flex-1 rounded-lg py-1.5 font-medium whitespace-nowrap ${sort === s ? 'bg-malt-700 text-malt-50 shadow-sm' : 'text-malt-300 hover:text-malt-50'}`}
               >
                 {sortLabels[s]}
               </button>
@@ -110,7 +109,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
       {all.length === 0 ? (
         <div className="py-16 text-center text-malt-300">
           <p>{mode === 'tasted' ? 'Du har ikke markert noe som smakt ennå.' : 'Ingenting på lista ennå.'}</p>
-          <a href={href({ view: 'floors' })} className="mt-3 inline-block text-amber-400 underline underline-offset-2">
+          <a href={href({ view: 'floors' })} className="mt-4 inline-block rounded-full bg-amber-400 px-4 py-2 font-semibold text-malt-950">
             Gå til barene
           </a>
         </div>
@@ -121,11 +120,12 @@ export function ListView({ mode, notes, onUpdate }: Props) {
             .map((g) => (
               <section key={g.title ?? 'all'}>
                 {g.title && (
-                  <h2 className="mb-2 text-lg font-semibold">
-                    {g.title} <span className="text-sm font-normal text-malt-300">· {groupSummary(g.items)}</span>
-                  </h2>
+                  <div className="mb-2 flex items-baseline justify-between gap-3 px-1">
+                    <h2 className="font-display text-xl font-semibold">{g.title}</h2>
+                    <span className="text-xs text-malt-300">{groupSummary(g.items)}</span>
+                  </div>
                 )}
-                <ul className="divide-y divide-malt-900 overflow-hidden rounded-xl border border-malt-900 bg-malt-900/40">
+                <ul className="card divide-y divide-white/5 overflow-hidden">
                   {g.items.map((w, i) => (
                     <Fragment key={w.id}>
                       {sort === 'sted' && w.bar.floor !== g.items[i - 1]?.bar.floor && <FloorHeading floor={w.bar.floor} />}
@@ -144,8 +144,8 @@ export function ListView({ mode, notes, onUpdate }: Props) {
 function FloorHeading({ floor }: { floor: number }) {
   const info = floors.find((f) => f.floor === floor)
   return (
-    <li className="bg-malt-900 px-4 py-2 text-sm font-semibold">
-      <span className="text-malt-300">{floor}. etasje ·</span> {info?.name}
+    <li className="bg-malt-950/40 px-4 pt-3 pb-1.5 text-xs font-semibold tracking-wide text-malt-300 uppercase">
+      {floor}. etasje <span className="font-normal text-malt-500 normal-case">· {info?.name}</span>
     </li>
   )
 }

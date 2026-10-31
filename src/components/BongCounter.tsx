@@ -13,14 +13,14 @@ export function BongCounter({ bought, onChange, stats }: Props) {
   const step = (delta: number) => onChange(Math.max(0, bought + delta))
 
   return (
-    <section className="rounded-xl border border-malt-900 bg-malt-900/50 p-4">
+    <section className="card p-4">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <h2 className="font-semibold">Bonger</h2>
+          <h2 className="font-display text-lg leading-tight font-semibold">Bonger</h2>
           <p className="text-xs text-malt-300">Hvor mange har du kjøpt?</p>
         </div>
         <div className="flex items-center gap-2">
-          <button type="button" onClick={() => step(-1)} aria-label="En bong mindre" className="size-9 rounded-full bg-malt-900 text-lg hover:bg-malt-700">
+          <button type="button" onClick={() => step(-1)} aria-label="En bong mindre" className="size-9 rounded-full bg-white/5 text-lg text-malt-100 ring-1 ring-white/5 hover:bg-white/10 active:scale-95">
             −
           </button>
           <input
@@ -30,9 +30,9 @@ export function BongCounter({ bought, onChange, stats }: Props) {
             value={bought}
             onChange={(e) => onChange(Math.max(0, Math.floor(Number(e.target.value) || 0)))}
             aria-label="Antall kjøpte bonger"
-            className="w-16 rounded-md border border-malt-700 bg-malt-950 py-1 text-center text-lg font-semibold tabular-nums outline-none focus:ring-2 focus:ring-malt-500"
+            className="w-14 rounded-lg bg-malt-950 py-1 text-center font-display font-display text-2xl font-semibold tabular-nums ring-1 ring-malt-700 outline-none focus:ring-2 focus:ring-amber-400/60"
           />
-          <button type="button" onClick={() => step(1)} aria-label="En bong til" className="size-9 rounded-full bg-malt-900 text-lg hover:bg-malt-700">
+          <button type="button" onClick={() => step(1)} aria-label="En bong til" className="size-9 rounded-full bg-white/5 text-lg text-malt-100 ring-1 ring-white/5 hover:bg-white/10 active:scale-95">
             +
           </button>
         </div>
@@ -40,22 +40,22 @@ export function BongCounter({ bought, onChange, stats }: Props) {
 
       {bought > 0 && (
         <>
-          <dl className="mt-4 grid grid-cols-3 gap-2 text-center">
+          <dl className="mt-4 grid grid-cols-3 divide-x divide-white/5 rounded-xl bg-malt-950/50 py-2.5 text-center">
             <div>
-              <dt className="text-xs text-malt-300">Kjøpt</dt>
-              <dd className="text-xl font-semibold tabular-nums">{bought}</dd>
+              <dt className="text-[11px] tracking-wide text-malt-500 uppercase">Kjøpt</dt>
+              <dd className="font-display text-2xl font-semibold tabular-nums">{bought}</dd>
             </div>
             <div>
-              <dt className="text-xs text-malt-300">Brukt</dt>
-              <dd className="text-xl font-semibold tabular-nums">{stats.tastedBonger}</dd>
+              <dt className="text-[11px] tracking-wide text-malt-500 uppercase">Brukt</dt>
+              <dd className="font-display text-2xl font-semibold tabular-nums">{stats.tastedBonger}</dd>
             </div>
             <div>
-              <dt className="text-xs text-malt-300">Igjen</dt>
-              <dd className={`text-xl font-semibold tabular-nums ${left < 0 ? 'text-red-400' : 'text-emerald-400'}`}>{left}</dd>
+              <dt className="text-[11px] tracking-wide text-malt-500 uppercase">Igjen</dt>
+              <dd className={`font-display text-2xl font-semibold tabular-nums ${left < 0 ? 'text-red-400' : 'text-emerald-300'}`}>{left}</dd>
             </div>
           </dl>
           {stats.mustBongerLeft > 0 && (
-            <p className={`mt-3 rounded-md px-3 py-2 text-sm ${missingForMust > 0 ? 'bg-red-900/40 text-red-200' : 'bg-emerald-900/30 text-emerald-200'}`}>
+            <p className={`mt-3 text-sm ${missingForMust > 0 ? 'text-red-300' : 'text-emerald-200/90'}`}>
               {missingForMust > 0
                 ? `«Må smake» trenger ${bongerText(stats.mustBongerLeft)} – du mangler ${missingForMust}.`
                 : `«Må smake» trenger ${bongerText(stats.mustBongerLeft)} – det går fint.${

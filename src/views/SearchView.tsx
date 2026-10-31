@@ -48,7 +48,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`rounded-full px-3 py-1 whitespace-nowrap ${active ? 'bg-amber-400 text-malt-950' : 'bg-malt-900 text-malt-100 hover:bg-malt-700'}`}
+      className={`rounded-full px-3 py-1.5 font-medium whitespace-nowrap ring-1 transition ${active ? 'bg-amber-400 text-malt-950 ring-amber-400' : 'bg-white/5 text-malt-100 ring-white/5 hover:bg-white/10'}`}
     >
       {children}
     </button>
@@ -58,7 +58,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
 function FilterGroup({ label, children }: { label: string; children: ReactNode }) {
   return (
     <fieldset>
-      <legend className="mb-1.5 text-xs font-medium tracking-wide text-malt-300 uppercase">{label}</legend>
+      <legend className="mb-2 text-[11px] font-semibold tracking-wide text-malt-500 uppercase">{label}</legend>
       <div className="flex flex-wrap gap-2 text-sm">{children}</div>
     </fieldset>
   )
@@ -121,14 +121,14 @@ export function SearchView({ notes, onUpdate }: Props) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Whisky, bar eller importør…"
-            className="min-w-0 flex-1 rounded-lg border border-malt-700 bg-malt-900/60 px-3 py-2 text-malt-50 placeholder:text-malt-500 outline-none focus:ring-2 focus:ring-malt-500"
+            className="min-w-0 flex-1 rounded-xl bg-malt-900 px-3.5 py-2.5 text-malt-50 ring-1 ring-white/5 placeholder:text-malt-500 outline-none focus:ring-2 focus:ring-amber-400/60"
           />
           <button
             type="button"
             onClick={() => setPanelOpen((v) => !v)}
             aria-expanded={panelOpen}
-            className={`flex shrink-0 items-center gap-1.5 rounded-lg border px-3 font-medium ${
-              panelOpen || active.length > 0 ? 'border-amber-400 bg-amber-400/15 text-amber-200' : 'border-malt-700 bg-malt-900/60 text-malt-100'
+            className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3.5 font-semibold ring-1 transition ${
+              panelOpen || active.length > 0 ? 'bg-amber-400/15 text-amber-200 ring-amber-400/50' : 'bg-malt-900 text-malt-100 ring-white/5'
             }`}
           >
             Filter
@@ -144,7 +144,7 @@ export function SearchView({ notes, onUpdate }: Props) {
                 type="button"
                 onClick={a.clear}
                 aria-label={`Fjern filter ${a.label}`}
-                className="flex items-center gap-1 rounded-full bg-amber-400/20 px-2.5 py-0.5 text-amber-100 hover:bg-amber-400/30"
+                className="flex items-center gap-1 rounded-full bg-amber-400/15 px-2.5 py-1 font-medium text-amber-100 ring-1 ring-amber-400/30 hover:bg-amber-400/25"
               >
                 {a.label} <span aria-hidden>×</span>
               </button>
@@ -153,7 +153,7 @@ export function SearchView({ notes, onUpdate }: Props) {
         )}
 
         {panelOpen && (
-          <div className="mt-3 max-h-[65vh] space-y-4 overflow-y-auto rounded-xl border border-malt-900 bg-malt-900/50 p-4">
+          <div className="card mt-3 max-h-[65vh] space-y-4 overflow-y-auto p-4">
             <FilterGroup label="Etasje">
               {([null, 2, 3, 4] as const).map((f) => (
                 <Chip key={f ?? 'alle'} active={floor === f} onClick={() => pickFloor(f)}>
@@ -163,11 +163,11 @@ export function SearchView({ notes, onUpdate }: Props) {
             </FilterGroup>
 
             <fieldset>
-              <legend className="mb-1.5 text-xs font-medium tracking-wide text-malt-300 uppercase">Bar</legend>
+              <legend className="mb-2 text-[11px] font-semibold tracking-wide text-malt-500 uppercase">Bar</legend>
               <select
                 value={barId ?? ''}
                 onChange={(e) => setBarId(e.target.value || null)}
-                className="w-full rounded-lg border border-malt-700 bg-malt-950 px-3 py-2 text-malt-50 outline-none focus:ring-2 focus:ring-malt-500"
+                className="w-full rounded-xl bg-malt-950 px-3 py-2.5 text-malt-50 ring-1 ring-malt-700 outline-none focus:ring-2 focus:ring-amber-400/60"
               >
                 <option value="">Alle barer{floor !== null ? ` i ${floor}. etg` : ''}</option>
                 {barsToPick.map((b) => (
@@ -207,7 +207,7 @@ export function SearchView({ notes, onUpdate }: Props) {
               >
                 Nullstill
               </button>
-              <button type="button" onClick={() => setPanelOpen(false)} className="rounded-lg bg-amber-400 px-4 py-2 font-semibold text-malt-950 hover:bg-amber-300">
+              <button type="button" onClick={() => setPanelOpen(false)} className="rounded-xl bg-amber-400 px-4 py-2.5 font-semibold text-malt-950 hover:bg-amber-300">
                 Vis {results.length} whisky
               </button>
             </div>
@@ -217,7 +217,7 @@ export function SearchView({ notes, onUpdate }: Props) {
 
       {results.length === 0 && <p className="py-16 text-center text-malt-300">Ingen whisky matcher søket.</p>}
       {results.length > 0 && (
-        <ul className="divide-y divide-malt-900 overflow-hidden rounded-xl border border-malt-900 bg-malt-900/40">
+        <ul className="card divide-y divide-white/5 overflow-hidden">
           {results.map((w) => (
             <WhiskyRow key={w.id} whisky={w} note={notes[w.id]} onUpdate={(patch) => onUpdate(w.id, patch)} bar={w.bar} />
           ))}

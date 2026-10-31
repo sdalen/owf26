@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { Floor } from './types'
+import type { Floor, PitStopDay } from './types'
 
 export type Route =
   | { view: 'home' }
@@ -10,6 +10,7 @@ export type Route =
   | { view: 'maybe' }
   | { view: 'tasted' }
   | { view: 'search' }
+  | { view: 'pitstop'; day: PitStopDay }
 
 function parse(hash: string): Route {
   const [first, a] = hash.replace(/^#\/?/, '').split('/')
@@ -27,6 +28,8 @@ function parse(hash: string): Route {
       return { view: 'tasted' }
     case 'sok':
       return { view: 'search' }
+    case 'pit-stop':
+      return { view: 'pitstop', day: a === 'lor' ? 'lør' : 'fre' }
     default:
       return { view: 'home' }
   }
@@ -50,6 +53,8 @@ export function href(route: Route): string {
       return '#/har-smakt'
     case 'search':
       return '#/sok'
+    case 'pitstop':
+      return `#/pit-stop/${route.day === 'lør' ? 'lor' : 'fre'}`
   }
 }
 

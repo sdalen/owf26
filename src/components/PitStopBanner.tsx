@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react'
 import { allWhiskies } from '../data/lookup'
 import { wishOf } from '../noteStatus'
+import { PIT_STOPS } from '../data/pitStops'
 import type { Notes, PitStopDay } from '../types'
 import { href } from '../useRoute'
 
-// Tidspunkter fra festivalhåndboka (norsk vintertid, UTC+1)
-const PIT_STOPS: { day: PitStopDay; label: string; start: Date; end: Date }[] = [
-  { day: 'fre', label: 'fredag', start: new Date('2026-11-06T18:30:00+01:00'), end: new Date('2026-11-06T19:00:00+01:00') },
-  { day: 'lør', label: 'lørdag', start: new Date('2026-11-07T16:30:00+01:00'), end: new Date('2026-11-07T17:00:00+01:00') },
-]
 
 /** Varselet dukker opp så lenge før pit-stop starter */
 const SHOW_BEFORE_MS = 30 * 60 * 1000

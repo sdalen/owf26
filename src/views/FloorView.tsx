@@ -21,18 +21,18 @@ export function FloorView({ floor, notes }: { floor: Floor; notes: Notes }) {
         type="button"
         onClick={() => setShowPlan((v) => !v)}
         aria-expanded={showPlan}
-        className="mb-4 flex w-full items-center justify-between rounded-xl border border-malt-900 bg-malt-900/50 px-4 py-3 text-left font-medium hover:bg-malt-900"
+        className="card mb-3 flex w-full items-center justify-between px-4 py-3 text-left font-medium hover:bg-malt-800"
       >
         Plantegning
         <span className="text-malt-500">{showPlan ? '▴' : '▾'}</span>
       </button>
       {showPlan && (
-        <a href={planUrl} target="_blank" rel="noreferrer" className="mb-4 block overflow-hidden rounded-xl bg-white">
+        <a href={planUrl} target="_blank" rel="noreferrer" className="mb-3 block overflow-hidden rounded-2xl bg-white">
           <img src={planUrl} alt={`Plantegning for ${floor}. etasje, ${info.name}`} className="w-full" />
         </a>
       )}
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         {bars
           .filter((b) => b.floor === floor)
           .map((b) => (

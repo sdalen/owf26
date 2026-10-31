@@ -16,8 +16,8 @@ export function SharedListBanner({ shared, onMerge, onReplace, onDismiss }: Prop
   const tasted = Object.values(shared).filter((n) => n.tasted).length
 
   return (
-    <section className="mb-6 rounded-xl border border-amber-400/60 bg-amber-400/10 p-4">
-      <h2 className="font-semibold text-amber-300">Du har åpnet en delt liste</h2>
+    <section className="card mb-6 p-4 ring-amber-400/40">
+      <h2 className="font-display text-lg font-semibold text-amber-300">Du har åpnet en delt liste</h2>
       <p className="mt-1 text-sm text-malt-100">
         {wanted.length} vil smake/kanskje · {tasted} smakt · {wanted.reduce((sum, w) => sum + w.bonger, 0)} bonger
       </p>

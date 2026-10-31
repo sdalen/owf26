@@ -15,7 +15,7 @@ export default defineConfig({
       includeAssets: ['favicon.png', 'apple-touch-icon.png'],
       workbox: {
         // Ta med plantegningene, så alt virker uten nett på festivalen
-        globPatterns: ['**/*.{js,css,html,png,webmanifest}'],
+        globPatterns: ['**/*.{js,css,html,png,webmanifest,woff2}'],
       },
       manifest: {
         name: 'Oslo Whiskyfestival 2026',
