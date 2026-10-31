@@ -96,7 +96,7 @@ export function SearchView({ notes, onUpdate }: Props) {
               whisky={w}
               note={notes[w.id]}
               onUpdate={(patch) => onUpdate(w.id, patch)}
-              location={`${w.bar.name} · ${w.bar.floor}. etg`}
+              bar={w.bar}
             />
           ))}
         </ul>

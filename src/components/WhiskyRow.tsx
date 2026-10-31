@@ -1,5 +1,6 @@
 import { bongPriceRange } from '../data/floors'
-import type { Whisky, WhiskyNote } from '../types'
+import type { Bar, Whisky, WhiskyNote } from '../types'
+import { href } from '../useRoute'
 import { StarRating } from './StarRating'
 import { WhiskybaseLink } from './WhiskybaseLink'
 
@@ -8,7 +9,7 @@ interface Props {
   note?: WhiskyNote
   onUpdate: (patch: Partial<WhiskyNote>) => void
   /** Vises i lister på tvers av barer, f.eks. «Vil smake» */
-  location?: string
+  bar?: Bar
 }
 
 function Toggle({ on, onClick, label, onClass }: { on: boolean; onClick: () => void; label: string; onClass: string }) {
@@ -26,7 +27,7 @@ function Toggle({ on, onClick, label, onClass }: { on: boolean; onClick: () => v
   )
 }
 
-export function WhiskyRow({ whisky, note = {}, onUpdate, location }: Props) {
+export function WhiskyRow({ whisky, note = {}, onUpdate, bar }: Props) {
   const { wantToTaste, tasted, rating, whiskybaseUrl } = note
 
   return (
@@ -34,7 +35,15 @@ export function WhiskyRow({ whisky, note = {}, onUpdate, location }: Props) {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="font-medium leading-snug">{whisky.name}</p>
-          {location && <p className="text-xs text-malt-300">{location}</p>}
+          {bar && (
+            <a
+              href={href({ view: 'bar', barId: bar.id })}
+              className="mt-1 inline-flex items-center gap-1 rounded-md bg-malt-900 px-2 py-0.5 text-sm text-malt-100 hover:bg-malt-700"
+            >
+              <span className="font-medium">{bar.name}</span>
+              <span className="text-malt-300">· {bar.floor}. etg</span>
+            </a>
+          )}
           {(whisky.nominee || whisky.pitStop) && (
             <div className="mt-1 flex flex-wrap gap-1.5 text-xs">
               {whisky.nominee && <span className="rounded bg-orange-900/50 px-1.5 py-0.5 text-orange-200">Best i festival-nominert</span>}
