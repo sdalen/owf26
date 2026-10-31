@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { PitStopStrip } from './components/PitStopBanner'
 import { SharedListBanner } from './components/SharedListBanner'
 import { createShareUrl, mergeNotes, readSharedNotes, shareUrl } from './share'
 import type { Notes } from './types'
@@ -102,5 +103,11 @@ export default function App() {
       )
   }
 
-  return <div className="mx-auto max-w-2xl px-4 pb-24">{content}</div>
+  return (
+    <div className="mx-auto max-w-2xl px-4 pb-24">
+      {/* Forsiden har det store varselet; de andre skjermene får en stripe */}
+      {route.view !== 'home' && <PitStopStrip notes={notes} />}
+      {content}
+    </div>
+  )
 }
