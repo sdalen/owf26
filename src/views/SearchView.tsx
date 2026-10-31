@@ -42,27 +42,25 @@ const bongRanges: { id: BongRange; label: string; test: (n: number) => boolean }
   { id: '10+', label: 'Over 10', test: (n) => n > 10 },
 ]
 
-function Chip({ active, onClick, children, tone = 'light' }: { active: boolean; onClick: () => void; children: ReactNode; tone?: 'light' | 'amber' }) {
-  const on = tone === 'amber' ? 'bg-amber-400 text-malt-950' : 'bg-malt-100 text-malt-950'
+function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: ReactNode }) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`shrink-0 rounded-full px-3 py-1 whitespace-nowrap ${active ? on : 'bg-malt-900 text-malt-100 hover:bg-malt-700'}`}
+      className={`rounded-full px-3 py-1 whitespace-nowrap ${active ? 'bg-amber-400 text-malt-950' : 'bg-malt-900 text-malt-100 hover:bg-malt-700'}`}
     >
       {children}
     </button>
   )
 }
 
-/** En rad med hurtigvalg som kan scrolles sidelengs på mobil */
-function ChipRow({ label, children }: { label: string; children: ReactNode }) {
+function FilterGroup({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="flex items-center gap-2 text-sm">
-      <span className="w-14 shrink-0 text-malt-300">{label}</span>
-      <div className="-mr-4 flex min-w-0 flex-1 gap-2 overflow-x-auto pr-4 pb-0.5 [scrollbar-width:none]">{children}</div>
-    </div>
+    <fieldset>
+      <legend className="mb-1.5 text-xs font-medium tracking-wide text-malt-300 uppercase">{label}</legend>
+      <div className="flex flex-wrap gap-2 text-sm">{children}</div>
+    </fieldset>
   )
 }
 
@@ -77,6 +75,7 @@ export function SearchView({ notes, onUpdate }: Props) {
   const [barId, setBarId] = useState<string | null>(null)
   const [bong, setBong] = useState<BongRange | null>(null)
   const [filter, setFilter] = useState<Filter>('alle')
+  const [panelOpen, setPanelOpen] = useState(false)
 
   const barsToPick = bars.filter((b) => floor === null || b.floor === floor)
 
@@ -89,18 +88,24 @@ export function SearchView({ notes, onUpdate }: Props) {
   const q = query.trim().toLowerCase()
   const range = bongRanges.find((r) => r.id === bong)
   const results = allWhiskies.filter(
-      (w) =>
-        (floor === null || w.bar.floor === floor) &&
-        (barId === null || w.bar.id === barId) &&
-        (!range || range.test(w.bonger)) &&
-        matchesFilter(w, filter, notes) &&
-        (!q || w.name.toLowerCase().includes(q) || w.bar.name.toLowerCase().includes(q) || w.bar.distributor.toLowerCase().includes(q)),
+    (w) =>
+      (floor === null || w.bar.floor === floor) &&
+      (barId === null || w.bar.id === barId) &&
+      (!range || range.test(w.bonger)) &&
+      matchesFilter(w, filter, notes) &&
+      (!q || w.name.toLowerCase().includes(q) || w.bar.name.toLowerCase().includes(q) || w.bar.distributor.toLowerCase().includes(q)),
   )
 
-  const filtered = query.trim() !== '' || filter !== 'alle' || floor !== null || barId !== null || bong !== null
+  // Aktive filtre vises som brikker med × når panelet er lukket
+  const active: { key: string; label: string; clear: () => void }[] = []
+  if (floor !== null) active.push({ key: 'floor', label: `${floor}. etg`, clear: () => setFloor(null) })
+  if (barId !== null) active.push({ key: 'bar', label: barById.get(barId)?.name ?? barId, clear: () => setBarId(null) })
+  if (range) active.push({ key: 'bong', label: `${range.label} ${range.id === '1' ? 'bong' : 'bonger'}`, clear: () => setBong(null) })
+  if (filter !== 'alle') active.push({ key: 'vis', label: filters.find((f) => f.id === filter)!.label, clear: () => setFilter('alle') })
+
+  const filtered = q !== '' || active.length > 0
 
   function reset() {
-    setQuery('')
     setFloor(null)
     setBarId(null)
     setBong(null)
@@ -110,56 +115,105 @@ export function SearchView({ notes, onUpdate }: Props) {
   return (
     <>
       <TopBar title="Søk i all whisky" subtitle={filtered ? `${results.length} av ${allWhiskies.length} whisky` : `Alle ${allWhiskies.length} whisky`} back={href({ view: 'home' })}>
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Whisky, bar eller importør…"
-          className="w-full rounded-lg border border-malt-700 bg-malt-900/60 px-3 py-2 text-malt-50 placeholder:text-malt-500 outline-none focus:ring-2 focus:ring-malt-500"
-        />
-      </TopBar>
-
-      <div className="mb-4 space-y-2">
-        <ChipRow label="Etasje">
-          {([null, 2, 3, 4] as const).map((f) => (
-            <Chip key={f ?? 'alle'} active={floor === f} onClick={() => pickFloor(f)}>
-              {f === null ? 'Alle' : `${f}. etg`}
-            </Chip>
-          ))}
-        </ChipRow>
-        <ChipRow label="Bar">
-          <Chip active={barId === null} onClick={() => setBarId(null)}>
-            Alle
-          </Chip>
-          {barsToPick.map((b) => (
-            <Chip key={b.id} active={barId === b.id} onClick={() => setBarId(barId === b.id ? null : b.id)}>
-              {b.name}
-            </Chip>
-          ))}
-        </ChipRow>
-        <ChipRow label="Bonger">
-          <Chip active={bong === null} onClick={() => setBong(null)}>
-            Alle
-          </Chip>
-          {bongRanges.map((r) => (
-            <Chip key={r.id} active={bong === r.id} onClick={() => setBong(bong === r.id ? null : r.id)}>
-              {r.label}
-            </Chip>
-          ))}
-        </ChipRow>
-        <ChipRow label="Vis">
-          {filters.map((f) => (
-            <Chip key={f.id} tone="amber" active={filter === f.id} onClick={() => setFilter(f.id)}>
-              {f.label}
-            </Chip>
-          ))}
-        </ChipRow>
-        {filtered && (
-          <button type="button" onClick={reset} className="text-sm text-malt-300 underline underline-offset-2 hover:text-malt-50">
-            Nullstill søk og filtre
+        <div className="flex gap-2">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Whisky, bar eller importør…"
+            className="min-w-0 flex-1 rounded-lg border border-malt-700 bg-malt-900/60 px-3 py-2 text-malt-50 placeholder:text-malt-500 outline-none focus:ring-2 focus:ring-malt-500"
+          />
+          <button
+            type="button"
+            onClick={() => setPanelOpen((v) => !v)}
+            aria-expanded={panelOpen}
+            className={`flex shrink-0 items-center gap-1.5 rounded-lg border px-3 font-medium ${
+              panelOpen || active.length > 0 ? 'border-amber-400 bg-amber-400/15 text-amber-200' : 'border-malt-700 bg-malt-900/60 text-malt-100'
+            }`}
+          >
+            Filter
+            {active.length > 0 && <span className="rounded-full bg-amber-400 px-1.5 text-xs leading-5 text-malt-950">{active.length}</span>}
           </button>
+        </div>
+
+        {!panelOpen && active.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-2 text-sm">
+            {active.map((a) => (
+              <button
+                key={a.key}
+                type="button"
+                onClick={a.clear}
+                aria-label={`Fjern filter ${a.label}`}
+                className="flex items-center gap-1 rounded-full bg-amber-400/20 px-2.5 py-0.5 text-amber-100 hover:bg-amber-400/30"
+              >
+                {a.label} <span aria-hidden>×</span>
+              </button>
+            ))}
+          </div>
         )}
-      </div>
+
+        {panelOpen && (
+          <div className="mt-3 max-h-[65vh] space-y-4 overflow-y-auto rounded-xl border border-malt-900 bg-malt-900/50 p-4">
+            <FilterGroup label="Etasje">
+              {([null, 2, 3, 4] as const).map((f) => (
+                <Chip key={f ?? 'alle'} active={floor === f} onClick={() => pickFloor(f)}>
+                  {f === null ? 'Alle' : `${f}. etg`}
+                </Chip>
+              ))}
+            </FilterGroup>
+
+            <fieldset>
+              <legend className="mb-1.5 text-xs font-medium tracking-wide text-malt-300 uppercase">Bar</legend>
+              <select
+                value={barId ?? ''}
+                onChange={(e) => setBarId(e.target.value || null)}
+                className="w-full rounded-lg border border-malt-700 bg-malt-950 px-3 py-2 text-malt-50 outline-none focus:ring-2 focus:ring-malt-500"
+              >
+                <option value="">Alle barer{floor !== null ? ` i ${floor}. etg` : ''}</option>
+                {barsToPick.map((b) => (
+                  <option key={b.id} value={b.id}>
+                    {floor === null ? `${b.floor}. etg – ` : ''}
+                    {b.name}
+                  </option>
+                ))}
+              </select>
+            </fieldset>
+
+            <FilterGroup label="Bonger">
+              <Chip active={bong === null} onClick={() => setBong(null)}>
+                Alle
+              </Chip>
+              {bongRanges.map((r) => (
+                <Chip key={r.id} active={bong === r.id} onClick={() => setBong(bong === r.id ? null : r.id)}>
+                  {r.label}
+                </Chip>
+              ))}
+            </FilterGroup>
+
+            <FilterGroup label="Vis">
+              {filters.map((f) => (
+                <Chip key={f.id} active={filter === f.id} onClick={() => setFilter(f.id)}>
+                  {f.label}
+                </Chip>
+              ))}
+            </FilterGroup>
+
+            <div className="flex items-center justify-between gap-3 pt-1">
+              <button
+                type="button"
+                onClick={reset}
+                disabled={active.length === 0}
+                className="text-sm text-malt-300 underline underline-offset-2 hover:text-malt-50 disabled:invisible"
+              >
+                Nullstill
+              </button>
+              <button type="button" onClick={() => setPanelOpen(false)} className="rounded-lg bg-amber-400 px-4 py-2 font-semibold text-malt-950 hover:bg-amber-300">
+                Vis {results.length} whisky
+              </button>
+            </div>
+          </div>
+        )}
+      </TopBar>
 
       {results.length === 0 && <p className="py-16 text-center text-malt-300">Ingen whisky matcher søket.</p>}
       {results.length > 0 && (
