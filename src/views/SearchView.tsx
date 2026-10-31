@@ -47,16 +47,13 @@ export function SearchView({ notes, onUpdate }: Props) {
     )
   }, [query, floor, filter, notes])
 
-  // Uten søk/filter vises ikke hele lista – den er for lang til å bla i
-  const showResults = query.trim() !== '' || filter !== 'alle' || floor !== null
-  const shown = results.slice(0, 100)
+  const filtered = query.trim() !== '' || filter !== 'alle' || floor !== null
 
   return (
     <>
-      <TopBar title="Søk i all whisky" subtitle={showResults ? `${results.length} treff` : `${allWhiskies.length} whisky`} back={href({ view: 'home' })}>
+      <TopBar title="Søk i all whisky" subtitle={filtered ? `${results.length} av ${allWhiskies.length} whisky` : `Alle ${allWhiskies.length} whisky`} back={href({ view: 'home' })}>
         <input
           type="search"
-          autoFocus
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Whisky, bar eller importør…"
@@ -87,10 +84,10 @@ export function SearchView({ notes, onUpdate }: Props) {
         </div>
       </TopBar>
 
-      {showResults && results.length === 0 && <p className="py-16 text-center text-malt-300">Ingen whisky matcher søket.</p>}
-      {showResults && results.length > 0 && (
+      {results.length === 0 && <p className="py-16 text-center text-malt-300">Ingen whisky matcher søket.</p>}
+      {results.length > 0 && (
         <ul className="divide-y divide-malt-900 overflow-hidden rounded-xl border border-malt-900 bg-malt-900/40">
-          {shown.map((w) => (
+          {results.map((w) => (
             <WhiskyRow
               key={w.id}
               whisky={w}
@@ -100,9 +97,6 @@ export function SearchView({ notes, onUpdate }: Props) {
             />
           ))}
         </ul>
-      )}
-      {results.length > shown.length && showResults && (
-        <p className="mt-3 text-center text-sm text-malt-500">Viser {shown.length} av {results.length} – snevre inn søket</p>
       )}
     </>
   )
