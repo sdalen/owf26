@@ -7,6 +7,15 @@
     <meta name="theme-color" content="#170e07" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oslo Whiskyfestival 2026</title>
+    <!-- Anonym besøkstelling (GoatCounter, ingen cookies). Teller #/-skjermene, men aldri innholdet i delte lister. -->
+    <script>
+      window.goatcounter = {
+        path: function () {
+          return location.pathname + location.hash.replace(/^#liste=.*/, '#liste')
+        },
+      }
+    </script>
+    <script data-goatcounter="https://owf26.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </head>
   <body>
     <div id="root"></div>

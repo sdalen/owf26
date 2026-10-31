@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react'
 import type { Floor, PitStopDay } from './types'
 
+declare global {
+  interface Window {
+    goatcounter?: { count?: () => void }
+  }
+}
+
 export type Route =
   | { view: 'home' }
   | { view: 'floors' }
@@ -71,6 +77,8 @@ export function useRoute(): Route {
     const onChange = () => {
       setRoute(parse(window.location.hash))
       window.scrollTo(0, 0)
+      // Første visning telles av GoatCounter selv; skjermbytter må telles her
+      window.goatcounter?.count?.()
     }
     window.addEventListener('hashchange', onChange)
     return () => window.removeEventListener('hashchange', onChange)

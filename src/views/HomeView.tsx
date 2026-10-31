@@ -115,11 +115,8 @@ export function HomeView({
         />
       </div>
 
-      <footer className="mt-12 flex flex-wrap items-center gap-2 border-t border-white/5 pt-6 text-xs text-malt-500">
-        <span>
-          Markeringer lagres lokalt på denne enheten. 1 bong per påbegynte kr
-          750 (Vinmonopolet).
-        </span>
+      <footer className="mt-12 border-t border-white/5 pt-6 text-xs text-malt-500">
+        <div className="flex gap-2">
         <button
           type="button"
           onClick={onExport}
@@ -140,6 +137,11 @@ export function HomeView({
             }}
           />
         </label>
+        </div>
+        <p className="mt-3">
+          Markeringer lagres lokalt på denne enheten. 1 bong per påbegynte kr
+          750 (Vinmonopolet).
+        </p>
       </footer>
     </>
   );
