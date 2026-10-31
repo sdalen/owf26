@@ -10,8 +10,10 @@
     <!-- Anonym besøkstelling (GoatCounter, ingen cookies). Teller #/-skjermene, men aldri innholdet i delte lister. -->
     <script>
       window.goatcounter = {
+        // Forsiden telles alltid som «/owf26/», uansett om adressen ender på «/owf26», «/owf26/» eller «#/»
         path: function () {
-          return location.pathname + location.hash.replace(/^#liste=.*/, '#liste')
+          var hash = location.hash.replace(/^#liste=.*/, '#liste')
+          return location.pathname.replace(/\/?$/, '/') + (hash === '#' || hash === '#/' ? '' : hash)
         },
       }
     </script>
