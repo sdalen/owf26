@@ -1,8 +1,9 @@
 import { Fragment, useState } from 'react'
 import { TopBar } from '../components/TopBar'
 import { WhiskyRow } from '../components/WhiskyRow'
-import { floors } from '../data/floors'
-import { allWhiskies } from '../data/lookup'
+import { bongerText, floors } from '../data/floors'
+import { allWhiskies, type WhiskyWithBar } from '../data/lookup'
+import { statsFor, wishOf } from '../noteStatus'
 import type { Notes, WhiskyNote } from '../types'
 import { href } from '../useRoute'
 
@@ -46,13 +47,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
     }
   }
 
-  const items = allWhiskies
-    .filter((w) =>
-      mode === 'wishlist'
-        ? // Smakte whiskyer flyttes over til «Har smakt»
-          notes[w.id]?.wantToTaste && !notes[w.id]?.tasted
-        : notes[w.id]?.tasted,
-    )
+  const sorted = [...allWhiskies]
     // allWhiskies ligger allerede i etasje/bar-rekkefølge, så 'sted' trenger bare stabil sortering på etasje
     .sort((a, b) => {
       switch (sort) {
@@ -66,16 +61,32 @@ export function ListView({ mode, notes, onUpdate }: Props) {
           return a.bar.floor - b.bar.floor
       }
     })
-  const bonger = items.reduce((sum, w) => sum + w.bonger, 0)
+
+  // «Vil smake» deles i «Må smake» og «Kanskje». Smakte blir stående (med hake) så man beholder oversikten.
+  const groups: { title?: string; items: WhiskyWithBar[] }[] =
+    mode === 'wishlist'
+      ? [
+          { title: 'Må smake', items: sorted.filter((w) => wishOf(notes[w.id]) === 'must') },
+          { title: 'Kanskje', items: sorted.filter((w) => wishOf(notes[w.id]) === 'maybe') },
+        ]
+      : [{ items: sorted.filter((w) => notes[w.id]?.tasted) }]
+  const all = groups.flatMap((g) => g.items)
+  const stats = statsFor(all, notes)
+
+  const groupSummary = (items: WhiskyWithBar[]) => {
+    const left = items.filter((w) => !notes[w.id]?.tasted)
+    return `${items.length - left.length}/${items.length} smakt · ${bongerText(left.reduce((sum, w) => sum + w.bonger, 0))} igjen`
+  }
+
+  const subtitle =
+    mode === 'wishlist'
+      ? `${stats.mustDone}/${stats.must} må · ${stats.maybeDone}/${stats.maybe} kanskje smakt · ${bongerText(stats.mustBongerLeft + stats.maybeBongerLeft)} igjen`
+      : `${stats.tasted} whisky · ${bongerText(stats.tastedBonger)} brukt`
 
   return (
     <>
-      <TopBar
-        title={mode === 'wishlist' ? 'Vil smake' : 'Har smakt'}
-        subtitle={`${items.length} whisky · ${bonger} bonger${mode === 'tasted' ? ' brukt' : ''}`}
-        back={href({ view: 'home' })}
-      >
-        {items.length > 1 && (
+      <TopBar title={mode === 'wishlist' ? 'Vil smake' : 'Har smakt'} subtitle={subtitle} back={href({ view: 'home' })}>
+        {all.length > 1 && (
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="text-malt-300">Sorter:</span>
             {sorts.map((s) => (
@@ -92,7 +103,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
         )}
       </TopBar>
 
-      {items.length === 0 ? (
+      {all.length === 0 ? (
         <div className="py-16 text-center text-malt-300">
           <p>{mode === 'wishlist' ? 'Ingenting på lista ennå.' : 'Du har ikke markert noe som smakt ennå.'}</p>
           <a href={href({ view: 'floors' })} className="mt-3 inline-block text-amber-400 underline underline-offset-2">
@@ -100,14 +111,27 @@ export function ListView({ mode, notes, onUpdate }: Props) {
           </a>
         </div>
       ) : (
-        <ul className="divide-y divide-malt-900 overflow-hidden rounded-xl border border-malt-900 bg-malt-900/40">
-          {items.map((w, i) => (
-            <Fragment key={w.id}>
-              {sort === 'sted' && w.bar.floor !== items[i - 1]?.bar.floor && <FloorHeading floor={w.bar.floor} />}
-              <WhiskyRow whisky={w} note={notes[w.id]} onUpdate={(patch) => onUpdate(w.id, patch)} bar={w.bar} />
-            </Fragment>
-          ))}
-        </ul>
+        <div className="space-y-8">
+          {groups
+            .filter((g) => g.items.length > 0)
+            .map((g) => (
+              <section key={g.title ?? 'all'}>
+                {g.title && (
+                  <h2 className="mb-2 text-lg font-semibold">
+                    {g.title} <span className="text-sm font-normal text-malt-300">· {groupSummary(g.items)}</span>
+                  </h2>
+                )}
+                <ul className="divide-y divide-malt-900 overflow-hidden rounded-xl border border-malt-900 bg-malt-900/40">
+                  {g.items.map((w, i) => (
+                    <Fragment key={w.id}>
+                      {sort === 'sted' && w.bar.floor !== g.items[i - 1]?.bar.floor && <FloorHeading floor={w.bar.floor} />}
+                      <WhiskyRow whisky={w} note={notes[w.id]} onUpdate={(patch) => onUpdate(w.id, patch)} bar={w.bar} />
+                    </Fragment>
+                  ))}
+                </ul>
+              </section>
+            ))}
+        </div>
       )}
     </>
   )

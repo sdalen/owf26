@@ -1,7 +1,12 @@
+import { BongCounter } from '../components/BongCounter'
 import { NavButton } from '../components/NavButton'
+import { PitStopBanner } from '../components/PitStopBanner'
+import { bongerText } from '../data/floors'
 import { allWhiskies } from '../data/lookup'
+import { statsFor } from '../noteStatus'
 import type { Notes } from '../types'
 import { href } from '../useRoute'
+import { useStoredNumber } from '../useStoredNumber'
 
 interface Props {
   notes: Notes
@@ -12,10 +17,8 @@ interface Props {
 }
 
 export function HomeView({ notes, onShare, shareStatus, onExport, onImport }: Props) {
-  const wanted = allWhiskies.filter((w) => notes[w.id]?.wantToTaste && !notes[w.id]?.tasted)
-  const tasted = allWhiskies.filter((w) => notes[w.id]?.tasted)
-  const wantedBonger = wanted.reduce((sum, w) => sum + w.bonger, 0)
-  const tastedBonger = tasted.reduce((sum, w) => sum + w.bonger, 0)
+  const stats = statsFor(allWhiskies, notes)
+  const [bought, setBought] = useStoredNumber('owf26-bonger-kjopt')
 
   return (
     <>
@@ -28,20 +31,30 @@ export function HomeView({ notes, onShare, shareStatus, onExport, onImport }: Pr
         <dl className="mt-5 grid grid-cols-2 gap-3">
           <a href={href({ view: 'wishlist' })} className="rounded-xl bg-amber-400/10 p-3 hover:bg-amber-400/20">
             <dt className="text-xs text-amber-200">Vil smake</dt>
-            <dd className="text-3xl font-semibold tabular-nums text-amber-400">{wanted.length}</dd>
-            <dd className="text-xs text-malt-300">{wantedBonger} bonger</dd>
+            <dd className="text-3xl font-semibold tabular-nums text-amber-400">
+              {stats.mustDone}
+              <span className="text-lg text-amber-400/60">/{stats.must}</span>
+            </dd>
+            <dd className="text-xs text-malt-300">
+              må smake{stats.maybe > 0 && ` · ${stats.maybeDone}/${stats.maybe} kanskje`}
+            </dd>
           </a>
           <a href={href({ view: 'tasted' })} className="rounded-xl bg-emerald-400/10 p-3 hover:bg-emerald-400/20">
             <dt className="text-xs text-emerald-200">Har smakt</dt>
-            <dd className="text-3xl font-semibold tabular-nums text-emerald-400">{tasted.length}</dd>
-            <dd className="text-xs text-malt-300">{tastedBonger} bonger brukt</dd>
+            <dd className="text-3xl font-semibold tabular-nums text-emerald-400">{stats.tasted}</dd>
+            <dd className="text-xs text-malt-300">{bongerText(stats.tastedBonger)} brukt</dd>
           </a>
         </dl>
       </header>
 
+      <div className="mb-6 space-y-3">
+        <PitStopBanner notes={notes} />
+        <BongCounter bought={bought} onChange={setBought} stats={stats} />
+      </div>
+
       <nav className="space-y-3">
         <NavButton href={href({ view: 'floors' })} title="Barer" subtitle="Velg etasje og bar" aside={<span className="text-sm text-malt-300">3 etasjer</span>} />
-        <NavButton href={href({ view: 'wishlist' })} title="Vil smake" subtitle="Det du har markert, sortert etter etasje og bar" accent="amber" />
+        <NavButton href={href({ view: 'wishlist' })} title="Vil smake" subtitle="Må smake og kanskje – med hake for det du har smakt" accent="amber" />
         <NavButton href={href({ view: 'tasted' })} title="Har smakt" subtitle="Med rating og Whiskybase-lenker" accent="emerald" />
         <NavButton href={href({ view: 'search' })} title="Søk i all whisky" subtitle={`${allWhiskies.length} whiskyer · nominerte · pit-stop`} />
       </nav>

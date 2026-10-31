@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { statsFor } from '../noteStatus'
 import type { Bar, Notes, Whisky, WhiskyNote } from '../types'
 import { WhiskyRow } from './WhiskyRow'
 
@@ -10,8 +11,7 @@ interface Props {
 }
 
 export function BarCard({ bar, whiskies, notes, onUpdate }: Props) {
-  const wanted = bar.whiskies.filter((w) => notes[w.id]?.wantToTaste && !notes[w.id]?.tasted).length
-  const tasted = bar.whiskies.filter((w) => notes[w.id]?.tasted).length
+  const stats = statsFor(bar.whiskies, notes)
 
   return (
     <section id={bar.id} className="overflow-hidden rounded-xl border border-malt-900 bg-malt-900/40">
@@ -22,8 +22,9 @@ export function BarCard({ bar, whiskies, notes, onUpdate }: Props) {
         </div>
         <p className="shrink-0 text-xs text-malt-300">
           {bar.whiskies.length} whisky
-          {wanted > 0 && <span className="text-amber-400"> · {wanted} vil smake</span>}
-          {tasted > 0 && <span className="text-emerald-400"> · {tasted} smakt</span>}
+          {stats.must > 0 && <span className="text-amber-400"> · {stats.must} må</span>}
+          {stats.maybe > 0 && <span className="text-amber-200/70"> · {stats.maybe} kanskje</span>}
+          {stats.tasted > 0 && <span className="text-emerald-400"> · {stats.tasted} smakt</span>}
         </p>
       </header>
       <ul className="divide-y divide-malt-900">

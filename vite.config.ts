@@ -13,6 +13,10 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.png', 'apple-touch-icon.png'],
+      workbox: {
+        // Ta med plantegningene, så alt virker uten nett på festivalen
+        globPatterns: ['**/*.{js,css,html,png,webmanifest}'],
+      },
       manifest: {
         name: 'Oslo Whiskyfestival 2026',
         short_name: 'OWF 2026',

@@ -26,7 +26,7 @@ export function useNotes() {
   const update = useCallback((id: string, patch: Partial<WhiskyNote>) => {
     setNotes((prev) => {
       const next: WhiskyNote = { ...prev[id], ...patch }
-      const empty = !next.wantToTaste && !next.tasted && !next.rating && !next.whiskybaseUrl
+      const empty = !next.wantToTaste && !next.maybe && !next.tasted && !next.rating && !next.whiskybaseUrl && !next.tastingNote
       const { [id]: _removed, ...rest } = prev
       return empty ? rest : { ...rest, [id]: next }
     })

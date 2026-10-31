@@ -23,10 +23,14 @@ export interface Bar {
 
 /** Det brukeren selv har lagt inn for en whisky */
 export interface WhiskyNote {
+  /** «Må smake» – høyeste prioritet */
   wantToTaste?: boolean
+  /** «Kanskje» – smakes hvis det er bonger og tid igjen */
+  maybe?: boolean
   tasted?: boolean
   rating?: number
   whiskybaseUrl?: string
+  tastingNote?: string
 }
 
 export type Notes = Record<string, WhiskyNote>
