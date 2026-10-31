@@ -38,6 +38,7 @@ export function HomeView({ notes, onShare, shareStatus, onExport, onImport }: Pr
             <dd className="text-xs text-malt-300">
               må smake{stats.maybe > 0 && ` · ${stats.maybeDone}/${stats.maybe} kanskje`}
             </dd>
+            <dd className="text-xs text-malt-300">{bongerText(stats.mustBongerLeft + stats.maybeBongerLeft)} igjen å smake</dd>
           </a>
           <a href={href({ view: 'tasted' })} className="rounded-xl bg-emerald-400/10 p-3 hover:bg-emerald-400/20">
             <dt className="text-xs text-emerald-200">Har smakt</dt>
