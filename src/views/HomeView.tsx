@@ -84,7 +84,7 @@ export function HomeView({
       <nav className="space-y-2">
         <NavButton href={href({ view: 'floors' })} icon="🥃" title="Barer" subtitle={`${bars.length} barer fordelt på 3 etasjer`} />
         <NavButton href={href({ view: 'wishlist' })} icon="♥" accent="amber" title="Vil smake" subtitle="Må smake og kanskje, med hake for det du har smakt" />
-        <NavButton href={href({ view: 'tasted' })} icon="✓" accent="emerald" title="Har smakt" subtitle="Med rating og notater" />
+        <NavButton href={href({ view: 'tasted' })} icon="✓" accent="emerald" title="Har smakt" subtitle="Med score og notater" />
         <NavButton href={href({ view: 'search' })} icon="⌕" title="Søk i all whisky" subtitle={`${allWhiskies.length} whisky · filter på bar, bonger og pit-stop`} />
       </nav>
 
@@ -103,6 +103,16 @@ export function HomeView({
         {shareStatus && (
           <span className="text-sm text-malt-300">{shareStatus}</span>
         )}
+      </div>
+
+      <div className="mt-6">
+        <NavButton
+          href={href({ view: 'tastedList' })}
+          icon="≡"
+          accent="emerald"
+          title="Smakt-liste"
+          subtitle={stats.tasted > 0 ? `${stats.tasted} whisky med din score` : 'Alt du har smakt, med score'}
+        />
       </div>
 
       <footer className="mt-12 flex flex-wrap items-center gap-2 border-t border-white/5 pt-6 text-xs text-malt-500">

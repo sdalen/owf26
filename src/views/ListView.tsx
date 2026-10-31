@@ -7,11 +7,11 @@ import { statsFor, wishOf } from '../noteStatus'
 import type { Notes, WhiskyNote } from '../types'
 import { href } from '../useRoute'
 
-type Sort = 'sted' | 'rating' | 'bonger' | 'navn'
+type Sort = 'sted' | 'score' | 'bonger' | 'navn'
 
 const sortLabels: Record<Sort, string> = {
   sted: 'Etasje og bar',
-  rating: 'Rating',
+  score: 'Score',
   bonger: 'Bonger',
   navn: 'Navn',
 }
@@ -31,12 +31,12 @@ function loadSort(mode: Props['mode']): Sort {
   } catch {
     // ignorer – bruk standard
   }
-  return mode === 'tasted' ? 'rating' : 'sted'
+  return mode === 'tasted' ? 'score' : 'sted'
 }
 
 export function ListView({ mode, notes, onUpdate }: Props) {
   const [sort, setSort] = useState<Sort>(() => loadSort(mode))
-  const sorts: Sort[] = mode === 'tasted' ? ['rating', 'sted', 'bonger', 'navn'] : ['sted', 'bonger', 'navn']
+  const sorts: Sort[] = mode === 'tasted' ? ['score', 'sted', 'bonger', 'navn'] : ['sted', 'bonger', 'navn']
 
   function changeSort(s: Sort) {
     setSort(s)
@@ -51,8 +51,8 @@ export function ListView({ mode, notes, onUpdate }: Props) {
     // allWhiskies ligger allerede i etasje/bar-rekkefølge, så 'sted' trenger bare stabil sortering på etasje
     .sort((a, b) => {
       switch (sort) {
-        case 'rating':
-          return (notes[b.id]?.rating ?? 0) - (notes[a.id]?.rating ?? 0)
+        case 'score':
+          return (notes[b.id]?.score ?? -1) - (notes[a.id]?.score ?? -1)
         case 'bonger':
           return b.bonger - a.bonger
         case 'navn':

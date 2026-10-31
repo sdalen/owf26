@@ -4,7 +4,7 @@ import { wishOf } from '../noteStatus'
 import type { Bar, Whisky, WhiskyNote } from '../types'
 import { href } from '../useRoute'
 import { whiskybaseSearchUrl } from '../whiskybase'
-import { StarRating } from './StarRating'
+import { ScoreInput } from './ScoreInput'
 
 interface Props {
   whisky: Whisky
@@ -32,7 +32,7 @@ function Segment({ on, onClick, children, onClass }: { on: boolean; onClick: () 
 const stripe = { must: 'bg-amber-400', maybe: 'bg-amber-200/40' }
 
 export function WhiskyRow({ whisky, note = {}, onUpdate, bar }: Props) {
-  const { wantToTaste, maybe, tasted, rating, tastingNote } = note
+  const { wantToTaste, maybe, tasted, score, tastingNote } = note
   const [editingNote, setEditingNote] = useState(false)
   const wish = wishOf(note)
 
@@ -87,8 +87,8 @@ export function WhiskyRow({ whisky, note = {}, onUpdate, bar }: Props) {
       </div>
 
       <div className="mt-2.5 flex items-center justify-between gap-3">
-        {/* Å gi rating betyr at du har smakt den */}
-        <StarRating value={rating} onChange={(r) => onUpdate(r ? { rating: r, tasted: true } : { rating: undefined })} />
+        {/* Å gi score betyr at du har smakt den */}
+        <ScoreInput value={score} onChange={(s) => onUpdate(s === undefined ? { score: undefined } : { score: s, tasted: true })} />
         <div className="flex items-center gap-4 text-xs font-medium text-malt-500">
           {!editingNote && !tastingNote && (
             <button type="button" onClick={() => setEditingNote(true)} className="hover:text-malt-100">

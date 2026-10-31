@@ -13,7 +13,7 @@ const filters: { id: Filter; label: string }[] = [
   { id: 'pitstop-fre', label: 'Pit-stop fredag' },
   { id: 'pitstop-lor', label: 'Pit-stop lørdag' },
   { id: 'nominert', label: 'Best i festival-nominert' },
-  { id: 'ratet', label: 'Ratet' },
+  { id: 'ratet', label: 'Med score' },
 ]
 
 function matchesFilter(w: WhiskyWithBar, filter: Filter, notes: Notes) {
@@ -25,7 +25,7 @@ function matchesFilter(w: WhiskyWithBar, filter: Filter, notes: Notes) {
     case 'pitstop-lor':
       return !!w.pitStop?.includes('lør')
     case 'ratet':
-      return !!notes[w.id]?.rating
+      return notes[w.id]?.score !== undefined
     default:
       return true
   }

@@ -9,6 +9,7 @@ export type Route =
   | { view: 'wishlist' }
   | { view: 'maybe' }
   | { view: 'tasted' }
+  | { view: 'tastedList' }
   | { view: 'search' }
   | { view: 'pitstop'; day: PitStopDay }
 
@@ -26,6 +27,8 @@ function parse(hash: string): Route {
       return { view: 'maybe' }
     case 'har-smakt':
       return { view: 'tasted' }
+    case 'smakt-liste':
+      return { view: 'tastedList' }
     case 'sok':
       return { view: 'search' }
     case 'pit-stop':
@@ -51,6 +54,8 @@ export function href(route: Route): string {
       return '#/kanskje'
     case 'tasted':
       return '#/har-smakt'
+    case 'tastedList':
+      return '#/smakt-liste'
     case 'search':
       return '#/sok'
     case 'pitstop':

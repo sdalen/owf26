@@ -3,7 +3,7 @@ import { PitStopStrip } from './components/PitStopBanner'
 import { SharedListBanner } from './components/SharedListBanner'
 import { createShareUrl, mergeNotes, readSharedNotes, shareUrl } from './share'
 import type { Notes } from './types'
-import { migrate, useNotes } from './useNotes'
+import { useNotes } from './useNotes'
 import { useRoute } from './useRoute'
 import { BarView } from './views/BarView'
 import { FloorsView } from './views/FloorsView'
@@ -12,6 +12,7 @@ import { HomeView } from './views/HomeView'
 import { ListView } from './views/ListView'
 import { PitStopView } from './views/PitStopView'
 import { SearchView } from './views/SearchView'
+import { TastedListView } from './views/TastedListView'
 
 export default function App() {
   const { notes, update, replaceAll } = useNotes()
@@ -54,7 +55,7 @@ export default function App() {
     try {
       const parsed = JSON.parse(await file.text()) as Notes
       if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) throw new Error('Ugyldig format')
-      if (confirm('Erstatte dine nåværende markeringer med innholdet i filen?')) replaceAll(migrate(parsed))
+      if (confirm('Erstatte dine nåværende markeringer med innholdet i filen?')) replaceAll(parsed)
     } catch {
       alert('Klarte ikke å lese filen.')
     }
@@ -78,6 +79,9 @@ export default function App() {
       break
     case 'search':
       content = <SearchView notes={notes} onUpdate={update} />
+      break
+    case 'tastedList':
+      content = <TastedListView notes={notes} />
       break
     case 'pitstop':
       content = <PitStopView day={route.day} notes={notes} onUpdate={update} />

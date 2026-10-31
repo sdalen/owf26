@@ -28,7 +28,8 @@ export interface WhiskyNote {
   /** «Kanskje» – smakes hvis det er bonger og tid igjen */
   maybe?: boolean
   tasted?: boolean
-  rating?: number
+  /** 0–10 med én desimal */
+  score?: number
   tastingNote?: string
 }
 
