@@ -17,7 +17,7 @@ const sortLabels: Record<Sort, string> = {
 }
 
 interface Props {
-  mode: 'wishlist' | 'tasted'
+  mode: 'wishlist' | 'maybe' | 'tasted'
   notes: Notes
   onUpdate: (id: string, patch: Partial<WhiskyNote>) => void
 }
@@ -31,12 +31,12 @@ function loadSort(mode: Props['mode']): Sort {
   } catch {
     // ignorer – bruk standard
   }
-  return mode === 'wishlist' ? 'sted' : 'rating'
+  return mode === 'tasted' ? 'rating' : 'sted'
 }
 
 export function ListView({ mode, notes, onUpdate }: Props) {
   const [sort, setSort] = useState<Sort>(() => loadSort(mode))
-  const sorts: Sort[] = mode === 'wishlist' ? ['sted', 'bonger', 'navn'] : ['rating', 'sted', 'bonger', 'navn']
+  const sorts: Sort[] = mode === 'tasted' ? ['rating', 'sted', 'bonger', 'navn'] : ['sted', 'bonger', 'navn']
 
   function changeSort(s: Sort) {
     setSort(s)
@@ -69,7 +69,9 @@ export function ListView({ mode, notes, onUpdate }: Props) {
           { title: 'Må smake', items: sorted.filter((w) => wishOf(notes[w.id]) === 'must') },
           { title: 'Kanskje', items: sorted.filter((w) => wishOf(notes[w.id]) === 'maybe') },
         ]
-      : [{ items: sorted.filter((w) => notes[w.id]?.tasted) }]
+      : mode === 'maybe'
+        ? [{ items: sorted.filter((w) => wishOf(notes[w.id]) === 'maybe') }]
+        : [{ items: sorted.filter((w) => notes[w.id]?.tasted) }]
   const all = groups.flatMap((g) => g.items)
   const stats = statsFor(all, notes)
 
@@ -81,11 +83,13 @@ export function ListView({ mode, notes, onUpdate }: Props) {
   const subtitle =
     mode === 'wishlist'
       ? `${stats.mustDone}/${stats.must} må · ${stats.maybeDone}/${stats.maybe} kanskje smakt · ${bongerText(stats.mustBongerLeft + stats.maybeBongerLeft)} igjen`
-      : `${stats.tasted} whisky · ${bongerText(stats.tastedBonger)} brukt`
+      : mode === 'maybe'
+        ? `${stats.maybeDone}/${stats.maybe} smakt · ${bongerText(stats.maybeBongerLeft)} igjen`
+        : `${stats.tasted} whisky · ${bongerText(stats.tastedBonger)} brukt`
 
   return (
     <>
-      <TopBar title={mode === 'wishlist' ? 'Vil smake' : 'Har smakt'} subtitle={subtitle} back={href({ view: 'home' })}>
+      <TopBar title={{ wishlist: 'Vil smake', maybe: 'Kanskje', tasted: 'Har smakt' }[mode]} subtitle={subtitle} back={href({ view: 'home' })}>
         {all.length > 1 && (
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="text-malt-300">Sorter:</span>
@@ -105,7 +109,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
 
       {all.length === 0 ? (
         <div className="py-16 text-center text-malt-300">
-          <p>{mode === 'wishlist' ? 'Ingenting på lista ennå.' : 'Du har ikke markert noe som smakt ennå.'}</p>
+          <p>{mode === 'tasted' ? 'Du har ikke markert noe som smakt ennå.' : 'Ingenting på lista ennå.'}</p>
           <a href={href({ view: 'floors' })} className="mt-3 inline-block text-amber-400 underline underline-offset-2">
             Gå til barene
           </a>

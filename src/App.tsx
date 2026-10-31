@@ -70,6 +70,7 @@ export default function App() {
       content = <BarView barId={route.barId} notes={notes} onUpdate={update} />
       break
     case 'wishlist':
+    case 'maybe':
     case 'tasted':
       content = <ListView mode={route.view} notes={notes} onUpdate={update} />
       break

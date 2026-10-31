@@ -7,6 +7,7 @@ export type Route =
   | { view: 'floor'; floor: Floor }
   | { view: 'bar'; barId: string }
   | { view: 'wishlist' }
+  | { view: 'maybe' }
   | { view: 'tasted' }
   | { view: 'search' }
 
@@ -20,6 +21,8 @@ function parse(hash: string): Route {
       return a ? { view: 'bar', barId: a } : { view: 'floors' }
     case 'vil-smake':
       return { view: 'wishlist' }
+    case 'kanskje':
+      return { view: 'maybe' }
     case 'har-smakt':
       return { view: 'tasted' }
     case 'sok':
@@ -41,6 +44,8 @@ export function href(route: Route): string {
       return `#/bar/${route.barId}`
     case 'wishlist':
       return '#/vil-smake'
+    case 'maybe':
+      return '#/kanskje'
     case 'tasted':
       return '#/har-smakt'
     case 'search':

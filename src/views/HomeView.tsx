@@ -28,18 +28,25 @@ export function HomeView({ notes, onShare, shareStatus, onExport, onImport }: Pr
         <p className="mt-2 text-sm text-malt-300">Fredag 6. nov 17–21 · Lørdag 7. nov 13–20</p>
         <p className="text-sm text-malt-300">Pit-stop dram fre 18:30 og lør 16:30</p>
 
-        <dl className="mt-5 grid grid-cols-2 gap-3">
+        <dl className="mt-5 grid grid-cols-3 gap-2 sm:gap-3">
           <a href={href({ view: 'wishlist' })} className="rounded-xl bg-amber-400/10 p-3 hover:bg-amber-400/20">
-            <dt className="text-xs text-amber-200">Vil smake</dt>
+            <dt className="text-xs text-amber-200">Må smake</dt>
             <dd className="text-3xl font-semibold tabular-nums text-amber-400">
               {stats.mustDone}
               <span className="text-lg text-amber-400/60">/{stats.must}</span>
             </dd>
             <dd className="text-xs text-malt-300">
-              må smake{stats.maybe > 0 && ` · ${stats.maybeDone}/${stats.maybe} kanskje`}
+              {stats.mustBonger - stats.mustBongerLeft}/{bongerText(stats.mustBonger)}
+            </dd>
+          </a>
+          <a href={href({ view: 'maybe' })} className="rounded-xl bg-amber-200/5 p-3 hover:bg-amber-200/10">
+            <dt className="text-xs text-amber-100/80">Kanskje</dt>
+            <dd className="text-3xl font-semibold tabular-nums text-amber-200/90">
+              {stats.maybeDone}
+              <span className="text-lg text-amber-200/50">/{stats.maybe}</span>
             </dd>
             <dd className="text-xs text-malt-300">
-              {stats.wishBongerDone}/{bongerText(stats.wishBonger)}
+              {stats.maybeBonger - stats.maybeBongerLeft}/{bongerText(stats.maybeBonger)}
             </dd>
           </a>
           <a href={href({ view: 'tasted' })} className="rounded-xl bg-emerald-400/10 p-3 hover:bg-emerald-400/20">
