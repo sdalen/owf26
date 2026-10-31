@@ -3,8 +3,8 @@ import { bongPriceRange } from '../data/floors'
 import { wishOf } from '../noteStatus'
 import type { Bar, Whisky, WhiskyNote } from '../types'
 import { href } from '../useRoute'
+import { whiskybaseSearchUrl } from '../whiskybase'
 import { StarRating } from './StarRating'
-import { WhiskybaseLink } from './WhiskybaseLink'
 
 interface Props {
   whisky: Whisky
@@ -20,8 +20,8 @@ function Toggle({ on, onClick, label, onClass }: { on: boolean; onClick: () => v
       type="button"
       aria-pressed={on}
       onClick={onClick}
-      className={`rounded-full border px-3 py-1 text-sm font-medium transition-colors ${
-        on ? onClass : 'border-malt-700 text-malt-300 hover:border-malt-500 hover:text-malt-100'
+      className={`rounded-lg border px-3.5 py-2 text-sm font-semibold shadow-sm shadow-black/40 transition active:scale-95 ${
+        on ? onClass : 'border-malt-700 bg-malt-900 text-malt-100 hover:border-malt-500 hover:bg-malt-700'
       }`}
     >
       {label}
@@ -30,7 +30,7 @@ function Toggle({ on, onClick, label, onClass }: { on: boolean; onClick: () => v
 }
 
 export function WhiskyRow({ whisky, note = {}, onUpdate, bar }: Props) {
-  const { wantToTaste, maybe, tasted, rating, whiskybaseUrl, tastingNote } = note
+  const { wantToTaste, maybe, tasted, rating, tastingNote } = note
   const [editingNote, setEditingNote] = useState(false)
   const wish = wishOf(note)
 
@@ -92,7 +92,9 @@ export function WhiskyRow({ whisky, note = {}, onUpdate, bar }: Props) {
       <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
         {/* Å gi rating betyr at du har smakt den */}
         <StarRating value={rating} onChange={(r) => onUpdate(r ? { rating: r, tasted: true } : { rating: undefined })} />
-        <WhiskybaseLink name={whisky.name} url={whiskybaseUrl} onChange={(url) => onUpdate({ whiskybaseUrl: url })} />
+        <a href={whiskybaseSearchUrl(whisky.name)} target="_blank" rel="noreferrer" className="text-sm text-malt-500 hover:text-malt-100">
+          Søk WB ↗
+        </a>
         {!editingNote && !tastingNote && (
           <button type="button" onClick={() => setEditingNote(true)} className="text-sm text-malt-500 hover:text-malt-100">
             + Notat

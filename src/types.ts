@@ -29,7 +29,6 @@ export interface WhiskyNote {
   maybe?: boolean
   tasted?: boolean
   rating?: number
-  whiskybaseUrl?: string
   tastingNote?: string
 }
 

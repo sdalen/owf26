@@ -3,7 +3,7 @@ import { PitStopStrip } from './components/PitStopBanner'
 import { SharedListBanner } from './components/SharedListBanner'
 import { createShareUrl, mergeNotes, readSharedNotes, shareUrl } from './share'
 import type { Notes } from './types'
-import { useNotes } from './useNotes'
+import { migrate, useNotes } from './useNotes'
 import { useRoute } from './useRoute'
 import { BarView } from './views/BarView'
 import { FloorsView } from './views/FloorsView'
@@ -53,7 +53,7 @@ export default function App() {
     try {
       const parsed = JSON.parse(await file.text()) as Notes
       if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) throw new Error('Ugyldig format')
-      if (confirm('Erstatte dine nåværende markeringer med innholdet i filen?')) replaceAll(parsed)
+      if (confirm('Erstatte dine nåværende markeringer med innholdet i filen?')) replaceAll(migrate(parsed))
     } catch {
       alert('Klarte ikke å lese filen.')
     }

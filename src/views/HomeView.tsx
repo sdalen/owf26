@@ -65,7 +65,7 @@ export function HomeView({ notes, onShare, shareStatus, onExport, onImport }: Pr
       <nav className="space-y-3">
         <NavButton href={href({ view: 'floors' })} title="Barer" subtitle="Velg etasje og bar" aside={<span className="text-sm text-malt-300">3 etasjer</span>} />
         <NavButton href={href({ view: 'wishlist' })} title="Vil smake" subtitle="Må smake og kanskje – med hake for det du har smakt" accent="amber" />
-        <NavButton href={href({ view: 'tasted' })} title="Har smakt" subtitle="Med rating og Whiskybase-lenker" accent="emerald" />
+        <NavButton href={href({ view: 'tasted' })} title="Har smakt" subtitle="Med rating og notater" accent="emerald" />
         <NavButton href={href({ view: 'search' })} title="Søk i all whisky" subtitle={`${allWhiskies.length} whiskyer · nominerte · pit-stop`} />
       </nav>
 
