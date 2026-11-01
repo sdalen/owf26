@@ -79,7 +79,7 @@ export function PitStopBanner({ notes, ticketDays, usedPitStopBongs }: BannerPro
               return (
                 <li key={w.id}>
                   <a
-                    href={href({ view: 'bar', barId: w.bar.id })}
+                    href={href({ view: 'bar', barId: w.bar.id, whiskyId: w.id })}
                     className={`block rounded-lg border px-3 py-2 ${tasted ? 'border-emerald-400/40 bg-emerald-400/10' : 'border-amber-400/60 bg-amber-400/15 hover:bg-amber-400/25'}`}
                   >
                     <p className="font-semibold text-malt-50">
@@ -110,7 +110,7 @@ export function PitStopBanner({ notes, ticketDays, usedPitStopBongs }: BannerPro
         <ul className="mt-2 space-y-1">
           {(mine.length > 0 ? others : drams).map((w) => (
             <li key={w.id}>
-              <a href={href({ view: 'bar', barId: w.bar.id })} className="flex justify-between gap-3 text-malt-100 hover:text-pit-100">
+              <a href={href({ view: 'bar', barId: w.bar.id, whiskyId: w.id })} className="flex justify-between gap-3 text-malt-100 hover:text-pit-100">
                 <span>{w.name}</span>
                 <span className="shrink-0 text-malt-300">
                   {w.bar.name} · {w.bar.floor}. etg

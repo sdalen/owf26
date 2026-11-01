@@ -7,11 +7,13 @@ import { WhiskyRow } from './WhiskyRow'
 interface Props {
   bar: Bar
   whiskies: Whisky[]
+  /** Whiskyen som fremheves (kommer fra en lenke) */
+  highlightId?: string
   notes: Notes
   onUpdate: (id: string, patch: Partial<WhiskyNote>) => void
 }
 
-export function BarCard({ bar, whiskies, notes, onUpdate }: Props) {
+export function BarCard({ bar, whiskies, notes, onUpdate, highlightId }: Props) {
   const stats = statsFor(bar.whiskies, notes)
 
   return (
@@ -29,7 +31,7 @@ export function BarCard({ bar, whiskies, notes, onUpdate }: Props) {
             {w.section && w.section !== whiskies[i - 1]?.section && (
               <li className="bg-malt-950/40 px-4 pt-4 pb-1.5 font-display text-sm text-amber-200/80 italic">{w.section}</li>
             )}
-            <WhiskyRow whisky={w} note={notes[w.id]} onUpdate={(patch) => onUpdate(w.id, patch)} />
+            <WhiskyRow whisky={w} note={notes[w.id]} onUpdate={(patch) => onUpdate(w.id, patch)} highlight={w.id === highlightId} />
           </Fragment>
         ))}
       </ul>

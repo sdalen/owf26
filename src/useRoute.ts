@@ -11,7 +11,8 @@ export type Route =
   | { view: 'home' }
   | { view: 'floors' }
   | { view: 'floor'; floor: Floor }
-  | { view: 'bar'; barId: string }
+  /** whiskyId: scroll til og fremhev denne whiskyen */
+  | { view: 'bar'; barId: string; whiskyId?: string }
   | { view: 'wishlist' }
   | { view: 'maybe' }
   | { view: 'tasted' }
@@ -20,13 +21,13 @@ export type Route =
   | { view: 'pitstop'; day: PitStopDay }
 
 function parse(hash: string): Route {
-  const [first, a] = hash.replace(/^#\/?/, '').split('/')
+  const [first, a, b] = hash.replace(/^#\/?/, '').split('/')
   switch (first) {
     case 'barer':
       if (a === '2' || a === '3' || a === '4') return { view: 'floor', floor: Number(a) as Floor }
       return { view: 'floors' }
     case 'bar':
-      return a ? { view: 'bar', barId: a } : { view: 'floors' }
+      return a ? { view: 'bar', barId: a, whiskyId: b || undefined } : { view: 'floors' }
     case 'min-liste':
       return { view: 'wishlist' }
     case 'kanskje':
@@ -53,7 +54,7 @@ export function href(route: Route): string {
     case 'floor':
       return `#/barer/${route.floor}`
     case 'bar':
-      return `#/bar/${route.barId}`
+      return `#/bar/${route.barId}${route.whiskyId ? `/${route.whiskyId}` : ''}`
     case 'wishlist':
       return '#/min-liste'
     case 'maybe':

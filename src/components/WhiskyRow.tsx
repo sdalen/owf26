@@ -12,6 +12,8 @@ interface Props {
   onUpdate: (patch: Partial<WhiskyNote>) => void
   /** Vises i lister på tvers av barer, f.eks. «Min liste» */
   bar?: Bar
+  /** Kort fremheving når man kommer fra en lenke til akkurat denne whiskyen */
+  highlight?: boolean
 }
 
 function Segment({ on, onClick, children, onClass }: { on: boolean; onClick: () => void; children: ReactNode; onClass: string }) {
@@ -31,13 +33,13 @@ function Segment({ on, onClick, children, onClass }: { on: boolean; onClick: () 
 
 const stripe = { must: 'bg-amber-400', maybe: 'bg-amber-200/40' }
 
-export function WhiskyRow({ whisky, note = {}, onUpdate, bar }: Props) {
+export function WhiskyRow({ whisky, note = {}, onUpdate, bar, highlight }: Props) {
   const { wantToTaste, maybe, tasted, score, tastingNote } = note
   const [editingNote, setEditingNote] = useState(false)
   const wish = wishOf(note)
 
   return (
-    <li className="relative px-4 py-3.5">
+    <li id={`whisky-${whisky.id}`} className={`relative px-4 py-3.5 ${highlight ? 'animate-highlight' : ''}`}>
       {/* Tynn stripe til venstre viser status uten å farge hele raden */}
       {(tasted || wish) && <span aria-hidden className={`absolute inset-y-3 left-0 w-[3px] rounded-r-full ${tasted ? 'bg-emerald-400' : stripe[wish!]}`} />}
 

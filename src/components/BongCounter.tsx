@@ -164,7 +164,7 @@ function PitStopOverview({ ticketDays, notes }: { ticketDays: number; notes: Not
               const note = notes[w.id]
               return (
                 <li key={w.id}>
-                  <a href={href({ view: 'bar', barId: w.bar.id })} className="flex items-baseline gap-2 text-sm hover:text-pit-100">
+                  <a href={href({ view: 'bar', barId: w.bar.id, whiskyId: w.id })} className="flex items-baseline gap-2 text-sm hover:text-pit-100">
                     <span className={`w-4 shrink-0 text-center ${note?.tasted ? 'text-emerald-300' : 'text-amber-300'}`}>
                       {note?.tasted ? '✓' : wishOf(note) === 'must' ? '♥' : '?'}
                     </span>

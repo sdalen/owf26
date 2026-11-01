@@ -31,6 +31,8 @@
   --color-pit-400: #38bdf8;
   --color-pit-500: #0ea5e9;
 
+  --animate-highlight: highlight 2.4s ease-out;
+
   --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
 }
 
@@ -58,4 +60,14 @@ body {
 /* Kort/flate som brukes overalt */
 @utility card {
   @apply rounded-2xl bg-malt-900 ring-1 ring-white/5;
+}
+
+@keyframes highlight {
+  0%,
+  40% {
+    background-color: rgb(221 164 71 / 0.18);
+  }
+  100% {
+    background-color: transparent;
+  }
 }

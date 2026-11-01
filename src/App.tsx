@@ -87,7 +87,7 @@ export default function App() {
       content = <FloorView floor={route.floor} notes={notes} />
       break
     case 'bar':
-      content = <BarView barId={route.barId} notes={notes} onUpdate={updateNote} />
+      content = <BarView barId={route.barId} whiskyId={route.whiskyId} notes={notes} onUpdate={updateNote} />
       break
     case 'wishlist':
     case 'maybe':

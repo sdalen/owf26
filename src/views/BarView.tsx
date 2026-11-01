@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { BarCard } from '../components/BarCard'
 import { TopBar } from '../components/TopBar'
 import { barById } from '../data/lookup'
@@ -6,12 +7,18 @@ import { href } from '../useRoute'
 
 interface Props {
   barId: string
+  whiskyId?: string
   notes: Notes
   onUpdate: (id: string, patch: Partial<WhiskyNote>) => void
 }
 
-export function BarView({ barId, notes, onUpdate }: Props) {
+export function BarView({ barId, whiskyId, notes, onUpdate }: Props) {
   const bar = barById.get(barId)
+
+  // Kommer du fra en lenke til en bestemt whisky, scroll dit
+  useEffect(() => {
+    if (whiskyId) document.getElementById(`whisky-${whiskyId}`)?.scrollIntoView({ block: 'center' })
+  }, [whiskyId])
   if (!bar) {
     return (
       <>
@@ -24,7 +31,7 @@ export function BarView({ barId, notes, onUpdate }: Props) {
   return (
     <>
       <TopBar title={bar.name} subtitle={`${bar.floor}. etasje`} back={href({ view: 'floor', floor: bar.floor as Floor })} />
-      <BarCard bar={bar} whiskies={bar.whiskies} notes={notes} onUpdate={onUpdate} />
+      <BarCard bar={bar} whiskies={bar.whiskies} notes={notes} onUpdate={onUpdate} highlightId={whiskyId} />
     </>
   )
 }
