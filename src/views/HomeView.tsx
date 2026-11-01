@@ -27,7 +27,8 @@ export function HomeView({
   onImport,
 }: Props) {
   const stats = statsFor(allWhiskies, notes);
-  const [bought, setBought] = useStoredNumber("owf26-bonger-kjopt");
+  const [ticketDays, setTicketDays] = useStoredNumber("owf26-billett-dager");
+  const [extra, setExtra] = useStoredNumber("owf26-bonger-ekstra");
 
   return (
     <>
@@ -78,7 +79,7 @@ export function HomeView({
 
       <div className="mb-6 space-y-3">
         <PitStopBanner notes={notes} />
-        <BongCounter bought={bought} onChange={setBought} stats={stats} />
+        <BongCounter ticketDays={ticketDays} onTicketDaysChange={setTicketDays} extra={extra} onExtraChange={setExtra} stats={stats} />
       </div>
 
       <nav className="space-y-2">
