@@ -1,24 +1,14 @@
 import { useEffect, useState } from 'react'
+import { now } from '../clock'
 import { allWhiskies } from '../data/lookup'
 import { wishOf } from '../noteStatus'
 import { PIT_STOPS } from '../data/pitStops'
+import { hasPitStopBong } from '../pitStopBongs'
 import type { Notes, PitStopDay } from '../types'
 import { href } from '../useRoute'
 
-
 /** Varselet dukker opp så lenge før pit-stop starter */
 const SHOW_BEFORE_MS = 30 * 60 * 1000
-
-// ?tid=2026-11-06T18:28 starter klokka på det tidspunktet og lar den gå videre – for å teste varselet
-const clockOffset = (() => {
-  const override = new URLSearchParams(window.location.search).get('tid')
-  const t = override ? new Date(`${override}+01:00`).getTime() : NaN
-  return Number.isNaN(t) ? 0 : t - Date.now()
-})()
-
-function now(): Date {
-  return new Date(Date.now() + clockOffset)
-}
 
 function formatCountdown(ms: number): string {
   const total = Math.max(0, Math.ceil(ms / 1000))
@@ -46,7 +36,14 @@ function pitStopDrams(day: PitStopDay, notes: Notes) {
   return { drams, mine: drams.filter((w) => wishOf(notes[w.id])) }
 }
 
-export function PitStopBanner({ notes }: { notes: Notes }) {
+interface BannerProps {
+  notes: Notes
+  ticketDays: number
+  usedPitStopBongs: PitStopDay[]
+  onTogglePitStopBong: (day: PitStopDay) => void
+}
+
+export function PitStopBanner({ notes, ticketDays, usedPitStopBongs, onTogglePitStopBong }: BannerProps) {
   const pitStop = usePitStop()
   if (!pitStop) return null
 
@@ -64,6 +61,20 @@ export function PitStopBanner({ notes }: { notes: Notes }) {
           {pitStop.countdown}
         </p>
       </div>
+
+      {hasPitStopBong(pitStop.day, ticketDays, usedPitStopBongs) && (
+        <button
+          type="button"
+          aria-pressed={usedPitStopBongs.includes(pitStop.day)}
+          onClick={() => onTogglePitStopBong(pitStop.day)}
+          className={`mt-3 flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition active:scale-[0.99] ${
+            usedPitStopBongs.includes(pitStop.day) ? 'bg-pit-400/10 text-pit-200/80' : 'bg-pit-400 text-malt-950 hover:bg-pit-300'
+          }`}
+        >
+          {usedPitStopBongs.includes(pitStop.day) ? '✓ Pit-stop-bongen er brukt' : 'Marker pit-stop-bongen som brukt'}
+          <span className="text-xs font-medium opacity-70">{usedPitStopBongs.includes(pitStop.day) ? 'Angre' : 'Trykk når du har brukt den'}</span>
+        </button>
+      )}
 
       {mine.length > 0 ? (
         <div className="mt-4">

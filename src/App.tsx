@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 import { PitStopStrip } from './components/PitStopBanner'
 import { SharedListBanner } from './components/SharedListBanner'
+import { now } from './clock'
+import { whiskyById } from './data/lookup'
+import { pitStopBongDayFor, usePitStopBongs } from './pitStopBongs'
 import { createShareUrl, mergeNotes, readSharedNotes, shareUrl } from './share'
-import type { Notes } from './types'
+import type { Notes, WhiskyNote } from './types'
 import { useNotes } from './useNotes'
 import { useRoute } from './useRoute'
+import { useStoredNumber } from './useStoredNumber'
 import { BarView } from './views/BarView'
 import { FloorsView } from './views/FloorsView'
 import { FloorView } from './views/FloorView'
@@ -16,6 +20,18 @@ import { TastedListView } from './views/TastedListView'
 
 export default function App() {
   const { notes, update, replaceAll } = useNotes()
+  const [ticketDays, setTicketDays] = useStoredNumber('owf26-billett-dager')
+  const pitStopBongs = usePitStopBongs()
+
+  // Smakt en pit-stop-dram? Da er pit-stop-bongen for den dagen brukt (om du har en ledig)
+  function updateNote(id: string, patch: Partial<WhiskyNote>) {
+    const dramDays = whiskyById.get(id)?.pitStop
+    if (patch.tasted && !notes[id]?.tasted && dramDays) {
+      const day = pitStopBongDayFor(dramDays, ticketDays, pitStopBongs.used, now())
+      if (day) pitStopBongs.markUsed(day)
+    }
+    update(id, patch)
+  }
   const route = useRoute()
   const [sharedNotes, setSharedNotes] = useState<Notes | null>(null)
   const [shareStatus, setShareStatus] = useState<string | null>(null)
@@ -70,21 +86,21 @@ export default function App() {
       content = <FloorView floor={route.floor} notes={notes} />
       break
     case 'bar':
-      content = <BarView barId={route.barId} notes={notes} onUpdate={update} />
+      content = <BarView barId={route.barId} notes={notes} onUpdate={updateNote} />
       break
     case 'wishlist':
     case 'maybe':
     case 'tasted':
-      content = <ListView mode={route.view} notes={notes} onUpdate={update} />
+      content = <ListView mode={route.view} notes={notes} onUpdate={updateNote} />
       break
     case 'search':
-      content = <SearchView notes={notes} onUpdate={update} />
+      content = <SearchView notes={notes} onUpdate={updateNote} />
       break
     case 'tastedList':
       content = <TastedListView notes={notes} />
       break
     case 'pitstop':
-      content = <PitStopView day={route.day} notes={notes} onUpdate={update} />
+      content = <PitStopView day={route.day} notes={notes} onUpdate={updateNote} />
       break
     default:
       content = (
@@ -106,7 +122,7 @@ export default function App() {
               />
             </div>
           )}
-          <HomeView notes={notes} onShare={() => void shareList()} shareStatus={shareStatus} onExport={exportNotes} onImport={(f) => void importNotes(f)} />
+          <HomeView notes={notes} ticketDays={ticketDays} onTicketDaysChange={setTicketDays} pitStopBongs={pitStopBongs} onShare={() => void shareList()} shareStatus={shareStatus} onExport={exportNotes} onImport={(f) => void importNotes(f)} />
         </>
       )
   }

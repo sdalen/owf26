@@ -2,7 +2,8 @@ import { bongerText } from '../data/floors'
 import { allWhiskies } from '../data/lookup'
 import { PIT_STOPS } from '../data/pitStops'
 import { type Stats, wishOf } from '../noteStatus'
-import type { Notes } from '../types'
+import { hasPitStopBong } from '../pitStopBongs'
+import type { Notes, PitStopDay } from '../types'
 import { href } from '../useRoute'
 
 /** Billetten gir 10 bonger per dag, og én pit-stop-bong per dag */
@@ -17,9 +18,11 @@ interface Props {
   onExtraChange: (n: number) => void
   stats: Stats
   notes: Notes
+  usedPitStopBongs: PitStopDay[]
+  onTogglePitStopBong: (day: PitStopDay) => void
 }
 
-export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChange, stats, notes }: Props) {
+export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChange, stats, notes, usedPitStopBongs, onTogglePitStopBong }: Props) {
   const bought = ticketDays * BONGER_PER_DAY + extra
   const left = bought - stats.tastedBonger
   const missingForMust = stats.mustBongerLeft - left
@@ -50,19 +53,33 @@ export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChan
       </div>
 
       {ticketDays > 0 && (
-        <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-malt-300">
-          <span>{ticketDays * BONGER_PER_DAY} bonger</span>
-          <span className="text-malt-500">+</span>
-          {ticketDays === 1 ? (
-            <span className="font-medium text-pit-300">1 pit-stop-bong (fredag eller lørdag)</span>
-          ) : (
-            <>
-              <span className="font-medium text-pit-300">1 pit-stop-bong fredag</span>
-              <span className="text-malt-500">+</span>
-              <span className="pit-lør font-medium text-pit-300">1 pit-stop-bong lørdag</span>
-            </>
-          )}
-        </p>
+        <>
+          <p className="mt-2 text-xs text-malt-300">
+            {ticketDays * BONGER_PER_DAY} bonger + {ticketDays === 1 ? '1 pit-stop-bong (fredag eller lørdag)' : '1 pit-stop-bong hver dag'}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {PIT_STOPS.filter((p) => hasPitStopBong(p.day, ticketDays, usedPitStopBongs)).map((p) => {
+              const used = usedPitStopBongs.includes(p.day)
+              return (
+                <button
+                  key={p.day}
+                  type="button"
+                  aria-pressed={used}
+                  onClick={() => onTogglePitStopBong(p.day)}
+                  className={`pit-${p.day} flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold ring-1 transition active:scale-95 ${
+                    used ? 'bg-pit-400/15 text-pit-300/70 ring-pit-400/20' : 'bg-pit-400/15 text-pit-200 ring-pit-400/40 hover:bg-pit-400/25'
+                  }`}
+                >
+                  {/* 1-dagsbillett: én bong, så ubrukt vises som «Bruk fredag» / «Bruk lørdag» */}
+                  {ticketDays === 1 && !used ? `Bruk ${p.label}` : `Pit-stop-bong ${p.label}`}
+                  {(used || ticketDays === 2) && (
+                    <span className={used ? 'rounded-full bg-pit-400 px-1.5 text-malt-950' : 'text-pit-300/70'}>{used ? '✓ brukt' : 'ubrukt'}</span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </>
       )}
 
       <div className="mt-3 flex items-center justify-between gap-3">
