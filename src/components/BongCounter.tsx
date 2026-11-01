@@ -1,13 +1,11 @@
 import { bongerText } from '../data/floors'
 import { allWhiskies } from '../data/lookup'
 import { PIT_STOPS } from '../data/pitStops'
+import { BONGER_PER_DAY } from '../data/prices'
 import { type Stats, wishOf } from '../noteStatus'
 import { hasPitStopBong } from '../pitStopBongs'
 import type { Notes, PitStopDay } from '../types'
 import { href } from '../useRoute'
-
-/** Billetten gir 10 bonger per dag, og én pit-stop-bong per dag */
-const BONGER_PER_DAY = 10
 
 interface Props {
   /** Antall dager på billetten: 0 (ikke valgt), 1 eller 2 */

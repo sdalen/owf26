@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { BongCounter } from "../components/BongCounter";
+import { CostCard } from "../components/CostCard";
 import { InfoButton } from "../components/InfoButton";
 import { NavButton } from "../components/NavButton";
 import { PitStopBanner } from "../components/PitStopBanner";
@@ -88,6 +89,7 @@ export function HomeView({
 
       <div className="mb-6 space-y-3">
         <PitStopBanner notes={notes} ticketDays={ticketDays} usedPitStopBongs={usedBongs} />
+        <CostCard ticketDays={ticketDays} extra={extra} />
         <BongCounter ticketDays={ticketDays} onTicketDaysChange={onTicketDaysChange} extra={extra} onExtraChange={setExtra} stats={stats} notes={notes} usedPitStopBongs={usedBongs} />
       </div>
 
