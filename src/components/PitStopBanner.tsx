@@ -54,13 +54,13 @@ export function PitStopBanner({ notes }: { notes: Notes }) {
   const others = drams.filter((w) => !mine.includes(w))
 
   return (
-    <section className={`rounded-xl border p-4 ${pitStop.live ? 'border-sky-400 bg-sky-500/20' : 'border-sky-400/60 bg-sky-500/10'}`}>
+    <section className={`pit-${pitStop.day} rounded-xl border p-4 ${pitStop.live ? 'border-pit-400 bg-pit-500/20' : 'border-pit-400/60 bg-pit-500/10'}`}>
       <div className="flex items-end justify-between gap-3">
         <div>
-          <p className="text-xs font-medium tracking-wide text-sky-200 uppercase">Pit-stop {pitStop.label}</p>
-          <h2 className="text-lg font-semibold text-sky-50">{pitStop.live ? 'Pågår nå! Slutter om' : 'Starter om'}</h2>
+          <p className="text-xs font-medium tracking-wide text-pit-200 uppercase">Pit-stop {pitStop.label}</p>
+          <h2 className="text-lg font-semibold text-pit-50">{pitStop.live ? 'Pågår nå! Slutter om' : 'Starter om'}</h2>
         </div>
-        <p className="font-mono text-4xl font-bold tabular-nums text-sky-100" aria-live="off">
+        <p className="font-mono text-4xl font-bold tabular-nums text-pit-100" aria-live="off">
           {pitStop.countdown}
         </p>
       </div>
@@ -95,17 +95,17 @@ export function PitStopBanner({ notes }: { notes: Notes }) {
           </ul>
         </div>
       ) : (
-        <p className="mt-2 text-sm text-sky-200/80">Ingen pit-stop-drammer på lista di – her er alle:</p>
+        <p className="mt-2 text-sm text-pit-200/80">Ingen pit-stop-drammer på lista di – her er alle:</p>
       )}
 
       <details className="mt-3 text-sm" open={mine.length === 0}>
-        <summary className="cursor-pointer text-sky-200 hover:text-sky-100">
+        <summary className="cursor-pointer text-pit-200 hover:text-pit-100">
           {mine.length > 0 ? `Alle pit-stop-drammer (${drams.length})` : `${drams.length} pit-stop-drammer`}
         </summary>
         <ul className="mt-2 space-y-1">
           {(mine.length > 0 ? others : drams).map((w) => (
             <li key={w.id}>
-              <a href={href({ view: 'bar', barId: w.bar.id })} className="flex justify-between gap-3 text-malt-100 hover:text-sky-100">
+              <a href={href({ view: 'bar', barId: w.bar.id })} className="flex justify-between gap-3 text-malt-100 hover:text-pit-100">
                 <span>{w.name}</span>
                 <span className="shrink-0 text-malt-300">
                   {w.bar.name} · {w.bar.floor}. etg
@@ -129,7 +129,7 @@ export function PitStopStrip({ notes }: { notes: Notes }) {
   return (
     <a
       href={href({ view: 'home' })}
-      className={`-mx-4 flex items-center justify-between gap-3 px-4 py-2 text-sm font-medium ${pitStop.live ? 'bg-sky-500 text-malt-950' : 'bg-sky-500/25 text-sky-100'}`}
+      className={`pit-${pitStop.day} -mx-4 flex items-center justify-between gap-3 px-4 py-2 text-sm font-medium ${pitStop.live ? 'bg-pit-500 text-malt-950' : 'bg-pit-500/25 text-pit-100'}`}
     >
       <span>
         Pit-stop {pitStop.live ? 'pågår – slutter om' : 'om'} <span className="font-mono tabular-nums">{pitStop.countdown}</span>

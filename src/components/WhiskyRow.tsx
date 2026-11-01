@@ -60,7 +60,7 @@ export function WhiskyRow({ whisky, note = {}, onUpdate, bar }: Props) {
               )}
               {whisky.nominee && <Tag className="text-orange-300">Nominert</Tag>}
               {whisky.pitStop?.map((day) => (
-                <Tag key={day} className="text-sky-300">
+                <Tag key={day} className={`text-pit-300 pit-${day}`}>
                   Pit-stop {day === 'fre' ? 'fre 18:30' : 'lør 16:30'}
                 </Tag>
               ))}

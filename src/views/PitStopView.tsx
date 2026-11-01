@@ -25,7 +25,7 @@ export function PitStopView({ day, notes, onUpdate }: Props) {
   const mine = stats.must + stats.maybe
 
   return (
-    <>
+    <div className={`pit-${day}`}>
       <TopBar
         title={`Pit-stop ${pitStop.label}`}
         subtitle={`${time(pitStop.start)}–${time(pitStop.end)} · ${drams.length} drammer${mine > 0 ? ` · ${mine} på lista di` : ''}`}
@@ -37,7 +37,7 @@ export function PitStopView({ day, notes, onUpdate }: Props) {
               key={p.day}
               href={href({ view: 'pitstop', day: p.day })}
               aria-current={p.day === day ? 'page' : undefined}
-              className={`flex-1 rounded-lg py-1.5 text-center font-semibold ${p.day === day ? 'bg-sky-400/20 text-sky-100' : 'text-malt-300 hover:text-malt-50'}`}
+              className={`pit-${p.day} flex-1 rounded-lg py-1.5 text-center font-semibold ${p.day === day ? 'bg-pit-400/20 text-pit-100' : 'text-malt-300 hover:text-malt-50'}`}
             >
               {p.label[0].toUpperCase() + p.label.slice(1)} {time(p.start)}
             </a>
@@ -59,7 +59,7 @@ export function PitStopView({ day, notes, onUpdate }: Props) {
                   <Fragment key={w.id}>
                     {w.bar.id !== floorDrams[i - 1]?.bar.id && (
                       <li className="bg-malt-950/40 px-4 pt-3 pb-1.5">
-                        <a href={href({ view: 'bar', barId: w.bar.id })} className="text-xs font-semibold tracking-wide text-sky-300 uppercase hover:text-sky-200">
+                        <a href={href({ view: 'bar', barId: w.bar.id })} className="text-xs font-semibold tracking-wide text-pit-300 uppercase hover:text-pit-200">
                           {w.bar.name} ›
                         </a>
                       </li>
@@ -72,6 +72,6 @@ export function PitStopView({ day, notes, onUpdate }: Props) {
           )
         })}
       </div>
-    </>
+    </div>
   )
 }

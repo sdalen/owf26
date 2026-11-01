@@ -23,6 +23,14 @@
   --color-emerald-300: #8fd9b3;
   --color-emerald-400: #5cc495;
 
+  /* Pit-stop-farge som i håndboka: blå fredag (standard), grønn lørdag via .pit-lør */
+  --color-pit-50: #f0f9ff;
+  --color-pit-100: #e0f2fe;
+  --color-pit-200: #bae6fd;
+  --color-pit-300: #7dd3fc;
+  --color-pit-400: #38bdf8;
+  --color-pit-500: #0ea5e9;
+
   --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
 }
 
@@ -36,6 +44,15 @@ body {
   @apply bg-malt-950 text-malt-50 antialiased;
   background-image: radial-gradient(120% 60% at 50% -10%, rgb(221 164 71 / 0.09), transparent 60%);
   background-attachment: fixed;
+}
+
+.pit-lør {
+  --color-pit-50: #f0fdf4;
+  --color-pit-100: #dcfce7;
+  --color-pit-200: #bbf7d0;
+  --color-pit-300: #86efac;
+  --color-pit-400: #4ade80;
+  --color-pit-500: #22c55e;
 }
 
 /* Kort/flate som brukes overalt */

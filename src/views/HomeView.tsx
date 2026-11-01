@@ -40,16 +40,16 @@ export function HomeView({
             <a
               key={p.day}
               href={href({ view: 'pitstop', day: p.day })}
-              className="flex items-center justify-between gap-2 rounded-2xl bg-sky-400/10 px-3.5 py-2.5 ring-1 ring-sky-300/20 transition hover:bg-sky-400/15 active:scale-[0.98]"
+              className={`pit-${p.day} flex items-center justify-between gap-2 rounded-2xl bg-pit-400/10 px-3.5 py-2.5 ring-1 ring-pit-300/20 transition hover:bg-pit-400/15 active:scale-[0.98]`}
             >
               <span>
-                <span className="block text-[11px] font-semibold tracking-wide text-sky-300 uppercase">Pit-stop {p.label}</span>
+                <span className="block text-[11px] font-semibold tracking-wide text-pit-300 uppercase">Pit-stop {p.label}</span>
                 <span className="font-display text-lg leading-tight font-semibold text-malt-50">
                   {p.start.toLocaleTimeString('nb-NO', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Oslo' })}
                 </span>
                 <span className="ml-1.5 text-xs text-malt-300">{allWhiskies.filter((w) => w.pitStop?.includes(p.day)).length} drammer</span>
               </span>
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4 shrink-0 text-sky-300/70" aria-hidden>
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4 shrink-0 text-pit-300/70" aria-hidden>
                 <path d="M7.5 4.5 13 10l-5.5 5.5" />
               </svg>
             </a>
