@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { BongCounter } from "../components/BongCounter";
+import { InfoButton } from "../components/InfoButton";
 import { NavButton } from "../components/NavButton";
 import { PitStopBanner } from "../components/PitStopBanner";
 import { bongerText } from "../data/floors";
@@ -38,7 +39,10 @@ export function HomeView({
   return (
     <>
       <header className="pt-[max(2.5rem,env(safe-area-inset-top))] pb-6">
-        <h1 className="font-display text-[38px] leading-[1.05] font-semibold tracking-tight text-malt-50">Oslo Whiskyfestival 2026</h1>
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="font-display text-[38px] leading-[1.05] font-semibold tracking-tight text-malt-50">Oslo Whiskyfestival 2026</h1>
+          <InfoButton />
+        </div>
         <p className="mt-3 text-sm text-malt-300">Fredag 6. nov 17–21 · Lørdag 7. nov 13–20</p>
 
         <div className="mt-4 grid grid-cols-2 gap-2">
