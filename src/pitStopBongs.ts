@@ -1,32 +1,9 @@
-import { useEffect, useState } from 'react'
 import { PIT_STOPS } from './data/pitStops'
-import type { PitStopDay } from './types'
+import type { Notes, PitStopDay } from './types'
 
-const STORAGE_KEY = 'owf26-pitstop-bong-brukt'
-
-/** Dagene pit-stop-bongen er brukt – lagres i localStorage */
-export function usePitStopBongs() {
-  const [used, setUsed] = useState<PitStopDay[]>(() => {
-    try {
-      const parsed: unknown = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]')
-      return Array.isArray(parsed) ? parsed.filter((d): d is PitStopDay => d === 'fre' || d === 'lør') : []
-    } catch {
-      return []
-    }
-  })
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(used))
-    } catch {
-      // lagring utilgjengelig – gjelder bare denne økta
-    }
-  }, [used])
-
-  const toggle = (day: PitStopDay) => setUsed((prev) => (prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]))
-  const markUsed = (day: PitStopDay) => setUsed((prev) => (prev.includes(day) ? prev : [...prev, day]))
-
-  return { used, toggle, markUsed }
+/** Dagene pit-stop-bongen er brukt – utledet fra pit-stop-drammer markert som smakt */
+export function usedPitStopBongs(notes: Notes): PitStopDay[] {
+  return PIT_STOPS.map((p) => p.day).filter((day) => Object.values(notes).some((n) => n.tasted && n.pitStopBong === day))
 }
 
 /**

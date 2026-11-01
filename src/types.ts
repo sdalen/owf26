@@ -31,6 +31,8 @@ export interface WhiskyNote {
   /** 0–10 med én desimal */
   score?: number
   tastingNote?: string
+  /** Pit-stop-bongen som ble brukt på denne dramen – settes automatisk når en pit-stop-dram markeres som smakt */
+  pitStopBong?: PitStopDay
 }
 
 export type Notes = Record<string, WhiskyNote>

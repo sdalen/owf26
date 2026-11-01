@@ -16,6 +16,7 @@ export interface Stats {
   /** Bonger for det som gjenstår å smake */
   mustBongerLeft: number
   maybeBongerLeft: number
+  /** Vanlige bonger brukt (pit-stop-drammer betalt med pit-stop-bong teller ikke) */
   tastedBonger: number
   /** Totalt antall bonger på hver liste, smakt eller ikke */
   mustBonger: number
@@ -30,7 +31,8 @@ export function statsFor(whiskies: Whisky[], notes: Notes): Stats {
     const tasted = !!note?.tasted
     if (tasted) {
       s.tasted++
-      s.tastedBonger += w.bonger
+      // Betalt med pit-stop-bongen – koster ingen vanlige bonger
+      if (!note?.pitStopBong) s.tastedBonger += w.bonger
     }
     if (wish === 'must') {
       s.must++

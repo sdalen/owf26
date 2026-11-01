@@ -3,7 +3,7 @@ import { PitStopStrip } from './components/PitStopBanner'
 import { SharedListBanner } from './components/SharedListBanner'
 import { now } from './clock'
 import { whiskyById } from './data/lookup'
-import { pitStopBongDayFor, usePitStopBongs } from './pitStopBongs'
+import { pitStopBongDayFor, usedPitStopBongs } from './pitStopBongs'
 import { createShareUrl, mergeNotes, readSharedNotes, shareUrl } from './share'
 import type { Notes, WhiskyNote } from './types'
 import { useNotes } from './useNotes'
@@ -21,14 +21,15 @@ import { TastedListView } from './views/TastedListView'
 export default function App() {
   const { notes, update, replaceAll } = useNotes()
   const [ticketDays, setTicketDays] = useStoredNumber('owf26-billett-dager')
-  const pitStopBongs = usePitStopBongs()
+  const usedBongs = usedPitStopBongs(notes)
 
-  // Smakt en pit-stop-dram? Da er pit-stop-bongen for den dagen brukt (om du har en ledig)
+  // Pit-stop-bongen styres kun av «Smakt» på en pit-stop-dram: den brukes når dramen smakes og frigjøres når haken fjernes
   function updateNote(id: string, patch: Partial<WhiskyNote>) {
     const dramDays = whiskyById.get(id)?.pitStop
     if (patch.tasted && !notes[id]?.tasted && dramDays) {
-      const day = pitStopBongDayFor(dramDays, ticketDays, pitStopBongs.used, now())
-      if (day) pitStopBongs.markUsed(day)
+      patch = { ...patch, pitStopBong: pitStopBongDayFor(dramDays, ticketDays, usedBongs, now()) ?? undefined }
+    } else if (patch.tasted === false) {
+      patch = { ...patch, pitStopBong: undefined }
     }
     update(id, patch)
   }
@@ -122,7 +123,7 @@ export default function App() {
               />
             </div>
           )}
-          <HomeView notes={notes} ticketDays={ticketDays} onTicketDaysChange={setTicketDays} pitStopBongs={pitStopBongs} onShare={() => void shareList()} shareStatus={shareStatus} onExport={exportNotes} onImport={(f) => void importNotes(f)} />
+          <HomeView notes={notes} ticketDays={ticketDays} onTicketDaysChange={setTicketDays} onShare={() => void shareList()} shareStatus={shareStatus} onExport={exportNotes} onImport={(f) => void importNotes(f)} />
         </>
       )
   }

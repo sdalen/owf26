@@ -19,10 +19,9 @@ interface Props {
   stats: Stats
   notes: Notes
   usedPitStopBongs: PitStopDay[]
-  onTogglePitStopBong: (day: PitStopDay) => void
 }
 
-export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChange, stats, notes, usedPitStopBongs, onTogglePitStopBong }: Props) {
+export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChange, stats, notes, usedPitStopBongs }: Props) {
   const bought = ticketDays * BONGER_PER_DAY + extra
   const left = bought - stats.tastedBonger
   const missingForMust = stats.mustBongerLeft - left
@@ -57,25 +56,23 @@ export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChan
           <p className="mt-2 text-xs text-malt-300">
             {ticketDays * BONGER_PER_DAY} bonger + {ticketDays === 1 ? '1 pit-stop-bong (fredag eller lørdag)' : '1 pit-stop-bong hver dag'}
           </p>
+          {/* Kun visning – bongen brukes automatisk når en pit-stop-dram markeres som smakt */}
           <div className="mt-2 flex flex-wrap gap-2">
-            {PIT_STOPS.filter((p) => hasPitStopBong(p.day, ticketDays, usedPitStopBongs)).map((p) => {
-              const used = usedPitStopBongs.includes(p.day)
+            {(ticketDays === 1 && usedPitStopBongs.length === 0 ? [null] : PIT_STOPS.filter((p) => hasPitStopBong(p.day, ticketDays, usedPitStopBongs))).map((p) => {
+              const used = p !== null && usedPitStopBongs.includes(p.day)
+              const dram = p && allWhiskies.find((w) => notes[w.id]?.tasted && notes[w.id]?.pitStopBong === p.day)
               return (
-                <button
-                  key={p.day}
-                  type="button"
-                  aria-pressed={used}
-                  onClick={() => onTogglePitStopBong(p.day)}
-                  className={`pit-${p.day} flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold ring-1 transition active:scale-95 ${
-                    used ? 'bg-pit-400/15 text-pit-300/70 ring-pit-400/20' : 'bg-pit-400/15 text-pit-200 ring-pit-400/40 hover:bg-pit-400/25'
+                <span
+                  key={p?.day ?? 'en'}
+                  className={`${p ? `pit-${p.day}` : ''} flex max-w-full items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold ring-1 ${
+                    used ? 'bg-pit-400/10 text-pit-300/80 ring-pit-400/20' : 'bg-pit-400/15 text-pit-200 ring-pit-400/40'
                   }`}
                 >
-                  {/* 1-dagsbillett: én bong, så ubrukt vises som «Bruk fredag» / «Bruk lørdag» */}
-                  {ticketDays === 1 && !used ? `Bruk ${p.label}` : `Pit-stop-bong ${p.label}`}
-                  {(used || ticketDays === 2) && (
-                    <span className={used ? 'rounded-full bg-pit-400 px-1.5 text-malt-950' : 'text-pit-300/70'}>{used ? '✓ brukt' : 'ubrukt'}</span>
-                  )}
-                </button>
+                  <span className="shrink-0">Pit-stop-bong{p ? ` ${p.label}` : ''}</span>
+                  <span className={`truncate ${used ? 'rounded-full bg-pit-400 px-1.5 text-malt-950' : 'font-medium text-pit-300/70'}`}>
+                    {used ? `✓ ${dram?.name ?? 'brukt'}` : 'ubrukt'}
+                  </span>
+                </span>
               )
             })}
           </div>

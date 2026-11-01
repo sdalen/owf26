@@ -9,7 +9,7 @@ import { allWhiskies } from "../data/lookup";
 import { statsFor } from "../noteStatus";
 import type { Notes } from "../types";
 import { href } from "../useRoute";
-import type { usePitStopBongs } from "../pitStopBongs";
+import { usedPitStopBongs } from "../pitStopBongs";
 import { useStoredNumber } from "../useStoredNumber";
 
 interface Props {
@@ -20,7 +20,6 @@ interface Props {
   onImport: (file: File) => void;
   ticketDays: number;
   onTicketDaysChange: (days: number) => void;
-  pitStopBongs: ReturnType<typeof usePitStopBongs>;
 }
 
 export function HomeView({
@@ -31,9 +30,9 @@ export function HomeView({
   onImport,
   ticketDays,
   onTicketDaysChange,
-  pitStopBongs,
 }: Props) {
   const stats = statsFor(allWhiskies, notes);
+  const usedBongs = usedPitStopBongs(notes);
   const [extra, setExtra] = useStoredNumber("owf26-bonger-ekstra");
 
   return (
@@ -84,8 +83,8 @@ export function HomeView({
       </header>
 
       <div className="mb-6 space-y-3">
-        <PitStopBanner notes={notes} ticketDays={ticketDays} usedPitStopBongs={pitStopBongs.used} onTogglePitStopBong={pitStopBongs.toggle} />
-        <BongCounter ticketDays={ticketDays} onTicketDaysChange={onTicketDaysChange} extra={extra} onExtraChange={setExtra} stats={stats} notes={notes} usedPitStopBongs={pitStopBongs.used} onTogglePitStopBong={pitStopBongs.toggle} />
+        <PitStopBanner notes={notes} ticketDays={ticketDays} usedPitStopBongs={usedBongs} />
+        <BongCounter ticketDays={ticketDays} onTicketDaysChange={onTicketDaysChange} extra={extra} onExtraChange={setExtra} stats={stats} notes={notes} usedPitStopBongs={usedBongs} />
       </div>
 
       <nav className="space-y-2">

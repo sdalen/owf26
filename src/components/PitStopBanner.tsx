@@ -40,10 +40,9 @@ interface BannerProps {
   notes: Notes
   ticketDays: number
   usedPitStopBongs: PitStopDay[]
-  onTogglePitStopBong: (day: PitStopDay) => void
 }
 
-export function PitStopBanner({ notes, ticketDays, usedPitStopBongs, onTogglePitStopBong }: BannerProps) {
+export function PitStopBanner({ notes, ticketDays, usedPitStopBongs }: BannerProps) {
   const pitStop = usePitStop()
   if (!pitStop) return null
 
@@ -62,18 +61,13 @@ export function PitStopBanner({ notes, ticketDays, usedPitStopBongs, onTogglePit
         </p>
       </div>
 
+      {/* Kun visning – bongen brukes automatisk når du markerer en pit-stop-dram som smakt */}
       {hasPitStopBong(pitStop.day, ticketDays, usedPitStopBongs) && (
-        <button
-          type="button"
-          aria-pressed={usedPitStopBongs.includes(pitStop.day)}
-          onClick={() => onTogglePitStopBong(pitStop.day)}
-          className={`mt-3 flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition active:scale-[0.99] ${
-            usedPitStopBongs.includes(pitStop.day) ? 'bg-pit-400/10 text-pit-200/80' : 'bg-pit-400 text-malt-950 hover:bg-pit-300'
-          }`}
-        >
-          {usedPitStopBongs.includes(pitStop.day) ? '✓ Pit-stop-bongen er brukt' : 'Marker pit-stop-bongen som brukt'}
-          <span className="text-xs font-medium opacity-70">{usedPitStopBongs.includes(pitStop.day) ? 'Angre' : 'Trykk når du har brukt den'}</span>
-        </button>
+        <p className={`mt-3 rounded-xl px-3 py-2.5 text-sm ${usedPitStopBongs.includes(pitStop.day) ? 'bg-pit-400/10 text-pit-200/80' : 'bg-pit-400/20 font-semibold text-pit-50'}`}>
+          {usedPitStopBongs.includes(pitStop.day)
+            ? '✓ Pit-stop-bongen er brukt'
+            : 'Du har en ubrukt pit-stop-bong – den brukes når du markerer en pit-stop-dram som smakt'}
+        </p>
       )}
 
       {mine.length > 0 ? (
