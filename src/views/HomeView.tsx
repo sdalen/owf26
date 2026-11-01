@@ -40,7 +40,7 @@ export function HomeView({
     <>
       <header className="pt-[max(2.5rem,env(safe-area-inset-top))] pb-6">
         <div className="flex items-center justify-between gap-3">
-          <h1 className="font-display text-[38px] leading-[1.05] font-semibold tracking-tight text-malt-50">Oslo Whiskyfestival 2026</h1>
+          <h1 className="font-display text-[clamp(1.4rem,6.4vw,2.375rem)] leading-[1.05] font-semibold tracking-tight text-malt-50">Oslo Whiskyfestival 2026</h1>
           <InfoButton />
         </div>
         <p className="mt-3 text-sm text-malt-300">Fredag 6. nov 17–21 · Lørdag 7. nov 13–20</p>
