@@ -10,7 +10,7 @@ interface Props {
   whisky: Whisky
   note?: WhiskyNote
   onUpdate: (patch: Partial<WhiskyNote>) => void
-  /** Vises i lister på tvers av barer, f.eks. «Vil smake» */
+  /** Vises i lister på tvers av barer, f.eks. «Min liste» */
   bar?: Bar
 }
 

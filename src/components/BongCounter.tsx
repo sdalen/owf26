@@ -1,5 +1,9 @@
 import { bongerText } from '../data/floors'
-import type { Stats } from '../noteStatus'
+import { allWhiskies } from '../data/lookup'
+import { PIT_STOPS } from '../data/pitStops'
+import { type Stats, wishOf } from '../noteStatus'
+import type { Notes } from '../types'
+import { href } from '../useRoute'
 
 /** Billetten gir 10 bonger per dag, og én pit-stop-bong per dag */
 const BONGER_PER_DAY = 10
@@ -12,9 +16,10 @@ interface Props {
   extra: number
   onExtraChange: (n: number) => void
   stats: Stats
+  notes: Notes
 }
 
-export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChange, stats }: Props) {
+export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChange, stats, notes }: Props) {
   const bought = ticketDays * BONGER_PER_DAY + extra
   const left = bought - stats.tastedBonger
   const missingForMust = stats.mustBongerLeft - left
@@ -112,6 +117,54 @@ export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChan
           )}
         </>
       )}
+      <PitStopOverview ticketDays={ticketDays} notes={notes} />
     </section>
+  )
+}
+
+/**
+ * Pit-stop-bongen gjelder én pit-stop-dram (én per dag på 2-dagersbillett, én totalt på 1-dagsbillett).
+ * Har du flere pit-stop-drammer på lista enn bongene dekker, vises de her.
+ */
+function PitStopOverview({ ticketDays, notes }: { ticketDays: number; notes: Notes }) {
+  const days = PIT_STOPS.map((p) => ({ ...p, drams: allWhiskies.filter((w) => w.pitStop?.includes(p.day) && wishOf(notes[w.id])) }))
+  const total = days.reduce((sum, d) => sum + d.drams.length, 0)
+  const oneDayTooMany = ticketDays === 1 && total > 1
+  const shown = days.filter((d) => d.drams.length > 1 || (oneDayTooMany && d.drams.length > 0))
+  if (shown.length === 0) return null
+
+  return (
+    <div className="mt-4 space-y-3 border-t border-white/5 pt-4">
+      <p className="text-sm text-malt-100">
+        {oneDayTooMany
+          ? `Du har ${total} pit-stop-drammer på lista, men 1-dagsbilletten har bare én pit-stop-bong.`
+          : 'Du har flere pit-stop-drammer på lista samme dag, men pit-stop-bongen gjelder bare én per dag.'}
+      </p>
+      {shown.map((d) => (
+        <div key={d.day} className={`pit-${d.day}`}>
+          <p className="text-xs font-semibold tracking-wide text-pit-300 uppercase">
+            Pit-stop {d.label} · {d.drams.length} på lista
+          </p>
+          <ul className="mt-1.5 space-y-1">
+            {d.drams.map((w) => {
+              const note = notes[w.id]
+              return (
+                <li key={w.id}>
+                  <a href={href({ view: 'bar', barId: w.bar.id })} className="flex items-baseline gap-2 text-sm hover:text-pit-100">
+                    <span className={`w-4 shrink-0 text-center ${note?.tasted ? 'text-emerald-300' : 'text-amber-300'}`}>
+                      {note?.tasted ? '✓' : wishOf(note) === 'must' ? '♥' : '?'}
+                    </span>
+                    <span className="min-w-0 flex-1 text-malt-50">{w.name}</span>
+                    <span className="shrink-0 text-xs text-malt-500">
+                      {w.bar.name} · {w.bar.floor}. etg
+                    </span>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      ))}
+    </div>
   )
 }

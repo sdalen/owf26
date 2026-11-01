@@ -27,7 +27,7 @@ function parse(hash: string): Route {
       return { view: 'floors' }
     case 'bar':
       return a ? { view: 'bar', barId: a } : { view: 'floors' }
-    case 'vil-smake':
+    case 'min-liste':
       return { view: 'wishlist' }
     case 'kanskje':
       return { view: 'maybe' }
@@ -55,7 +55,7 @@ export function href(route: Route): string {
     case 'bar':
       return `#/bar/${route.barId}`
     case 'wishlist':
-      return '#/vil-smake'
+      return '#/min-liste'
     case 'maybe':
       return '#/kanskje'
     case 'tasted':

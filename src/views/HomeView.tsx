@@ -79,12 +79,12 @@ export function HomeView({
 
       <div className="mb-6 space-y-3">
         <PitStopBanner notes={notes} />
-        <BongCounter ticketDays={ticketDays} onTicketDaysChange={setTicketDays} extra={extra} onExtraChange={setExtra} stats={stats} />
+        <BongCounter ticketDays={ticketDays} onTicketDaysChange={setTicketDays} extra={extra} onExtraChange={setExtra} stats={stats} notes={notes} />
       </div>
 
       <nav className="space-y-2">
         <NavButton href={href({ view: 'floors' })} icon="🥃" title="Barer" subtitle={`${bars.length} barer fordelt på 3 etasjer`} />
-        <NavButton href={href({ view: 'wishlist' })} icon="♥" accent="amber" title="Vil smake" subtitle="Må smake og kanskje, med hake for det du har smakt" />
+        <NavButton href={href({ view: 'wishlist' })} icon="♥" accent="amber" title="Min liste" subtitle="Må smake og kanskje, med hake for det du har smakt" />
         <NavButton href={href({ view: 'tasted' })} icon="✓" accent="emerald" title="Har smakt" subtitle="Med score og notater" />
         <NavButton href={href({ view: 'search' })} icon="⌕" title="Søk i all whisky" subtitle={`${allWhiskies.length} whisky · filter på bar, bonger og pit-stop`} />
       </nav>

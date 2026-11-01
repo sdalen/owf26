@@ -62,7 +62,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
       }
     })
 
-  // «Vil smake» deles i «Må smake» og «Kanskje». Smakte blir stående (med hake) så man beholder oversikten.
+  // «Min liste» deles i «Må smake» og «Kanskje». Smakte blir stående (med hake) så man beholder oversikten.
   const groups: { title?: string; items: WhiskyWithBar[] }[] =
     mode === 'wishlist'
       ? [
@@ -89,7 +89,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
 
   return (
     <>
-      <TopBar title={{ wishlist: 'Vil smake', maybe: 'Kanskje', tasted: 'Har smakt' }[mode]} subtitle={subtitle} back={href({ view: 'home' })}>
+      <TopBar title={{ wishlist: 'Min liste', maybe: 'Kanskje', tasted: 'Har smakt' }[mode]} subtitle={subtitle} back={href({ view: 'home' })}>
         {all.length > 1 && (
           <div className="flex gap-1 rounded-xl bg-malt-900 p-1 text-sm ring-1 ring-white/5">
             {sorts.map((s) => (

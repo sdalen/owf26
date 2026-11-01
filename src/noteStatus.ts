@@ -1,6 +1,6 @@
 import type { Notes, Whisky, WhiskyNote } from './types'
 
-/** Hvilken del av «Vil smake» whiskyen hører til – uavhengig av om den er smakt */
+/** Hvilken del av «Min liste» whiskyen hører til – uavhengig av om den er smakt */
 export function wishOf(note: WhiskyNote | undefined): 'must' | 'maybe' | null {
   if (note?.wantToTaste) return 'must'
   if (note?.maybe) return 'maybe'
