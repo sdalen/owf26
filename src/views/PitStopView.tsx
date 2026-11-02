@@ -54,11 +54,11 @@ export function PitStopView({ day, notes, onUpdate }: Props) {
               <h2 className="mb-2 px-1 font-display text-lg font-semibold">
                 {f.floor}. etasje <span className="font-normal text-malt-300 italic">· {f.name}</span>
               </h2>
-              <ul className="card divide-y divide-white/5 overflow-hidden">
+              <ul className="space-y-2.5">
                 {floorDrams.map((w, i) => (
                   <Fragment key={w.id}>
                     {w.bar.id !== floorDrams[i - 1]?.bar.id && (
-                      <li className="bg-malt-950/40 px-4 pt-3 pb-1.5">
+                      <li className="px-1 pt-3 pb-0.5">
                         <a href={href({ view: 'bar', barId: w.bar.id })} className="text-xs font-semibold tracking-wide text-pit-300 uppercase hover:text-pit-200">
                           {w.bar.name} ›
                         </a>

@@ -13,6 +13,25 @@ export interface Whisky {
   pitStop?: PitStopDay[]
 }
 
+/** Produktinfo fra Vinmonopolet for flasken whiskyen er matchet mot */
+export interface VmpInfo {
+  /** Varenummer hos Vinmonopolet */
+  code: string
+  name: string
+  price: number
+  volumeCl: number
+  abv?: string
+  country?: string
+  region?: string
+  category?: string
+  color?: string
+  smell?: string
+  taste?: string
+  method?: string
+  /** Fylde, fat, røyk, sødme osv. på en skala fra 0 til 12 */
+  profile?: { name: string; value: number }[]
+}
+
 export interface Bar {
   id: string
   name: string

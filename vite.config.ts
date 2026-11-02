@@ -16,6 +16,18 @@ export default defineConfig({
       workbox: {
         // Ta med plantegningene, så alt virker uten nett på festivalen
         globPatterns: ['**/*.{js,css,html,png,webmanifest,woff2}'],
+        // Flaskebilder fra Polet caches når de først er vist
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/bilder\.vinmonopolet\.no\//,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'vinmonopolet-bilder',
+              expiration: { maxEntries: 500, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
       },
       manifest: {
         name: 'Oslo Whiskyfestival 2026',

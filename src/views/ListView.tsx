@@ -125,7 +125,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
                     <span className="text-xs text-malt-300">{groupSummary(g.items)}</span>
                   </div>
                 )}
-                <ul className="card divide-y divide-white/5 overflow-hidden">
+                <ul className="space-y-2.5">
                   {g.items.map((w, i) => (
                     <Fragment key={w.id}>
                       {sort === 'sted' && w.bar.floor !== g.items[i - 1]?.bar.floor && <FloorHeading floor={w.bar.floor} />}
@@ -144,7 +144,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
 function FloorHeading({ floor }: { floor: number }) {
   const info = floors.find((f) => f.floor === floor)
   return (
-    <li className="bg-malt-950/40 px-4 pt-3 pb-1.5 text-xs font-semibold tracking-wide text-malt-300 uppercase">
+    <li className="px-1 pt-3 pb-0.5 text-xs font-semibold tracking-wide text-malt-300 uppercase">
       {floor}. etasje <span className="font-normal text-malt-500 normal-case">· {info?.name}</span>
     </li>
   )

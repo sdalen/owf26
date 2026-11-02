@@ -217,7 +217,7 @@ export function SearchView({ notes, onUpdate }: Props) {
 
       {results.length === 0 && <p className="py-16 text-center text-malt-300">Ingen whisky matcher søket.</p>}
       {results.length > 0 && (
-        <ul className="card divide-y divide-white/5 overflow-hidden">
+        <ul className="space-y-2.5">
           {results.map((w) => (
             <WhiskyRow key={w.id} whisky={w} note={notes[w.id]} onUpdate={(patch) => onUpdate(w.id, patch)} bar={w.bar} />
           ))}

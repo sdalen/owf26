@@ -65,9 +65,9 @@ body {
 @keyframes highlight {
   0%,
   40% {
-    background-color: rgb(221 164 71 / 0.18);
+    box-shadow: 0 0 0 3px rgb(221 164 71 / 0.7);
   }
   100% {
-    background-color: transparent;
+    box-shadow: 0 0 0 3px rgb(221 164 71 / 0);
   }
 }
