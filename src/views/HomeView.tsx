@@ -4,7 +4,6 @@ import { CostCard } from "../components/CostCard";
 import { InfoButton } from "../components/InfoButton";
 import { NavButton } from "../components/NavButton";
 import { PitStopBanner } from "../components/PitStopBanner";
-import { bongerText } from "../data/floors";
 import { bars } from "../data/bars";
 import { PIT_STOPS } from "../data/pitStops";
 import { allWhiskies } from "../data/lookup";
@@ -36,6 +35,8 @@ export function HomeView({
   const stats = statsFor(allWhiskies, notes);
   const usedBongs = usedPitStopBongs(notes);
   const [extra, setExtra] = useStoredNumber("owf26-bonger-ekstra");
+
+  const listTotal = stats.must + stats.maybe + stats.tasted - stats.mustDone - stats.maybeDone
 
   return (
     <>
@@ -69,20 +70,15 @@ export function HomeView({
 
         <dl className="mt-6 grid grid-cols-3 gap-2">
           <StatCard href={href({ view: 'wishlist', show: 'must' })} label="♥ Må smake" color="text-amber-300">
-            <StatValue done={stats.mustDone} total={stats.must} />
-            <dd className="mt-1 text-[11px] text-malt-300 tabular-nums">
-              {stats.mustBonger - stats.mustBongerLeft}/{bongerText(stats.mustBonger)}
-            </dd>
+            <StatValue value={stats.must - stats.mustDone} />
           </StatCard>
           <StatCard href={href({ view: 'wishlist', show: 'maybe' })} label="? Kanskje" color="text-amber-200/80">
-            <StatValue done={stats.maybeDone} total={stats.maybe} />
-            <dd className="mt-1 text-[11px] text-malt-300 tabular-nums">
-              {stats.maybeBonger - stats.maybeBongerLeft}/{bongerText(stats.maybeBonger)}
-            </dd>
+            <StatValue value={stats.maybe - stats.maybeDone} />
           </StatCard>
           <StatCard href={href({ view: 'wishlist', show: 'tasted' })} label="✓ Har smakt" color="text-emerald-300">
-            <dd className="font-display text-[32px] leading-none font-semibold tabular-nums text-malt-50">{stats.tasted}</dd>
-            <dd className="mt-1 text-[11px] text-malt-300 tabular-nums">{bongerText(stats.tastedBonger)} brukt</dd>
+            {/* Hvor mange du har smakt, av alt på lista (må smake, kanskje og det du har smakt uten å markere) */}
+            <StatValue value={stats.tasted} />
+            {listTotal > 0 && <dd className="mt-1 text-[11px] text-malt-300 tabular-nums">av {listTotal}</dd>}
           </StatCard>
         </dl>
       </header>
@@ -167,11 +163,6 @@ function StatCard({ href, label, color, children }: { href: string; label: strin
   )
 }
 
-function StatValue({ done, total }: { done: number; total: number }) {
-  return (
-    <dd className="font-display text-[32px] leading-none font-semibold tabular-nums text-malt-50">
-      {done}
-      <span className="text-lg font-normal text-malt-500">/{total}</span>
-    </dd>
-  )
+function StatValue({ value }: { value: number }) {
+  return <dd className="font-display text-[32px] leading-none font-semibold tabular-nums text-malt-50">{value}</dd>
 }
