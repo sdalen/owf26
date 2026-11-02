@@ -68,19 +68,19 @@ export function HomeView({
         </div>
 
         <dl className="mt-6 grid grid-cols-3 gap-2">
-          <StatCard href={href({ view: 'wishlist' })} label="♥ Må smake" color="text-amber-300">
+          <StatCard href={href({ view: 'wishlist', show: 'must' })} label="♥ Må smake" color="text-amber-300">
             <StatValue done={stats.mustDone} total={stats.must} />
             <dd className="mt-1 text-[11px] text-malt-300 tabular-nums">
               {stats.mustBonger - stats.mustBongerLeft}/{bongerText(stats.mustBonger)}
             </dd>
           </StatCard>
-          <StatCard href={href({ view: 'maybe' })} label="? Kanskje" color="text-amber-200/80">
+          <StatCard href={href({ view: 'wishlist', show: 'maybe' })} label="? Kanskje" color="text-amber-200/80">
             <StatValue done={stats.maybeDone} total={stats.maybe} />
             <dd className="mt-1 text-[11px] text-malt-300 tabular-nums">
               {stats.maybeBonger - stats.maybeBongerLeft}/{bongerText(stats.maybeBonger)}
             </dd>
           </StatCard>
-          <StatCard href={href({ view: 'tasted' })} label="✓ Har smakt" color="text-emerald-300">
+          <StatCard href={href({ view: 'wishlist', show: 'tasted' })} label="✓ Har smakt" color="text-emerald-300">
             <dd className="font-display text-[32px] leading-none font-semibold tabular-nums text-malt-50">{stats.tasted}</dd>
             <dd className="mt-1 text-[11px] text-malt-300 tabular-nums">{bongerText(stats.tastedBonger)} brukt</dd>
           </StatCard>
@@ -95,8 +95,7 @@ export function HomeView({
 
       <nav className="space-y-2">
         <NavButton href={href({ view: 'floors' })} icon="🥃" title="Barer" subtitle={`${bars.length} barer fordelt på 3 etasjer`} />
-        <NavButton href={href({ view: 'wishlist' })} icon="♥" accent="amber" title="Min liste" subtitle="Må smake og kanskje, med hake for det du har smakt" />
-        <NavButton href={href({ view: 'tasted' })} icon="✓" accent="emerald" title="Har smakt" subtitle="Med score og notater" />
+        <NavButton href={href({ view: 'wishlist' })} icon="♥" accent="amber" title="Min liste" subtitle="Må smake, kanskje og smakt – med score, notater og eksport" />
         <NavButton href={href({ view: 'search' })} icon="⌕" title="Søk i all whisky" subtitle={`${allWhiskies.length} whisky · filter på bar, bonger og pit-stop`} />
       </nav>
 

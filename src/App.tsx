@@ -90,9 +90,7 @@ export default function App() {
       content = <BarView barId={route.barId} whiskyId={route.whiskyId} notes={notes} onUpdate={updateNote} />
       break
     case 'wishlist':
-    case 'maybe':
-    case 'tasted':
-      content = <ListView mode={route.view} notes={notes} onUpdate={updateNote} />
+      content = <ListView key={route.show ?? 'alle'} show={route.show} notes={notes} onUpdate={updateNote} />
       break
     case 'search':
       content = <SearchView notes={notes} onUpdate={updateNote} />

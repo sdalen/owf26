@@ -10,9 +10,9 @@ const cell = (v: string | number | undefined) => {
   return /[";\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
 }
 
-/** Laster ned whiskyene du har smakt som CSV, i den rekkefølgen de vises */
-export function exportTastedCsv(whiskies: WhiskyWithBar[], notes: Notes): void {
-  const header = ['Nr', 'Whisky', 'Score', 'Notat', 'Bar', 'Etasje', 'Bonger', 'Ønske', 'Nominert', 'Land', 'Region', 'Styrke', 'Pris (kr)', 'Volum (cl)', 'Varenummer']
+/** Laster ned whiskyene som vises på «Min liste» som CSV, i samme rekkefølge */
+export function exportListCsv(whiskies: WhiskyWithBar[], notes: Notes): void {
+  const header = ['Nr', 'Whisky', 'Smakt', 'Score', 'Notat', 'Bar', 'Etasje', 'Bonger', 'Ønske', 'Nominert', 'Land', 'Region', 'Styrke', 'Pris (kr)', 'Volum (cl)', 'Varenummer']
   const rows = whiskies.map((w, i) => {
     const note = notes[w.id]
     const vmp = vinmonopolet[w.id]
@@ -20,6 +20,7 @@ export function exportTastedCsv(whiskies: WhiskyWithBar[], notes: Notes): void {
     return [
       i + 1,
       w.name,
+      note?.tasted ? 'Ja' : 'Nei',
       note?.score !== undefined ? formatScore(note.score) : undefined,
       note?.tastingNote,
       w.bar.name,
@@ -40,7 +41,7 @@ export function exportTastedCsv(whiskies: WhiskyWithBar[], notes: Notes): void {
   const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }))
   const a = document.createElement('a')
   a.href = url
-  a.download = 'owf26-har-smakt.csv'
+  a.download = 'owf26-min-liste.csv'
   a.click()
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

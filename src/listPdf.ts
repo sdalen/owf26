@@ -1,6 +1,7 @@
 import type { WhiskyWithBar } from './data/lookup'
 import { formatKr } from './data/prices'
 import { vinmonopolet } from './data/vinmonopolet'
+import { wishOf } from './noteStatus'
 import { formatScore } from './score'
 import type { Notes } from './types'
 
@@ -11,8 +12,8 @@ const WIDTH = 210 - MARGIN * 2
 // Standardfontene i jsPDF støtter æøå, men ikke smale mellomrom fra toLocaleString
 const clean = (s: string) => s.replace(/[  ]/g, ' ')
 
-/** Lager en PDF av whiskyene du har smakt, i den rekkefølgen de vises. jsPDF lastes først ved behov. */
-export async function exportTastedPdf(whiskies: WhiskyWithBar[], notes: Notes): Promise<void> {
+/** Lager en PDF av whiskyene som vises på «Min liste», i samme rekkefølge. jsPDF lastes først ved behov. */
+export async function exportListPdf(whiskies: WhiskyWithBar[], notes: Notes): Promise<void> {
   const { jsPDF } = await import('jspdf')
   const doc = new jsPDF({ unit: 'mm', format: 'a4' })
 
@@ -27,13 +28,15 @@ export async function exportTastedPdf(whiskies: WhiskyWithBar[], notes: Notes): 
     .setFont('helvetica', 'normal')
     .setFontSize(10)
     .setTextColor(110)
-    .text(clean(`Har smakt · ${whiskies.length} whisky${average !== undefined ? ` · snitt ${formatScore(average)}` : ''} · ${date}`), MARGIN, y)
+    .text(clean(`Min liste · ${whiskies.length} whisky${average !== undefined ? ` · snitt ${formatScore(average)}` : ''} · ${date}`), MARGIN, y)
   y += 8
 
   whiskies.forEach((w, i) => {
     const note = notes[w.id]
     const vmp = vinmonopolet[w.id]
-    const details = [`${w.bar.name} · ${w.bar.floor}. etg`, `${w.bonger} ${w.bonger === 1 ? 'bong' : 'bonger'}`, vmp?.region ?? vmp?.country, vmp?.abv, vmp && formatKr(Math.round(vmp.price))]
+    const wish = wishOf(note)
+    const status = note?.tasted ? 'Smakt' : wish === 'must' ? 'Må smake' : wish === 'maybe' ? 'Kanskje' : undefined
+    const details = [status, `${w.bar.name} · ${w.bar.floor}. etg`, `${w.bonger} ${w.bonger === 1 ? 'bong' : 'bonger'}`, vmp?.region ?? vmp?.country, vmp?.abv, vmp && formatKr(Math.round(vmp.price))]
       .filter(Boolean)
       .join(' · ')
     doc.setFont('helvetica', 'normal').setFontSize(10)
@@ -60,5 +63,5 @@ export async function exportTastedPdf(whiskies: WhiskyWithBar[], notes: Notes): 
     y += 4
   })
 
-  doc.save('owf26-har-smakt.pdf')
+  doc.save('owf26-min-liste.pdf')
 }

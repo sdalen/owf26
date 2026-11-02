@@ -13,12 +13,15 @@ export type Route =
   | { view: 'floor'; floor: Floor }
   /** whiskyId: scroll til og fremhev denne whiskyen */
   | { view: 'bar'; barId: string; whiskyId?: string }
-  | { view: 'wishlist' }
-  | { view: 'maybe' }
-  | { view: 'tasted' }
+  /** show: åpne «Min liste» med bare dette valget huket av */
+  | { view: 'wishlist'; show?: ListShow }
   | { view: 'tastedList' }
   | { view: 'search' }
   | { view: 'pitstop'; day: PitStopDay }
+
+export type ListShow = 'must' | 'maybe' | 'tasted'
+
+const showSlugs: Record<ListShow, string> = { must: 'ma-smake', maybe: 'kanskje', tasted: 'smakt' }
 
 function parse(hash: string): Route {
   const [first, a, b] = hash.replace(/^#\/?/, '').split('/')
@@ -29,11 +32,12 @@ function parse(hash: string): Route {
     case 'bar':
       return a ? { view: 'bar', barId: a, whiskyId: b || undefined } : { view: 'floors' }
     case 'min-liste':
-      return { view: 'wishlist' }
+      return { view: 'wishlist', show: (Object.keys(showSlugs) as ListShow[]).find((k) => showSlugs[k] === a) }
+    // Gamle egne sider – nå «Min liste» med forhåndsvalg
     case 'kanskje':
-      return { view: 'maybe' }
+      return { view: 'wishlist', show: 'maybe' }
     case 'har-smakt':
-      return { view: 'tasted' }
+      return { view: 'wishlist', show: 'tasted' }
     case 'smakt-liste':
       return { view: 'tastedList' }
     case 'sok':
@@ -56,11 +60,7 @@ export function href(route: Route): string {
     case 'bar':
       return `#/bar/${route.barId}${route.whiskyId ? `/${route.whiskyId}` : ''}`
     case 'wishlist':
-      return '#/min-liste'
-    case 'maybe':
-      return '#/kanskje'
-    case 'tasted':
-      return '#/har-smakt'
+      return `#/min-liste${route.show ? `/${showSlugs[route.show]}` : ''}`
     case 'tastedList':
       return '#/smakt-liste'
     case 'search':

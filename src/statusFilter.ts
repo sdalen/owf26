@@ -5,9 +5,17 @@ import type { WhiskyNote } from './types'
 /** Avhuking for må smake, kanskje og smakt – brukes på «Min liste» og barsidene */
 export type StatusFilter = { must: boolean; maybe: boolean; tasted: boolean }
 
-/** Lagrer valgene i localStorage under `storageKey`, så de huskes til neste gang */
-export function useStatusFilter(storageKey: string, initial: StatusFilter) {
+/** Lagrer valgene i localStorage under `storageKey`, så de huskes til neste gang. `preset` overstyrer det lagrede. */
+export function useStatusFilter(storageKey: string, initial: StatusFilter, preset?: StatusFilter) {
   const [filter, setFilter] = useState<StatusFilter>(() => {
+    if (preset) {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(preset))
+      } catch {
+        // ikke kritisk
+      }
+      return preset
+    }
     try {
       return { ...initial, ...(JSON.parse(localStorage.getItem(storageKey) ?? '{}') as Partial<StatusFilter>) }
     } catch {
@@ -15,8 +23,7 @@ export function useStatusFilter(storageKey: string, initial: StatusFilter) {
     }
   })
 
-  function toggle(key: keyof StatusFilter) {
-    const next = { ...filter, [key]: !filter[key] }
+  function save(next: StatusFilter) {
     setFilter(next)
     try {
       localStorage.setItem(storageKey, JSON.stringify(next))
@@ -24,6 +31,8 @@ export function useStatusFilter(storageKey: string, initial: StatusFilter) {
       // ikke kritisk
     }
   }
+
+  const toggle = (key: keyof StatusFilter) => save({ ...filter, [key]: !filter[key] })
 
   return [filter, toggle] as const
 }
