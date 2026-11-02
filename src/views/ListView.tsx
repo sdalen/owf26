@@ -6,6 +6,8 @@ import { bongerText, floors } from '../data/floors'
 import { allWhiskies, type WhiskyWithBar } from '../data/lookup'
 import { statsFor, wishOf } from '../noteStatus'
 import { matchesStatus, useStatusFilter } from '../statusFilter'
+import { exportTastedCsv } from '../tastedCsv'
+import { exportTastedPdf } from '../tastedPdf'
 import type { Notes, WhiskyNote } from '../types'
 import { href } from '../useRoute'
 
@@ -26,6 +28,8 @@ interface Props {
 
 const SORT_KEY = 'owf26-sort'
 
+const exportButton = 'rounded-full bg-malt-800 px-3 py-1 text-xs font-semibold text-malt-100 ring-1 ring-malt-700 transition hover:bg-malt-700 active:scale-95 disabled:opacity-60'
+
 function loadSort(mode: Props['mode']): Sort {
   try {
     const saved = localStorage.getItem(`${SORT_KEY}-${mode}`)
@@ -38,6 +42,7 @@ function loadSort(mode: Props['mode']): Sort {
 
 export function ListView({ mode, notes, onUpdate }: Props) {
   const [sort, setSort] = useState<Sort>(() => loadSort(mode))
+  const [exporting, setExporting] = useState(false)
   const [filter, toggleFilter] = useStatusFilter('owf26-min-liste-filter', { must: true, maybe: true, tasted: true })
   const sorts: Sort[] = mode === 'tasted' ? ['score', 'sted', 'bonger', 'navn'] : ['sted', 'bonger', 'navn']
 
@@ -115,6 +120,28 @@ export function ListView({ mode, notes, onUpdate }: Props) {
         )}
         {mode === 'wishlist' && all.length > 0 && (
           <StatusFilterBar filter={filter} onToggle={toggleFilter} className="mt-2" />
+        )}
+        {mode === 'tasted' && all.length > 0 && (
+          <div className="mt-2 flex justify-end gap-1.5">
+            <button type="button" onClick={() => exportTastedCsv(all, notes)} className={exportButton}>
+              CSV ↓
+            </button>
+            <button
+              type="button"
+              disabled={exporting}
+              onClick={async () => {
+                setExporting(true)
+                try {
+                  await exportTastedPdf(all, notes)
+                } finally {
+                  setExporting(false)
+                }
+              }}
+              className={exportButton}
+            >
+              {exporting ? 'Lager PDF …' : 'PDF ↓'}
+            </button>
+          </div>
         )}
       </TopBar>
 
