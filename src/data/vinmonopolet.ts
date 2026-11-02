@@ -8580,5 +8580,194 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "country": "Skottland",
     "region": "Highland",
     "category": "Whisky"
+  },
+  "bruichladdich-2": {
+    "code": "20780301",
+    "name": "Bruichladdich 10 YO Old Skool",
+    "price": 1224.9,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Islay",
+    "category": "Whisky"
+  },
+  "bruichladdich-3": {
+    "code": "20780501",
+    "name": "Bruichladdich Yellow Submarine III",
+    "price": 1699.8,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Islay",
+    "category": "Whisky"
+  },
+  "william-grant-1": {
+    "code": "21199601",
+    "name": "Glenfiddich 14 YO Bourbon Barrel Reserve",
+    "price": 842.2,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
+  },
+  "edrington-15": {
+    "code": "21227501",
+    "name": "The Macallan Sherry Oak 12 YO 110 Proof",
+    "price": 1499.9,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
+  },
+  "toast-palmer-3": {
+    "code": "21231601",
+    "name": "Sakurao Single Malt Peated",
+    "price": 1399.9,
+    "volumeCl": 70.0,
+    "country": "Japan",
+    "region": "Øvrige",
+    "category": "Whisky"
+  },
+  "toast-palmer-7": {
+    "code": "21231701",
+    "name": "Togouchi Sakura Cask Finish",
+    "price": 849.9,
+    "volumeCl": 70.0,
+    "country": "Japan",
+    "region": "Øvrige",
+    "category": "Whisky"
+  },
+  "toast-palmer-32": {
+    "code": "21171701",
+    "name": "Loch Lomond Single Cask 2012 Cask No. 2531 Tropical Storm",
+    "price": 1403.9,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
+  },
+  "myken-10": {
+    "code": "21124601",
+    "name": "Myken Gale Winds Single Malt Whisky",
+    "price": 1499.9,
+    "volumeCl": 70.0,
+    "country": "Norge",
+    "region": "Nordland",
+    "category": "Whisky"
+  },
+  "moestue-13": {
+    "code": "21220101",
+    "name": "Glenfarclas 190th Anniversary",
+    "price": 1599.0,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
+  },
+  "moestue-14": {
+    "code": "21220201",
+    "name": "Glenfarclas Family Casks 2011 Cask #1254",
+    "price": 2490.0,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
+  },
+  "moestue-15": {
+    "code": "21216701",
+    "name": "Glenfarclas Family Casks 2002 Cask #88",
+    "price": 3289.0,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
+  },
+  "det-norske-brenneri-5": {
+    "code": "21226601",
+    "name": "Braeval Single Malt Single Cask 15YO Port Finish The Cooper's Choice",
+    "price": 999.9,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
+  },
+  "det-norske-brenneri-6": {
+    "code": "21226801",
+    "name": "Glen Spey Speyside Singe Malt Single Cask 13YO Sauternes Finish The Cooper's Choice",
+    "price": 967.0,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
+  },
+  "det-norske-brenneri-7": {
+    "code": "21226701",
+    "name": "Caol Ila Islay Single Malt 10YO Bourbon Cask The Golden Cut Collection",
+    "price": 985.1,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Islay",
+    "category": "Whisky"
+  },
+  "det-norske-brenneri-8": {
+    "code": "21226901",
+    "name": "Balmenach Speyside Single Malt 11YO Madeira Finish The Golden Cut Collection",
+    "price": 1011.2,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
+  },
+  "det-norske-brenneri-12": {
+    "code": "21227101",
+    "name": "Kanosuke Double Distillery Whisky",
+    "price": 1299.0,
+    "volumeCl": 70.0,
+    "country": "Japan",
+    "region": "Øvrige",
+    "category": "Whisky"
+  },
+  "67-north-2": {
+    "code": "21264401",
+    "name": "Sixtyseven Glimt i Øyet",
+    "price": 1149.9,
+    "volumeCl": 70.0,
+    "country": "Norge",
+    "region": "Nordland",
+    "category": "Whisky"
+  },
+  "just-drinks-26": {
+    "code": "20154801",
+    "name": "Jack Daniel's Tennessee Single Barrel Rye",
+    "price": 849.9,
+    "volumeCl": 70.0,
+    "country": "USA",
+    "region": "Tennessee",
+    "category": "Whisky"
+  },
+  "nikka-12": {
+    "code": "18944301",
+    "name": "Nikka 9 Decades Premimum Blended Whisky",
+    "price": 29999.9,
+    "volumeCl": 70.0,
+    "country": "Japan",
+    "region": "Øvrige",
+    "category": "Whisky"
+  },
+  "malt-norge-16": {
+    "code": "19735901",
+    "name": "Adelphi Dailuaine 2015 1stFill Pedro Ximenez Hogshead",
+    "price": 1185.1,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
+  },
+  "edrington-18": {
+    "code": "21084301",
+    "name": "The Macallan Time Space Sherry Cask 20 YO",
+    "price": 14999.9,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
   }
 }
