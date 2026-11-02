@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, type ReactNode, useState } from 'react'
 import { TopBar } from '../components/TopBar'
 import { WhiskyRow } from '../components/WhiskyRow'
 import { bongerText, floors } from '../data/floors'
@@ -23,6 +23,18 @@ interface Props {
 }
 
 const SORT_KEY = 'owf26-sort'
+const FILTER_KEY = 'owf26-min-liste-filter'
+
+type Filter = { must: boolean; maybe: boolean; tasted: boolean }
+const allOn: Filter = { must: true, maybe: true, tasted: true }
+
+function loadFilter(): Filter {
+  try {
+    return { ...allOn, ...(JSON.parse(localStorage.getItem(FILTER_KEY) ?? '{}') as Partial<Filter>) }
+  } catch {
+    return allOn
+  }
+}
 
 function loadSort(mode: Props['mode']): Sort {
   try {
@@ -36,12 +48,23 @@ function loadSort(mode: Props['mode']): Sort {
 
 export function ListView({ mode, notes, onUpdate }: Props) {
   const [sort, setSort] = useState<Sort>(() => loadSort(mode))
+  const [filter, setFilter] = useState<Filter>(loadFilter)
   const sorts: Sort[] = mode === 'tasted' ? ['score', 'sted', 'bonger', 'navn'] : ['sted', 'bonger', 'navn']
 
   function changeSort(s: Sort) {
     setSort(s)
     try {
       localStorage.setItem(`${SORT_KEY}-${mode}`, s)
+    } catch {
+      // ikke kritisk
+    }
+  }
+
+  function toggleFilter(key: keyof Filter) {
+    const next = { ...filter, [key]: !filter[key] }
+    setFilter(next)
+    try {
+      localStorage.setItem(FILTER_KEY, JSON.stringify(next))
     } catch {
       // ikke kritisk
     }
@@ -62,18 +85,29 @@ export function ListView({ mode, notes, onUpdate }: Props) {
       }
     })
 
-  // «Min liste» deles i «Må smake» og «Kanskje». Smakte blir stående (med hake) så man beholder oversikten.
+  // «Min liste» er én samlet liste: alt som er markert må smake, kanskje eller smakt
   const groups: { title?: string; items: WhiskyWithBar[] }[] =
     mode === 'wishlist'
-      ? [
-          { title: 'Må smake', items: sorted.filter((w) => wishOf(notes[w.id]) === 'must') },
-          { title: 'Kanskje', items: sorted.filter((w) => wishOf(notes[w.id]) === 'maybe') },
-        ]
+      ? [{ items: sorted.filter((w) => wishOf(notes[w.id]) || notes[w.id]?.tasted) }]
       : mode === 'maybe'
         ? [{ items: sorted.filter((w) => wishOf(notes[w.id]) === 'maybe') }]
         : [{ items: sorted.filter((w) => notes[w.id]?.tasted) }]
   const all = groups.flatMap((g) => g.items)
   const stats = statsFor(all, notes)
+
+  // Avhukingen på «Min liste»: smakte styres av «Smakt», resten av hvilket ønske de har
+  const visibleGroups =
+    mode === 'wishlist'
+      ? groups.map((g) => ({
+          ...g,
+          items: g.items.filter((w) => {
+            const note = notes[w.id]
+            if (note?.tasted) return filter.tasted
+            const wish = wishOf(note)
+            return !!wish && filter[wish]
+          }),
+        }))
+      : groups
 
   const groupSummary = (items: WhiskyWithBar[]) => {
     const left = items.filter((w) => !notes[w.id]?.tasted)
@@ -104,6 +138,19 @@ export function ListView({ mode, notes, onUpdate }: Props) {
             ))}
           </div>
         )}
+        {mode === 'wishlist' && all.length > 0 && (
+          <div className="mt-2 flex gap-1.5">
+            <FilterToggle on={filter.must} onClick={() => toggleFilter('must')} onClass="bg-amber-400 text-malt-950">
+              Må smake
+            </FilterToggle>
+            <FilterToggle on={filter.maybe} onClick={() => toggleFilter('maybe')} onClass="bg-amber-200 text-malt-950">
+              Kanskje
+            </FilterToggle>
+            <FilterToggle on={filter.tasted} onClick={() => toggleFilter('tasted')} onClass="bg-emerald-400 text-malt-950">
+              Smakt
+            </FilterToggle>
+          </div>
+        )}
       </TopBar>
 
       {all.length === 0 ? (
@@ -115,7 +162,8 @@ export function ListView({ mode, notes, onUpdate }: Props) {
         </div>
       ) : (
         <div className="space-y-8">
-          {groups
+          {visibleGroups.every((g) => g.items.length === 0) && <p className="py-12 text-center text-malt-300">Ingenting å vise med disse valgene.</p>}
+          {visibleGroups
             .filter((g) => g.items.length > 0)
             .map((g) => (
               <section key={g.title ?? 'all'}>
@@ -138,6 +186,23 @@ export function ListView({ mode, notes, onUpdate }: Props) {
         </div>
       )}
     </>
+  )
+}
+
+function FilterToggle({ on, onClick, onClass, children }: { on: boolean; onClick: () => void; onClass: string; children: ReactNode }) {
+  return (
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={on}
+      onClick={onClick}
+      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ring-1 transition active:scale-95 ${
+        on ? `${onClass} ring-transparent` : 'text-malt-300 ring-malt-700 hover:text-malt-50'
+      }`}
+    >
+      <span aria-hidden>{on ? '☑' : '☐'}</span>
+      {children}
+    </button>
   )
 }
 
