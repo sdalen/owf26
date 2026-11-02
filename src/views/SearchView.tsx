@@ -3,10 +3,11 @@ import { TopBar } from '../components/TopBar'
 import { WhiskyRow } from '../components/WhiskyRow'
 import { bars } from '../data/bars'
 import { allWhiskies, barById, type WhiskyWithBar } from '../data/lookup'
+import { vinmonopolet } from '../data/vinmonopolet'
 import type { Floor, Notes, WhiskyNote } from '../types'
 import { href } from '../useRoute'
 
-type Filter = 'alle' | 'nominert' | 'pitstop-fre' | 'pitstop-lor' | 'ratet'
+type Filter = 'alle' | 'nominert' | 'pitstop-fre' | 'pitstop-lor' | 'ratet' | 'ikke-polet'
 
 const filters: { id: Filter; label: string }[] = [
   { id: 'alle', label: 'Alle' },
@@ -14,6 +15,7 @@ const filters: { id: Filter; label: string }[] = [
   { id: 'pitstop-lor', label: 'Pit-stop lørdag' },
   { id: 'nominert', label: 'Best i festival-nominert' },
   { id: 'ratet', label: 'Med score' },
+  { id: 'ikke-polet', label: 'Ikke hos Polet' },
 ]
 
 function matchesFilter(w: WhiskyWithBar, filter: Filter, notes: Notes) {
@@ -26,6 +28,9 @@ function matchesFilter(w: WhiskyWithBar, filter: Filter, notes: Notes) {
       return !!w.pitStop?.includes('lør')
     case 'ratet':
       return notes[w.id]?.score !== undefined
+    // Ikke funnet i Vinmonopolets sortiment – ofte fatprøver eller nyheter som ikke er lansert ennå
+    case 'ikke-polet':
+      return !vinmonopolet[w.id]
     default:
       return true
   }
