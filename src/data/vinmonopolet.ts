@@ -79,7 +79,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "50%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gyllengul.",
+    "smell": "Aroma av malt, sitrus og tørket frukt, tydelig torvrøyk, litt fat, karamell, kamfer og honning.",
+    "taste": "Fyldig, lang og litt pepret med kraftfullt preg av malt og torvrøyk, litt sitrus, honning og fat.",
+    "method": "Destilleritapping, ikke kaldfiltrert, byggmalt med 40 ppm (millondel) røyk.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 10
+      },
+      {
+        "name": "Fat",
+        "value": 6
+      },
+      {
+        "name": "Røyk",
+        "value": 8
+      }
+    ]
   },
   "bruichladdich-7": {
     "code": "20040701",
@@ -236,7 +254,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gyllen brungul.",
+    "smell": "Aroma med preg av lyst malt, fat med vanilje og trekrydder, innslag av nøtt, pære og sitrus.",
+    "taste": "Avrundet og maltpreget med nyanser av sitrus, fat og smørkaramell, litt krydder, pære og honning.",
+    "method": "Tradisjonell malting av kornet etterfulgt av røyking og fermentering. Destillasjon i kobber pot stills.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 6
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "william-grant-4": {
     "code": "3224801",
@@ -842,7 +878,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gulbrun.",
+    "smell": "Litt krydret og fruktig aroma med innslag av lyst malt, sitrus, lynghonning, sherryfat og toffee.",
+    "taste": "God fylde og lengde, preg av lyst malt og korn, appelsin, lynghonning, fat og litt karamell.",
+    "method": "Tradisjonell. Dobbeltdestillasjon i pot stills.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 2
+      }
+    ]
   },
   "edrington-11": {
     "code": "12166001",
@@ -998,7 +1052,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Dyp gyllenbrun.",
+    "smell": "Røykpreget aroma med innslag av tørket frukt, sitrus og kjøtt, hint av jod, sjø og fat.",
+    "taste": "Smaksrik og litt rustikk med fylde og lengde.",
+    "method": "Minimum 12 års fatlagring.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 5
+      },
+      {
+        "name": "Røyk",
+        "value": 6
+      }
+    ]
   },
   "edrington-21": {
     "code": "4888801",
@@ -1382,7 +1454,11 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "45,6%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Mørk gyllen.",
+    "smell": "Sødmefull vanilje, tørket frukt og eikearoma.",
+    "taste": "Vanilje, eik, tørket frukt og en lang, røyket avslutning..",
+    "method": "Bulleit 10 YO Kentucky Straight Bourbon."
   },
   "engelstad-10": {
     "code": "1114201",
@@ -1472,7 +1548,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "45%",
     "country": "Irland",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Middels dyp gulbrun.",
+    "smell": "Nyansert aroma av malt, fat, karamell og tørket frukt, litt vanilje, svale urter, kamfer og honning.",
+    "taste": "Fyldig med litt pepret preg av malt, tørket frukt, fat og vanilje, innslag av ingefær og honning.",
+    "method": "Blended whisky. Ikke kuldefiltrert. Lagret på bourbon-fat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "engelstad-15": {
     "code": "10892601",
@@ -1989,7 +2083,10 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "40%",
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Mørk gyllen.",
+    "smell": "Karamell, tørket frukt, appelsinskall og vanilje.",
+    "taste": "Tørket frukt, sitrus, røde bær, karamell og ingefær."
   },
   "diageo-1": {
     "code": "918401",
@@ -1999,7 +2096,11 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Dyp rav.",
+    "smell": "Krydret, honning, eple, røde bær.",
+    "taste": "Søt og krydret med en hint av honning.",
+    "method": "Refill Bourbon eikefat og Sherry eikefat, dobbelt destillert i pot stills."
   },
   "diageo-2": {
     "code": "1556601",
@@ -2037,7 +2138,11 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Klar gyllen.",
+    "smell": "Frisk frukt, hint av honning, vanilje og pære.",
+    "taste": "Frisk frukt, søt smak med hint av hvit pepper i avslutningen.",
+    "method": "Tradisjonell dobbeltdestillasjon i pot stills, modnet i 3 typer fat: refill, sherry og bourbon."
   },
   "diageo-4": {
     "code": "21153401",
@@ -2577,7 +2682,10 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "45,2%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Honningfarget.",
+    "smell": "Krydret med karakteristiske rugtoner, pepper, sedertre og akasiebark, søt aroma av marsipan.",
+    "taste": "Smak av rug, mynte, honning og hint av eple og malt."
   },
   "belmonte-1": {
     "code": "652701",
@@ -2587,7 +2695,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Lys gyllengul.",
+    "smell": "Fruktig aroma med mildt preg av lyst malt og korn, litt sitrus, vanilje, urter og fat.",
+    "taste": "Nyansert og middels fyldig med preg av lyst malt og sitrus, litt nøtt, lynghonning, fat og vanilje.",
+    "method": "Tradisjonell. Min. 120 md. fatlagring (american oak).",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 5
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "belmonte-2": {
     "code": "4966101",
@@ -2745,7 +2871,24 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46,6%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Mørk gyllen.",
+    "smell": "Røkt epletre, karamell, dadler og anis med hint av fersken, fennikel og tang.",
+    "taste": "Røkte teblader, sigar, sirup, melkesjokolade, anis, appelsin og søtt krydder.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 10
+      }
+    ]
   },
   "belmonte-10": {
     "code": "5932001",
@@ -3773,7 +3916,24 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Mahogni.",
+    "smell": "Røde bær, pasjonsfrukt og vaniljestang.",
+    "taste": "Sitrusskall, crème caramell, knuste mandler og mørk sjokolade. Kanel, muskatnøtt og varmende ingefær",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 12
+      },
+      {
+        "name": "Fat",
+        "value": 12
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "toast-palmer-40": {
     "code": "19698901",
@@ -4039,7 +4199,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "47%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Dyp mahogni.",
+    "smell": "Vanilje, mynte og tørket frukt.",
+    "taste": "Myk og varm, behagelig eik med toner av krydder, sjokolade, røyk og muskat.",
+    "method": "Tradisjonell produksjon, lagret 12 år på amerikansk white oak-fat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 9
+      },
+      {
+        "name": "Fat",
+        "value": 10
+      },
+      {
+        "name": "Røyk",
+        "value": 5
+      }
+    ]
   },
   "toast-palmer-53": {
     "code": "19438101",
@@ -4103,7 +4281,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "40%",
     "country": "Irland",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Middels gyllen.",
+    "smell": "Frisk med grønne toner og eple, avsluttes med en klart maltpreg.",
+    "taste": "Mykt anslag, toner av honning med krydret avslutning.",
+    "method": "Malt og korn trippeldestillert i pot stills, lagret på Kentucky bourbon fat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "aurora-3": {
     "code": "20873602",
@@ -4379,7 +4575,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gulbrun.",
+    "smell": "Fokusert aroma preget av lyst malt, røyk og tørket frukt, innslag av fat og nøtt og urter.",
+    "taste": "Fint konsentrert, sval og lett krydret, preg av lyst malt, røyk og urter. God fylde og lengde.",
+    "method": "Tradisjonell dobbeltdestillasjon i pot stills, lagret i brukte bourbon- og sherryfat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 9
+      }
+    ]
   },
   "cask-13": {
     "code": "20948401",
@@ -4568,7 +4782,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "43%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Dyp gyllen, kobber.",
+    "smell": "Aroma av fersken, pære, eple, anis og sitrus, hint av tobakk.",
+    "taste": "Smak av korn, anis, fat, sitrus, mint og karamell.",
+    "method": "Potstill produksjon.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 9
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "cask-24": {
     "code": "19812101",
@@ -4802,7 +5034,24 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46,4%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Middels dyp gyllengul.",
+    "smell": "Krydderpreget aroma med innslag av tørket frukt, korn og fat.",
+    "taste": "God fylde, preg av tørket frukt, krydder og fat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 9
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 3
+      }
+    ]
   },
   "michters-3": {
     "code": "3958201",
@@ -5055,7 +5304,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "45%",
     "country": "Japan",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Gyllen.",
+    "smell": "Rik aroma av byggmalt, tropisk frukt, lakris, kamfer.",
+    "taste": "Krydder, urter, lakris, sjokolade. Lang og myk med tropisk avslutning.",
+    "method": "Blend av ulike årganger.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 7
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "nikka-7": {
     "code": "7723501",
@@ -5064,7 +5331,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "43%",
     "country": "Japan",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Mørk gyllen.",
+    "smell": "Torvrøyk, vanilje, appelsin, sherry, sjokolade.",
+    "taste": "Rund, fyldig, balansert med en fruktig, krydret smak.",
+    "method": "Dobbeltdestillasjon i pot stills.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 6
+      },
+      {
+        "name": "Røyk",
+        "value": 2
+      }
+    ]
   },
   "nikka-8": {
     "code": "12307301",
@@ -5154,7 +5439,24 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "45%",
     "country": "Japan",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Gyllen.",
+    "smell": "Fyldig, aroma av torvrøyk, karamellisert sitrusfrukt, lakris, bakekrydder, blomster.",
+    "taste": "Kraftfull, balansert med smak av torvrøyk, krydder, frukt, nøtter.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 7
+      },
+      {
+        "name": "Røyk",
+        "value": 4
+      }
+    ]
   },
   "myken-1": {
     "code": "19812401",
@@ -6098,7 +6400,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "40%",
     "country": "Irland",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Middels dyp gyllen brungul.",
+    "smell": "Tydelig aroma preget av lyst malt og korn, innslag av tørket appelsinskall, fat, lyng og blomster.",
+    "taste": "Maltpreget, myk og nyansert, innslag av korn, honning, krydder, sitrus og toner fra sherryfat.",
+    "method": "Blend av pot still og grain whiskey. Destillert 3 ganger.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 6
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "brand-partners-22": {
     "code": "187201",
@@ -6147,7 +6467,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "40%",
     "country": "Irland",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Mørk gyllen rav.",
+    "smell": "Honning , sherry, nøtter og pepper.",
+    "taste": "Bløt i smaken med sherryaktig sødme og elegant eikepreg.",
+    "method": "Single pot still, trippeldestillert. Min. 12 år på enten sherry eller bourbon fat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "brand-partners-25": {
     "code": "12313201",
@@ -6821,7 +7159,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "58%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gyllengul.",
+    "smell": "Aroma med tydelig preg av torvrøyk over lyst malt og lynghonning, streif av røykt bacon og lær.",
+    "taste": "Fyldig, røykpreget og lang med nyanserte toner av lyst malt, lynghonning, sitrus, litt jod og tjære.",
+    "method": "Destillert på et 'hemmelig' destilleri på Islay. Navnet kommer fra slottet til 'Lord of the Isles'.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 10
+      },
+      {
+        "name": "Fat",
+        "value": 4
+      },
+      {
+        "name": "Røyk",
+        "value": 8
+      }
+    ]
   },
   "monkey-shoulder-1": {
     "code": "671801",
@@ -6831,7 +7187,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gyllen brungul.",
+    "smell": "Aroma av lyst malt og korn, innslag av tørket frukt, sitrus, vanilje, fat, honning og krydder.",
+    "taste": "Maltpreget med god lengde, innslag av tørket frukt, honning og sitrus, intergrert fat og vanilje.",
+    "method": "Blended malt whisky.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 6
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "monkey-shoulder-2": {
     "code": "671804",
@@ -6841,7 +7215,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gyllen brungul.",
+    "smell": "Aroma av lyst malt og korn, innslag av tørket frukt, sitrus, vanilje, fat, honning og krydder.",
+    "taste": "Maltpreget med god lengde, innslag av tørket frukt, honning og sitrus, intergrert fat og vanilje.",
+    "method": "Maltet bygg.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 6
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "67-north-1": {
     "code": "20777901",
@@ -6879,7 +7271,11 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46,3%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Gyllenbrun.",
+    "smell": "Tørket frukt, karamell og søt vanilje.",
+    "taste": "Kremet og rund. Hint av nøtter, krydder og sjøsalt. Lang avslutning, hint av tørket frukt.",
+    "method": "Fatlagret, Ikke kuldefiltrert."
   },
   "anora-463-2": {
     "code": "10505101",
@@ -6917,7 +7313,11 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46,3%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Naturlig gyllenbrun.",
+    "smell": "Frisk. Svak røyk.",
+    "taste": "Frukt, nøtter. Søt malt.",
+    "method": "Un-chillfiltered/12 års fatlagring."
   },
   "anora-463-4": {
     "code": "8159401",
@@ -6927,7 +7327,10 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46,3%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels gyllen.",
+    "smell": "Myk duft av søt røyk, kremet ingefær og pepper.",
+    "taste": "Sjøluft, nøtter, nougat."
   },
   "anora-463-5": {
     "code": "12399801",
@@ -7160,7 +7563,11 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Storbritannia",
     "region": "Nord-Irland",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Brun.",
+    "smell": "Toner av aprikos, urter og vanilje.",
+    "taste": "Lang ettersmak av tørket frukt og vanilje.",
+    "method": "Min. 10 år i eikefat for yngste element."
   },
   "anora-7": {
     "code": "3055801",
@@ -7224,7 +7631,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Middels dyp gulbrun.",
+    "smell": "Sammensatt aroma av tørket frukt og sitrusskall, trekrydder, vanilje, kokos, litt lakk og marsipan.",
+    "taste": "Energisk med nyansert preg av tørket frukt, sitrus, forkullet fat, litt kokos og marsipan.",
+    "method": "Tradisjonell dobbeltdestillasjon, lagret i nye amerikanske eikefat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 7
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "anora-11": {
     "code": "10209801",
@@ -7262,7 +7687,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "45%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Mørk gyllen.",
+    "smell": "Aroma av karamell, sitrus, honning og eik.",
+    "taste": "Salt, eik, karamell, kakao, krydder.",
+    "method": "Rye recipe. Sour Mash. Single Barrel. Lagret i minst 10 år.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 5
+      }
+    ]
   },
   "anora-13": {
     "code": "9224501",
@@ -7272,7 +7715,11 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Middels dyp gyllen.",
+    "smell": "Røstet fat, litt lakris og karamell.",
+    "taste": "Søtlig. Innslag av vanilje, kokos og litt sitrus. God fylde.",
+    "method": "Tradisjonell dobbeltdestillasjon, lagret i nye amerikanske eikefat."
   },
   "anora-14": {
     "code": "13063201",
@@ -7617,7 +8064,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "50%",
     "country": "India",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gyllengul.",
+    "smell": "Fint sammensatt aroma preget av lyst malt og korn, innslag av tørket frukt, røyk, litt jod og fat.",
+    "taste": "Myk, nyansert og preget av lyst malt, korn, tørket frukt og jod, innslag av fat, lang, god fylde.",
+    "method": "Ikke kaldfiltrert el. tilsatt farge. Indisk og skotsk maltet bygg destillert og modnet separat, deretter blandet.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 7
+      },
+      {
+        "name": "Røyk",
+        "value": 4
+      }
+    ]
   },
   "oakwyn-15": {
     "code": "12914201",
@@ -8420,7 +8885,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "43%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gulbrun.",
+    "smell": "Sammensatt, maltpreget og litt krydret aroma av tørket frukt og blomst, sitrus, nøtt og sherryfat.",
+    "taste": "Fyldig, nyansert og maltpreget med toner av sherryfat, sitrus, rosin, litt te, sjokolade og kamfer.",
+    "method": "Kombinasjon av Pedro Ximénez og Oloroso sherryfat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 7
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "malt-norge-7": {
     "code": "14698701",
@@ -8430,7 +8913,24 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "58,4%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Ravgul.",
+    "smell": "Balanserte røyktoner, kryddertoner, sitrus, mot sitron. Vanilje, lynghonning, lett salt, mineralsk.",
+    "taste": "Krydder, vanilje, salt og honning. Sitrusfrukt. Lett lakris.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 9
+      },
+      {
+        "name": "Fat",
+        "value": 6
+      },
+      {
+        "name": "Røyk",
+        "value": 4
+      }
+    ]
   },
   "edrington-9": {
     "code": "21084401",
@@ -8440,7 +8940,24 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "47,5%",
     "country": "Skottland",
     "region": "Highland, Islands",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Dyp gul.",
+    "smell": "Frukt, krydder og vanilje.",
+    "taste": "Frukt og krydd, vanilje.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 3
+      }
+    ]
   },
   "just-drinks-19": {
     "code": "615901",
@@ -8450,7 +8967,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "35%",
     "country": "USA",
     "region": "Tennessee",
-    "category": "Likør"
+    "category": "Likør, annen",
+    "color": "Middels dyp gyllengul.",
+    "smell": "Aroma med litt krydret preg av honning og innslag av urter, bourbon whisky, fat og karamell.",
+    "taste": "Honningpreget og krydret med moderat sødme og middels fylde, innslag av bourbon whisky og vanilje.",
+    "method": "Modnet og lagret på fat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Friskhet",
+        "value": 4
+      },
+      {
+        "name": "Sødme",
+        "value": 5
+      }
+    ]
   },
   "just-drinks-20": {
     "code": "14973301",
@@ -8460,7 +8995,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "35%",
     "country": "USA",
     "region": "Tennessee",
-    "category": "Likør"
+    "category": "Likør, frukt og bær",
+    "color": "Middels dyp gulbrun.",
+    "smell": "Litt krydret aroma av ferske grønne epler, innslag av whiskey, karamell, eikefat og tørket frukt.",
+    "taste": "Tydelig preg av friske epler, litt honning, tørket frukt, karamell, tennessee whiskey og fatkrydder.",
+    "method": "Jack Daniel's Tennessee Whiskey tilsatt eplelikør laget på ekte epler.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 5
+      },
+      {
+        "name": "Friskhet",
+        "value": 5
+      },
+      {
+        "name": "Sødme",
+        "value": 4
+      }
+    ]
   },
   "just-drinks-21": {
     "code": "20650901",
@@ -8470,7 +9023,24 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "35%",
     "country": "USA",
     "region": "Tennessee",
-    "category": "Likør"
+    "category": "Likør, frukt og bær",
+    "color": "Mørk kobber.",
+    "smell": "Aroma av whisky, eik, karamell og bjørnebær.",
+    "taste": "Preg av mørke bær, vanilje og eik, hint av honning.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Friskhet",
+        "value": 4
+      },
+      {
+        "name": "Sødme",
+        "value": 7
+      }
+    ]
   },
   "edrington-28": {
     "code": "16601",
@@ -8480,7 +9050,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Middels dyp gyllen gulbrun.",
+    "smell": "Aromatisk og fatpreget, innslag av sitrus, tørket frukt og trekull, hint av lakk, korn og honning.",
+    "taste": "Krydret og middels fyldig med god lengde, preg av sitrus, korn, honning, eikefat og vanilje.",
+    "method": "Tradisjonell Bourbon metode.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "toast-palmer-49": {
     "code": "7881401",
@@ -8490,7 +9078,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "40%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp gyllen gulbrun.",
+    "smell": "Sammensatt aroma av appelsinmarmelade og eplekake, litt fat, karamell, honning, blomst og marsipan.",
+    "taste": "Kompleks og fokusert, preg av sitrus, lyst malt, litt pære, fersken og fat med vanilje og honning.",
+    "method": "Trad. dest. i pot stills. Double Cask, modnet på amerikanske eikefat, med avslutning på sherryfat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 6
+      },
+      {
+        "name": "Røyk",
+        "value": 2
+      }
+    ]
   },
   "toast-palmer-56": {
     "code": "19430001",
@@ -8499,7 +9105,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "volumeCl": 70.0,
     "abv": "35%",
     "country": "USA",
-    "category": "Likør"
+    "category": "Likør, annen",
+    "color": "Lys gyllen.",
+    "smell": "Aroma av banan og peanøttsmør.",
+    "taste": "Banan og peanøttsmør.",
+    "method": "Tradisjonell.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 9
+      },
+      {
+        "name": "Friskhet",
+        "value": 6
+      },
+      {
+        "name": "Sødme",
+        "value": 10
+      }
+    ]
   },
   "toast-palmer-21": {
     "code": "14556501",
@@ -8509,7 +9133,11 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46,5%",
     "country": "USA",
     "region": "Kentucky",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Ravgul.",
+    "smell": "Duft av krydret rug, kirsebær og anelse lær.",
+    "taste": "Smak av røkt karamell og eik, samt brunt sukker.",
+    "method": "Blend av 4 til 7 års bourbon."
   },
   "aurora-1": {
     "code": "18750602",
@@ -8519,7 +9147,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46%",
     "country": "Norge",
     "region": "Troms, Lyngen",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Mørk gyllen.",
+    "smell": "Aroma av sherry, karamell og vanilje, hint av torv.",
+    "taste": "Kremaktig smak av karamell, sherry, vanilje, torv, eik og tørket frukt, lang krydret avslutning.",
+    "method": "Destillert mellom 2018-2020.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 10
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 6
+      }
+    ]
   },
   "aurora-2": {
     "code": "18750602",
@@ -8529,7 +9175,25 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46%",
     "country": "Norge",
     "region": "Troms, Lyngen",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Mørk gyllen.",
+    "smell": "Aroma av sherry, karamell og vanilje, hint av torv.",
+    "taste": "Kremaktig smak av karamell, sherry, vanilje, torv, eik og tørket frukt, lang krydret avslutning.",
+    "method": "Destillert mellom 2018-2020.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 10
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 6
+      }
+    ]
   },
   "edrington-16": {
     "code": "20862201",
@@ -8539,7 +9203,24 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46,3%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Gyllen.",
+    "smell": "Preg av kokos, sitrus, lime og tropisk frukt, med innslag av vanilje, mandel og eik.",
+    "taste": "Preg av kokos, sitrus og vanilje, med innslag av tørket tropisk frukt, kokosmelk og søt eik.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "det-norske-brenneri-3": {
     "code": "15433801",
@@ -8559,17 +9240,38 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "50%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Mahogni.",
+    "smell": "Aroma av kakao, karamell og plomme, hint av honning og kaffe.",
+    "taste": "Plommesirup, honning, hint av kirsebær. Noe ingefær og kanel i ettersmaken.",
+    "method": "Potstillproduksjon. Lagret på Ex-solera Sherry Casks.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "cask-22": {
     "code": "279701",
-    "name": "Glengoyne 18 YO SIngle Malt",
-    "price": 1999.9,
+    "name": "Glengoyne 18 YO",
+    "price": 1319.9,
     "volumeCl": 70.0,
     "abv": "43%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Gyllen.",
+    "smell": "Røde epler, melon og banan.",
+    "taste": "Fyldig, syltet frukt, marsipan og valnøtter."
   },
   "moestue-3": {
     "code": "21035901",
@@ -8579,195 +9281,461 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     "abv": "46%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp brungyllen.",
+    "smell": "Korn, malt, fruktig med innslag av modne epler, mandarin, krydder, litt sjø og karamell.",
+    "taste": "Fyldig, konsentrert med malt, eple, mango, sjø, salt og krydder.",
+    "method": "Modnet i ex-bourbon-fat og en liten andel i palo cortado sherryfat. Ingen kuldefiltrering eller tilsetting av farge.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 9
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "bruichladdich-2": {
     "code": "20780301",
-    "name": "Bruichladdich 10 YO Old Skool",
+    "name": "Bruichladdich 10 YO Old Skool 2010",
     "price": 1224.9,
     "volumeCl": 70.0,
+    "abv": "50%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Ravgul.",
+    "smell": "Aroma av stuet pære, modent eple og kokos.",
+    "taste": "Preg av steinfrukt, sitrusskall og karamellisert vanilje.",
+    "method": "1. fylling av bourbonfat, 2. fylling av Saurtenesfat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 3
+      },
+      {
+        "name": "Røyk",
+        "value": 2
+      }
+    ]
   },
   "bruichladdich-3": {
     "code": "20780501",
     "name": "Bruichladdich Yellow Submarine III",
     "price": 1699.8,
     "volumeCl": 70.0,
+    "abv": "54,2%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Ravgul.",
+    "smell": "Aroma av honning, havre og smørkjeks.",
+    "taste": "Preg av crème brulée, ristede hasselnøtter og muskatnøtt.",
+    "method": "1. fylling av etterfylte sherrytønner, 2. fylling av spanske rødvinsfat, til slutt balansert med etterfylte bourbontønner.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 3
+      },
+      {
+        "name": "Røyk",
+        "value": 3
+      }
+    ]
   },
   "william-grant-1": {
     "code": "21199601",
     "name": "Glenfiddich 14 YO Bourbon Barrel Reserve",
     "price": 842.2,
     "volumeCl": 70.0,
+    "abv": "43%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Gyllen.",
+    "smell": "Preg av vanilje og sødme, med innslag av eik.",
+    "taste": "Sødmefull med preg av vanilje og eik, med en myk og fyldig avslutning.",
+    "method": "Lagret i minst 14 år på amerikanske eikefat, med avsluttende lagring på nye, dypt brente eikefat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 7
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "edrington-15": {
     "code": "21227501",
     "name": "The Macallan Sherry Oak 12 YO 110 Proof",
     "price": 1499.9,
     "volumeCl": 70.0,
+    "abv": "55%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt"
   },
   "toast-palmer-3": {
     "code": "21231601",
     "name": "Sakurao Single Malt Peated",
     "price": 1399.9,
     "volumeCl": 70.0,
+    "abv": "43%",
     "country": "Japan",
-    "region": "Øvrige",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Gyllen.",
+    "smell": "Preg av vanilje, fat og røyk.",
+    "taste": "Avrundet smak med preg av røyk.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 6
+      },
+      {
+        "name": "Fat",
+        "value": 5
+      },
+      {
+        "name": "Røyk",
+        "value": 7
+      }
+    ]
   },
   "toast-palmer-7": {
     "code": "21231701",
     "name": "Togouchi Sakura Cask Finish",
     "price": 849.9,
     "volumeCl": 70.0,
+    "abv": "43%",
     "country": "Japan",
-    "region": "Øvrige",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Dyp gyllen.",
+    "smell": "Fruktdreven duft med vanilje og blomster.",
+    "taste": "Avrundet stil med fruktig avslutning.",
+    "method": "Lagret på bourbonfat, ettermodning på Sakura kirsebærtre-fat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 5
+      },
+      {
+        "name": "Fat",
+        "value": 4
+      },
+      {
+        "name": "Røyk",
+        "value": 2
+      }
+    ]
   },
   "toast-palmer-32": {
     "code": "21171701",
     "name": "Loch Lomond Single Cask 2012 Cask No. 2531 Tropical Storm",
     "price": 1403.9,
     "volumeCl": 70.0,
+    "abv": "58,2%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt"
   },
   "myken-10": {
     "code": "21124601",
     "name": "Myken Gale Winds Single Malt Whisky",
     "price": 1499.9,
     "volumeCl": 70.0,
+    "abv": "47%",
     "country": "Norge",
-    "region": "Nordland",
-    "category": "Whisky"
+    "region": "Nordland, Rødøy",
+    "category": "Whisky, malt",
+    "color": "Dyp mahogni.",
+    "smell": "Kryddertoner, mandler, steinfrukt og rosiner.",
+    "taste": "Smak av krydder, noe røyk, fat, fruktig sødme og klare sherrytoner.",
+    "method": "Potstillproduksjon. Fermentert, destillert og fatmodnet i Norge.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 8
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 5
+      }
+    ]
   },
   "moestue-13": {
     "code": "21220101",
     "name": "Glenfarclas 190th Anniversary",
     "price": 1599.0,
     "volumeCl": 70.0,
+    "abv": "51,4%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp brungyllen.",
+    "smell": "Krydret, tørket frukt, mynte, aprikos, malt, honning, lyng og hint sjø.",
+    "taste": "Myk, fedme, konsentrert, tropisk frukt, nøtter, malt, krydder, sjø, lang ettersmak.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 10
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "moestue-14": {
     "code": "21220201",
     "name": "Glenfarclas Family Casks 2011 Cask #1254",
     "price": 2490.0,
     "volumeCl": 70.0,
+    "abv": "59,8%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp brungyllen.",
+    "smell": "Krydret aroma, tre, tørket frukt, mynte, malt, balsam, honning og lyng.",
+    "taste": "Myk, fedme, konsentrert, tropisk frukt, nøtter, malt, krydder, sjø, lang ettersmak.",
+    "method": "Sherry Hogshead",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 10
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "moestue-15": {
     "code": "21216701",
     "name": "Glenfarclas Family Casks 2002 Cask #88",
     "price": 3289.0,
     "volumeCl": 70.0,
+    "abv": "58,9%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Middels dyp brungyllen.",
+    "smell": "Krydret aroma, tre, tørket frukt, mynte, malt, balsam, honning og lyng.",
+    "taste": "Myk, fedme, konsentrert, tropisk frukt, nøtter, malt, krydder, sjø, lang ettersmak.",
+    "method": "4th fill sherry butt.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 10
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "det-norske-brenneri-5": {
     "code": "21226601",
     "name": "Braeval Single Malt Single Cask 15YO Port Finish The Cooper's Choice",
     "price": 999.9,
     "volumeCl": 70.0,
+    "abv": "57%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt"
   },
   "det-norske-brenneri-6": {
     "code": "21226801",
     "name": "Glen Spey Speyside Singe Malt Single Cask 13YO Sauternes Finish The Cooper's Choice",
     "price": 967.0,
     "volumeCl": 70.0,
+    "abv": "51,5%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt"
   },
   "det-norske-brenneri-7": {
     "code": "21226701",
     "name": "Caol Ila Islay Single Malt 10YO Bourbon Cask The Golden Cut Collection",
     "price": 985.1,
     "volumeCl": 70.0,
+    "abv": "50%",
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky, malt"
   },
   "det-norske-brenneri-8": {
     "code": "21226901",
     "name": "Balmenach Speyside Single Malt 11YO Madeira Finish The Golden Cut Collection",
     "price": 1011.2,
     "volumeCl": 70.0,
+    "abv": "50%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt"
   },
   "det-norske-brenneri-12": {
     "code": "21227101",
     "name": "Kanosuke Double Distillery Whisky",
     "price": 1299.0,
     "volumeCl": 70.0,
+    "abv": "53%",
     "country": "Japan",
-    "region": "Øvrige",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "method": "Laget på maltet bygg fra Kanosuke, og en blanding av maltet og umaltet bygg fra Hioki, samt lokalt kildevann."
   },
   "67-north-2": {
     "code": "21264401",
     "name": "Sixtyseven Glimt i Øyet",
     "price": 1149.9,
     "volumeCl": 70.0,
+    "abv": "48%",
     "country": "Norge",
-    "region": "Nordland",
-    "category": "Whisky"
+    "region": "Nordland, Saltdal",
+    "category": "Whisky, malt",
+    "color": "Gyllen.",
+    "smell": "Vanilje, honning, tørkede frukter og nøtter.",
+    "taste": "Lett sødme med vanilje, honning, eikefat og nøtter.",
+    "method": "Tradisjonell potstillproduksjon, fermentert, destillert og fatmodnet på ex-bourbonfat.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 4
+      },
+      {
+        "name": "Fat",
+        "value": 4
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "just-drinks-26": {
     "code": "20154801",
     "name": "Jack Daniel's Tennessee Single Barrel Rye",
     "price": 849.9,
     "volumeCl": 70.0,
+    "abv": "45%",
     "country": "USA",
     "region": "Tennessee",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Mørk rav, kobbertoner.",
+    "smell": "Aroma av vanilje, brent eik, karamell, krydder og banan.",
+    "taste": "Kraftig, eikekrydret, hint av vanilje, karamell og pepper.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 5
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   },
   "nikka-12": {
     "code": "18944301",
     "name": "Nikka 9 Decades Premimum Blended Whisky",
     "price": 29999.9,
     "volumeCl": 70.0,
+    "abv": "48%",
     "country": "Japan",
-    "region": "Øvrige",
-    "category": "Whisky"
+    "category": "Whisky, annen",
+    "color": "Dyp mahognibrun.",
+    "smell": "Aroma av eple, bakst, fat og noe røyk.",
+    "taste": "Mild eik, dype toner av kanel, røstede nøtter, sjokolade, aprikos og lønnesirup.",
+    "method": "Pot-still whisky og kolonnedestillat. Whisky fra 9 tiår blendet sammen.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 10
+      },
+      {
+        "name": "Fat",
+        "value": 9
+      },
+      {
+        "name": "Røyk",
+        "value": 3
+      }
+    ]
   },
   "malt-norge-16": {
     "code": "19735901",
     "name": "Adelphi Dailuaine 2015 1stFill Pedro Ximenez Hogshead",
     "price": 1185.1,
     "volumeCl": 70.0,
+    "abv": "55,4%",
     "country": "Skottland",
     "region": "Highland",
-    "category": "Whisky"
+    "category": "Whisky, malt"
   },
   "edrington-18": {
     "code": "21084301",
     "name": "The Macallan Time Space Sherry Cask 20 YO",
     "price": 14999.9,
     "volumeCl": 70.0,
+    "abv": "44,8%",
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky, malt",
+    "color": "Gyllen, mørk mahogni.",
+    "smell": "Sherry krydret frukt, sjokolade, trøffel, kanel og ingefær.",
+    "taste": "Sultaner, dadler og aprikos. Ingefær og toffee, nellik og kanel.",
+    "profile": [
+      {
+        "name": "Fylde",
+        "value": 7
+      },
+      {
+        "name": "Fat",
+        "value": 8
+      },
+      {
+        "name": "Røyk",
+        "value": 1
+      }
+    ]
   }
 }
