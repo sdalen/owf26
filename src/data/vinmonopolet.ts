@@ -8411,5 +8411,174 @@ export const vinmonopolet: Record<string, VmpInfo> = {
         "value": 1
       }
     ]
+  },
+  "just-drinks-11": {
+    "code": "9924801",
+    "name": "The Glendonach 12 YO Highland Single Malt Sherry Cask Matured",
+    "price": 699.9,
+    "volumeCl": 70.0,
+    "abv": "43%",
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
+  },
+  "malt-norge-7": {
+    "code": "14698701",
+    "name": "Ardnamurchan AD Cask Strenght",
+    "price": 949.9,
+    "volumeCl": 70.0,
+    "abv": "58,4%",
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
+  },
+  "edrington-9": {
+    "code": "21084401",
+    "name": "Highland Park 17 YO Between You & I #2",
+    "price": 1899.9,
+    "volumeCl": 70.0,
+    "abv": "47,5%",
+    "country": "Skottland",
+    "region": "Highland, Islands",
+    "category": "Whisky"
+  },
+  "just-drinks-19": {
+    "code": "615901",
+    "name": "Jack Daniel's Tennessee Honey",
+    "price": 474.9,
+    "volumeCl": 70.0,
+    "abv": "35%",
+    "country": "USA",
+    "region": "Tennessee",
+    "category": "Likør"
+  },
+  "just-drinks-20": {
+    "code": "14973301",
+    "name": "Jack Daniel's Tennessee Apple",
+    "price": 474.9,
+    "volumeCl": 70.0,
+    "abv": "35%",
+    "country": "USA",
+    "region": "Tennessee",
+    "category": "Likør"
+  },
+  "just-drinks-21": {
+    "code": "20650901",
+    "name": "Jack Daniel's Tennessee Blackberry",
+    "price": 474.9,
+    "volumeCl": 70.0,
+    "abv": "35%",
+    "country": "USA",
+    "region": "Tennessee",
+    "category": "Likør"
+  },
+  "edrington-28": {
+    "code": "16601",
+    "name": "Jim Beam Bourbon",
+    "price": 429.9,
+    "volumeCl": 70.0,
+    "abv": "40%",
+    "country": "USA",
+    "region": "Kentucky",
+    "category": "Whisky"
+  },
+  "toast-palmer-49": {
+    "code": "7881401",
+    "name": "Tamnavulin Speyside Single Malt Scotch Whisky",
+    "price": 534.9,
+    "volumeCl": 70.0,
+    "abv": "40%",
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
+  },
+  "toast-palmer-56": {
+    "code": "19430001",
+    "name": "Dirty Monkey Banana Peanut Butter",
+    "price": 544.9,
+    "volumeCl": 70.0,
+    "abv": "35%",
+    "country": "USA",
+    "category": "Likør"
+  },
+  "toast-palmer-21": {
+    "code": "14556501",
+    "name": "Yellowstone Kentucky Straight Bourbon",
+    "price": 729.9,
+    "volumeCl": 70.0,
+    "abv": "46,5%",
+    "country": "USA",
+    "region": "Kentucky",
+    "category": "Whisky"
+  },
+  "aurora-1": {
+    "code": "18750602",
+    "name": "Bivrost Yggdrasil Arctic Single Malt Whisky",
+    "price": 809.9,
+    "volumeCl": 50.0,
+    "abv": "46%",
+    "country": "Norge",
+    "region": "Troms, Lyngen",
+    "category": "Whisky"
+  },
+  "aurora-2": {
+    "code": "18750602",
+    "name": "Bivrost Yggdrasil Arctic Single Malt Whisky",
+    "price": 809.9,
+    "volumeCl": 50.0,
+    "abv": "46%",
+    "country": "Norge",
+    "region": "Troms, Lyngen",
+    "category": "Whisky"
+  },
+  "edrington-16": {
+    "code": "20862201",
+    "name": "The Macallan Harmony Collection 2026",
+    "price": 2038.0,
+    "volumeCl": 70.0,
+    "abv": "46,3%",
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
+  },
+  "det-norske-brenneri-3": {
+    "code": "15433801",
+    "name": "Single Malt Dreams Inchfad 2007 15yo",
+    "price": 1693.6,
+    "volumeCl": 70.0,
+    "abv": "54,3%",
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky, malt"
+  },
+  "cask-5": {
+    "code": "20817201",
+    "name": "GlenAllachie 19 YO Ex-Solera Single Malt Whisky",
+    "price": 2999.9,
+    "volumeCl": 70.0,
+    "abv": "50%",
+    "country": "Skottland",
+    "region": "Speyside",
+    "category": "Whisky"
+  },
+  "cask-22": {
+    "code": "279701",
+    "name": "Glengoyne 18 YO SIngle Malt",
+    "price": 1999.9,
+    "volumeCl": 70.0,
+    "abv": "43%",
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
+  },
+  "moestue-3": {
+    "code": "21035901",
+    "name": "Arran 14 YO",
+    "price": 1099.0,
+    "volumeCl": 70.0,
+    "abv": "46%",
+    "country": "Skottland",
+    "region": "Highland",
+    "category": "Whisky"
   }
 }

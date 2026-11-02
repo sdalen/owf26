@@ -33,7 +33,7 @@ function StatusButton({ on, onClick, children, onClass }: { on: boolean; onClick
   )
 }
 
-const actionButton = 'rounded-full bg-malt-800 px-3 py-1 text-malt-100 ring-1 ring-malt-700 transition hover:bg-malt-700 active:scale-95'
+const actionButton = 'rounded-full bg-malt-800 px-2.5 py-1 text-malt-100 ring-1 ring-malt-700 transition hover:bg-malt-700 active:scale-95'
 
 /** Kortets ramme og bakgrunn viser status: smakt (grønn), må smake (rav), kanskje (svak rav) */
 const cardStatus = {
@@ -112,7 +112,7 @@ export function WhiskyRow({ whisky, note = {}, onUpdate, bar, highlight }: Props
           )}
           {vmp && (
             <a href={vinmonopoletUrl(vmp.code)} target="_blank" rel="noreferrer" title={vmp.name} className={actionButton}>
-              Polet ↗
+              VMP ↗
             </a>
           )}
         </div>
