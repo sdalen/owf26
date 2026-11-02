@@ -35,7 +35,7 @@ export async function exportListPdf(whiskies: WhiskyWithBar[], notes: Notes): Pr
     const note = notes[w.id]
     const vmp = vinmonopolet[w.id]
     const wish = wishOf(note)
-    const status = note?.tasted ? 'Smakt' : wish === 'must' ? 'Må smake' : wish === 'maybe' ? 'Kanskje' : undefined
+    const status = note?.tasted ? 'Smakt' : wish === 'must' ? 'Vil smake' : wish === 'maybe' ? 'Kanskje' : undefined
     const details = [status, `${w.bar.name} · ${w.bar.floor}. etg`, `${w.bonger} ${w.bonger === 1 ? 'bong' : 'bonger'}`, vmp?.region ?? vmp?.country, vmp?.abv, vmp && formatKr(Math.round(vmp.price))]
       .filter(Boolean)
       .join(' · ')

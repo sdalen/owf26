@@ -69,14 +69,14 @@ export function HomeView({
         </div>
 
         <dl className="mt-6 grid grid-cols-3 gap-2">
-          <StatCard href={href({ view: 'wishlist', show: 'must' })} label="♥ Må smake" color="text-amber-300">
+          <StatCard href={href({ view: 'wishlist', show: 'must' })} label="♥ Vil smake" color="text-amber-300">
             <StatValue value={stats.must - stats.mustDone} />
           </StatCard>
           <StatCard href={href({ view: 'wishlist', show: 'maybe' })} label="? Kanskje" color="text-amber-200/80">
             <StatValue value={stats.maybe - stats.maybeDone} />
           </StatCard>
           <StatCard href={href({ view: 'wishlist', show: 'tasted' })} label="✓ Har smakt" color="text-emerald-300">
-            {/* Hvor mange du har smakt, av alt på lista (må smake, kanskje og det du har smakt uten å markere) */}
+            {/* Hvor mange du har smakt, av alt på lista (vil smake, kanskje og det du har smakt uten å markere) */}
             <StatValue value={stats.tasted} />
             {listTotal > 0 && <dd className="mt-1 text-[11px] text-malt-300 tabular-nums">av {listTotal}</dd>}
           </StatCard>
@@ -91,7 +91,7 @@ export function HomeView({
 
       <nav className="space-y-2">
         <NavButton href={href({ view: 'floors' })} icon="🥃" title="Barer" subtitle={`${bars.length} barer fordelt på 3 etasjer`} />
-        <NavButton href={href({ view: 'wishlist' })} icon="♥" accent="amber" title="Min liste" subtitle="Må smake, kanskje og smakt – med score, notater og eksport" />
+        <NavButton href={href({ view: 'wishlist' })} icon="♥" accent="amber" title="Min liste" subtitle="Vil smake, kanskje og smakt – med score, notater og eksport" />
         <NavButton href={href({ view: 'search' })} icon="⌕" title="Søk i all whisky" subtitle={`${allWhiskies.length} whisky · filter på bar, bonger og pit-stop`} />
       </nav>
 

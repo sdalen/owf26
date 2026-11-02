@@ -42,7 +42,7 @@ export interface Bar {
 
 /** Det brukeren selv har lagt inn for en whisky */
 export interface WhiskyNote {
-  /** «Må smake» – høyeste prioritet */
+  /** «Vil smake» – høyeste prioritet */
   wantToTaste?: boolean
   /** «Kanskje» – smakes hvis det er bonger og tid igjen */
   maybe?: boolean

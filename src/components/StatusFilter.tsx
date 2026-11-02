@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react'
 import type { StatusFilter } from '../statusFilter'
 
-/** Avhukingsknapper for må smake, kanskje og smakt – brukes på «Min liste» og barsidene */
+/** Avhukingsknapper for vil smake, kanskje og smakt – brukes på «Min liste» og barsidene */
 export function StatusFilterBar({ filter, onToggle, className = '' }: { filter: StatusFilter; onToggle: (key: keyof StatusFilter) => void; className?: string }) {
   return (
     <div className={`flex gap-1.5 ${className}`}>
       <FilterToggle on={filter.must} onClick={() => onToggle('must')} onClass="bg-amber-400 text-malt-950">
-        Må smake
+        Vil smake
       </FilterToggle>
       <FilterToggle on={filter.maybe} onClick={() => onToggle('maybe')} onClass="bg-amber-200 text-malt-950">
         Kanskje

@@ -35,7 +35,7 @@ function StatusButton({ on, onClick, children, onClass }: { on: boolean; onClick
 
 const actionButton = 'rounded-full bg-malt-800 px-2.5 py-1 text-malt-100 ring-1 ring-malt-700 transition hover:bg-malt-700 active:scale-95'
 
-/** Kortets ramme og bakgrunn viser status: smakt (grønn), må smake (rav), kanskje (svak rav) */
+/** Kortets ramme og bakgrunn viser status: smakt (grønn), vil smake (rav), kanskje (svak rav) */
 const cardStatus = {
   tasted: 'ring-emerald-400/50 bg-[color-mix(in_oklab,var(--color-malt-900),var(--color-emerald-400)_6%)]',
   must: 'ring-amber-400/50 bg-[color-mix(in_oklab,var(--color-malt-900),var(--color-amber-400)_6%)]',
@@ -83,10 +83,10 @@ export function WhiskyRow({ whisky, note = {}, onUpdate, bar, highlight }: Props
         </div>
       </div>
 
-      {/* Må smake og kanskje utelukker hverandre */}
+      {/* Vil smake og kanskje utelukker hverandre */}
       <div className="mt-3 flex flex-wrap gap-1.5">
         <StatusButton on={!!wantToTaste} onClick={() => onUpdate({ wantToTaste: !wantToTaste, maybe: false })} onClass="bg-amber-400 text-malt-950">
-          {wantToTaste ? '♥' : '♡'} Må smake
+          {wantToTaste ? '♥' : '♡'} Vil smake
         </StatusButton>
         <StatusButton on={!!maybe && !wantToTaste} onClick={() => onUpdate({ maybe: !maybe, wantToTaste: false })} onClass="bg-amber-200 text-malt-950">
           ? Kanskje

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { wishOf } from './noteStatus'
 import type { WhiskyNote } from './types'
 
-/** Avhuking for må smake, kanskje og smakt – brukes på «Min liste» og barsidene */
+/** Avhuking for vil smake, kanskje og smakt – brukes på «Min liste» og barsidene */
 export type StatusFilter = { must: boolean; maybe: boolean; tasted: boolean }
 
 /** Lagrer valgene i localStorage under `storageKey`, så de huskes til neste gang. `preset` overstyrer det lagrede. */

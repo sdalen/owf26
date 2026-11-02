@@ -2,7 +2,7 @@ import type { Notes, WhiskyNote } from './types'
 
 const HASH_KEY = 'liste'
 
-// Kompakt format per whisky: [id, flagg (1 = må smake, 2 = smakt, 4 = kanskje), score × 10 (-1 = ingen), notat?]
+// Kompakt format per whisky: [id, flagg (1 = vil smake, 2 = smakt, 4 = kanskje), score × 10 (-1 = ingen), notat?]
 type Entry = [string, number, number, string?]
 
 async function compress(text: string): Promise<Uint8Array> {

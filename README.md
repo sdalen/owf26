@@ -1,6 +1,6 @@
 # Oslo Whiskyfestival 2026 – barer & smakeliste
 
-PWA med alle barer og whiskyer fra festivalhåndboka. Marker whisky som «Må smake» eller «Kanskje», gi score, skriv notater og del lista via lenke. Alt lagres lokalt i nettleseren.
+PWA med alle barer og whiskyer fra festivalhåndboka. Marker whisky som «Vil smake» eller «Kanskje», gi score, skriv notater og del lista via lenke. Alt lagres lokalt i nettleseren.
 
 ```sh
 npm install

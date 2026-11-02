@@ -15,7 +15,7 @@ interface Props {
   onUpdate: (id: string, patch: Partial<WhiskyNote>) => void
 }
 
-/** Må smake øverst, så kanskje, så resten – smakte nederst */
+/** Vil smake øverst, så kanskje, så resten – smakte nederst */
 function rank(note: WhiskyNote | undefined): number {
   if (note?.tasted) return 3
   const wish = wishOf(note)
@@ -30,7 +30,7 @@ function sortForBar(whiskies: Whisky[], notes: Notes): Whisky[] {
 
 export function BarCard({ bar, whiskies, notes, onUpdate, highlightId }: Props) {
   const stats = statsFor(bar.whiskies, notes)
-  // Rekkefølgen låses når baren åpnes, så kortet ikke hopper vekk når du trykker smakt/må smake
+  // Rekkefølgen låses når baren åpnes, så kortet ikke hopper vekk når du trykker smakt/vil smake
   const [order] = useState(() => sortForBar(whiskies, notes).map((w) => w.id))
   const byId = new Map(whiskies.map((w) => [w.id, w]))
   // Ingen avhuking betyr hele baren; ellers bare det som er huket av

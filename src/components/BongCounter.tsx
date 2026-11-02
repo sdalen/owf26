@@ -117,8 +117,8 @@ export function BongCounter({ ticketDays, onTicketDaysChange, extra, onExtraChan
           {stats.mustBongerLeft > 0 && (
             <p className={`mt-3 text-sm ${missingForMust > 0 ? 'text-red-300' : 'text-emerald-200/90'}`}>
               {missingForMust > 0
-                ? `«Må smake» trenger ${bongerText(stats.mustBongerLeft)} – du mangler ${missingForMust}.`
-                : `«Må smake» trenger ${bongerText(stats.mustBongerLeft)} – det går fint.${
+                ? `«Vil smake» trenger ${bongerText(stats.mustBongerLeft)} – du mangler ${missingForMust}.`
+                : `«Vil smake» trenger ${bongerText(stats.mustBongerLeft)} – det går fint.${
                     stats.maybeBongerLeft > 0
                       ? stats.mustBongerLeft + stats.maybeBongerLeft <= left
                         ? ' Det er nok til alle på «Kanskje» også.'

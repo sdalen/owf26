@@ -19,7 +19,7 @@ export function SharedListBanner({ shared, onMerge, onReplace, onDismiss }: Prop
     <section className="card mb-6 p-4 ring-amber-400/40">
       <h2 className="font-display text-lg font-semibold text-amber-300">Du har åpnet en delt liste</h2>
       <p className="mt-1 text-sm text-malt-100">
-        {wanted.length} må smake/kanskje · {tasted} smakt · {wanted.reduce((sum, w) => sum + w.bonger, 0)} bonger
+        {wanted.length} vil smake/kanskje · {tasted} smakt · {wanted.reduce((sum, w) => sum + w.bonger, 0)} bonger
       </p>
       {wanted.length > 0 && (
         <ul className="mt-3 max-h-60 space-y-1 overflow-y-auto text-sm">

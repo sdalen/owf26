@@ -76,11 +76,11 @@ export function ListView({ show, notes, onUpdate }: Props) {
       }
     })
 
-  // Alt som er markert må smake, kanskje eller smakt – avhukingen bestemmer hva som vises
+  // Alt som er markert vil smake, kanskje eller smakt – avhukingen bestemmer hva som vises
   const all = sorted.filter((w) => wishOf(notes[w.id]) || notes[w.id]?.tasted)
   const visible = all.filter((w) => matchesStatus(notes[w.id], filter))
   const stats = statsFor(all, notes)
-  const subtitle = `${stats.mustDone}/${stats.must} må · ${stats.maybeDone}/${stats.maybe} kanskje · ${stats.tasted} smakt`
+  const subtitle = `${stats.mustDone}/${stats.must} vil · ${stats.maybeDone}/${stats.maybe} kanskje · ${stats.tasted} smakt`
 
   return (
     <>

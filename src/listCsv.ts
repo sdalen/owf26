@@ -26,7 +26,7 @@ export function exportListCsv(whiskies: WhiskyWithBar[], notes: Notes): void {
       w.bar.name,
       w.bar.floor,
       w.bonger,
-      wish === 'must' ? 'Må smake' : wish === 'maybe' ? 'Kanskje' : undefined,
+      wish === 'must' ? 'Vil smake' : wish === 'maybe' ? 'Kanskje' : undefined,
       w.nominee ? 'Ja' : undefined,
       vmp?.country,
       vmp?.region,
