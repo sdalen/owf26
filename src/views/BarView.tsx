@@ -31,7 +31,7 @@ export function BarView({ barId, whiskyId, notes, onUpdate }: Props) {
   return (
     <>
       <TopBar title={bar.name} subtitle={`${bar.floor}. etasje`} back={href({ view: 'floor', floor: bar.floor as Floor })} />
-      <BarCard bar={bar} whiskies={bar.whiskies} notes={notes} onUpdate={onUpdate} highlightId={whiskyId} />
+      <BarCard key={bar.id} bar={bar} whiskies={bar.whiskies} notes={notes} onUpdate={onUpdate} highlightId={whiskyId} />
     </>
   )
 }

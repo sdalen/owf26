@@ -1,9 +1,11 @@
-import { Fragment, type ReactNode, useState } from 'react'
+import { Fragment, useState } from 'react'
+import { StatusFilterBar } from '../components/StatusFilter'
 import { TopBar } from '../components/TopBar'
 import { WhiskyRow } from '../components/WhiskyRow'
 import { bongerText, floors } from '../data/floors'
 import { allWhiskies, type WhiskyWithBar } from '../data/lookup'
 import { statsFor, wishOf } from '../noteStatus'
+import { matchesStatus, useStatusFilter } from '../statusFilter'
 import type { Notes, WhiskyNote } from '../types'
 import { href } from '../useRoute'
 
@@ -23,18 +25,6 @@ interface Props {
 }
 
 const SORT_KEY = 'owf26-sort'
-const FILTER_KEY = 'owf26-min-liste-filter'
-
-type Filter = { must: boolean; maybe: boolean; tasted: boolean }
-const allOn: Filter = { must: true, maybe: true, tasted: true }
-
-function loadFilter(): Filter {
-  try {
-    return { ...allOn, ...(JSON.parse(localStorage.getItem(FILTER_KEY) ?? '{}') as Partial<Filter>) }
-  } catch {
-    return allOn
-  }
-}
 
 function loadSort(mode: Props['mode']): Sort {
   try {
@@ -48,23 +38,13 @@ function loadSort(mode: Props['mode']): Sort {
 
 export function ListView({ mode, notes, onUpdate }: Props) {
   const [sort, setSort] = useState<Sort>(() => loadSort(mode))
-  const [filter, setFilter] = useState<Filter>(loadFilter)
+  const [filter, toggleFilter] = useStatusFilter('owf26-min-liste-filter', { must: true, maybe: true, tasted: true })
   const sorts: Sort[] = mode === 'tasted' ? ['score', 'sted', 'bonger', 'navn'] : ['sted', 'bonger', 'navn']
 
   function changeSort(s: Sort) {
     setSort(s)
     try {
       localStorage.setItem(`${SORT_KEY}-${mode}`, s)
-    } catch {
-      // ikke kritisk
-    }
-  }
-
-  function toggleFilter(key: keyof Filter) {
-    const next = { ...filter, [key]: !filter[key] }
-    setFilter(next)
-    try {
-      localStorage.setItem(FILTER_KEY, JSON.stringify(next))
     } catch {
       // ikke kritisk
     }
@@ -100,12 +80,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
     mode === 'wishlist'
       ? groups.map((g) => ({
           ...g,
-          items: g.items.filter((w) => {
-            const note = notes[w.id]
-            if (note?.tasted) return filter.tasted
-            const wish = wishOf(note)
-            return !!wish && filter[wish]
-          }),
+          items: g.items.filter((w) => matchesStatus(notes[w.id], filter)),
         }))
       : groups
 
@@ -139,17 +114,7 @@ export function ListView({ mode, notes, onUpdate }: Props) {
           </div>
         )}
         {mode === 'wishlist' && all.length > 0 && (
-          <div className="mt-2 flex gap-1.5">
-            <FilterToggle on={filter.must} onClick={() => toggleFilter('must')} onClass="bg-amber-400 text-malt-950">
-              Må smake
-            </FilterToggle>
-            <FilterToggle on={filter.maybe} onClick={() => toggleFilter('maybe')} onClass="bg-amber-200 text-malt-950">
-              Kanskje
-            </FilterToggle>
-            <FilterToggle on={filter.tasted} onClick={() => toggleFilter('tasted')} onClass="bg-emerald-400 text-malt-950">
-              Smakt
-            </FilterToggle>
-          </div>
+          <StatusFilterBar filter={filter} onToggle={toggleFilter} className="mt-2" />
         )}
       </TopBar>
 
@@ -186,23 +151,6 @@ export function ListView({ mode, notes, onUpdate }: Props) {
         </div>
       )}
     </>
-  )
-}
-
-function FilterToggle({ on, onClick, onClass, children }: { on: boolean; onClick: () => void; onClass: string; children: ReactNode }) {
-  return (
-    <button
-      type="button"
-      role="checkbox"
-      aria-checked={on}
-      onClick={onClick}
-      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ring-1 transition active:scale-95 ${
-        on ? `${onClass} ring-transparent` : 'text-malt-300 ring-malt-700 hover:text-malt-50'
-      }`}
-    >
-      <span aria-hidden>{on ? '☑' : '☐'}</span>
-      {children}
-    </button>
   )
 }
 
