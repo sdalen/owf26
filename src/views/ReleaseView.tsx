@@ -23,7 +23,7 @@ export function ReleaseView() {
     <>
       <TopBar title="Spesialslippet nov 26" subtitle={`${specialRelease.length} whisky · ${onFestival} skjenkes på OWF`} back={href({ view: 'home' })} />
 
-      <p className="mb-4 text-sm text-malt-300">Whisky fra Vinmonopolets spesialslipp i november, hentet fra Aperitifs pollisten. De fleste er utsolgt.</p>
+      <p className="mb-4 text-sm text-malt-300">Whisky fra Vinmonopolets spesialslipp, hentet fra Aperitifs pollisten. Lanseres 12.11.26.</p>
 
       <ul className="space-y-2.5">
         {specialRelease.map((w) => {
