@@ -9,7 +9,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Cask AS"
   },
   {
     "code": "21237001",
@@ -17,7 +18,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1405.1,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Cask AS"
   },
   {
     "code": "21233001",
@@ -25,7 +27,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1399.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "No. 1 Beverages Norway AS"
   },
   {
     "code": "21232901",
@@ -34,7 +37,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "No. 1 Beverages Norway AS"
   },
   {
     "code": "21232801",
@@ -43,7 +47,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "No. 1 Beverages Norway AS"
   },
   {
     "code": "21229901",
@@ -52,7 +57,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Robert Prizelius AS"
   },
   {
     "code": "21227501",
@@ -61,7 +67,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Edrington Norway AS"
   },
   {
     "code": "21227101",
@@ -69,7 +76,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1299.0,
     "volumeCl": 70.0,
     "country": "Japan",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Det Norske Brenneri AS"
   },
   {
     "code": "21226901",
@@ -78,7 +86,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Det Norske Brenneri AS"
   },
   {
     "code": "21226801",
@@ -87,7 +96,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Det Norske Brenneri AS"
   },
   {
     "code": "21226701",
@@ -96,7 +106,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Islay",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Det Norske Brenneri AS"
   },
   {
     "code": "21226601",
@@ -105,7 +116,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Speyside",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Det Norske Brenneri AS"
   },
   {
     "code": "21225701",
@@ -113,7 +125,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 899.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Malt Norge AS"
   },
   {
     "code": "21225601",
@@ -121,7 +134,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 999.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Malt Norge AS"
   },
   {
     "code": "21225501",
@@ -129,7 +143,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1389.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Malt Norge AS"
   },
   {
     "code": "21225401",
@@ -137,7 +152,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1399.9,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Malt Norge AS"
   },
   {
     "code": "21225301",
@@ -145,7 +161,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1499.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Malt Norge AS"
   },
   {
     "code": "21225201",
@@ -153,7 +170,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1399.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Malt Norge AS"
   },
   {
     "code": "21225101",
@@ -161,7 +179,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1459.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Malt Norge AS"
   },
   {
     "code": "21225001",
@@ -169,7 +188,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1459.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Malt Norge AS"
   },
   {
     "code": "21221501",
@@ -178,7 +198,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Campbeltown",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Moestue Grape Selections AS"
   },
   {
     "code": "21171801",
@@ -187,7 +208,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Lowland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Galatea Beverages AS"
   },
   {
     "code": "21171701",
@@ -195,7 +217,8 @@ export const specialRelease: VmpInfo[] = [
     "price": 1403.9,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Crafted Brands AS"
   },
   {
     "code": "21165201",
@@ -204,7 +227,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Campbeltown",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Moestue Grape Selections AS"
   },
   {
     "code": "21165101",
@@ -213,7 +237,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Campbeltown",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Moestue Grape Selections AS"
   },
   {
     "code": "21165001",
@@ -222,7 +247,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Campbeltown",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Moestue Grape Selections AS"
   },
   {
     "code": "21164901",
@@ -231,7 +257,8 @@ export const specialRelease: VmpInfo[] = [
     "volumeCl": 70.0,
     "country": "Skottland",
     "region": "Campbeltown",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Moestue Grape Selections AS"
   },
   {
     "code": "20899101",
@@ -239,6 +266,7 @@ export const specialRelease: VmpInfo[] = [
     "price": 1499.0,
     "volumeCl": 70.0,
     "country": "Skottland",
-    "category": "Whisky"
+    "category": "Whisky",
+    "importer": "Moestue Grape Selections AS"
   }
 ]

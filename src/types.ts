@@ -24,6 +24,8 @@ export interface VmpInfo {
   country?: string
   region?: string
   category?: string
+  /** Grossisten hos Polet, f.eks. «Moestue Grape Selections AS» */
+  importer?: string
   color?: string
   smell?: string
   taste?: string
