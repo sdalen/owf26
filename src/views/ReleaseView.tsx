@@ -58,7 +58,7 @@ export function ReleaseView() {
               <BottleImage vmp={w} />
               <div className="min-w-0 flex-1">
                 <p className="text-base leading-snug font-semibold text-malt-50">{w.name}</p>
-                <p className="mt-0.5 text-xs text-malt-300">{[w.region ?? w.country, `${w.volumeCl} cl`, formatKr(Math.round(w.price))].filter(Boolean).join(' · ')}</p>
+                <p className="mt-0.5 text-xs text-malt-300">{[w.region ?? w.country, w.abv, `${w.volumeCl} cl`, formatKr(Math.round(w.price))].filter(Boolean).join(' · ')}</p>
                 {w.importer && <p className="mt-0.5 text-xs text-malt-500">Importør: {w.importer}</p>}
                 <div className="mt-2 flex flex-wrap gap-2 text-xs font-semibold">
                   {owf && (
