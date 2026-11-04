@@ -6903,9 +6903,9 @@ export const vinmonopolet: Record<string, VmpInfo> = {
     ]
   },
   "moestue-19": {
-    "code": "20041901",
+    "code": "21221501",
     "name": "Springbank 21 YO",
-    "price": 3694.1,
+    "price": 3859.0,
     "volumeCl": 70.0,
     "abv": "46%",
     "country": "Skottland",
