@@ -15,6 +15,7 @@ import { FloorView } from './views/FloorView'
 import { HomeView } from './views/HomeView'
 import { ListView } from './views/ListView'
 import { PitStopView } from './views/PitStopView'
+import { ReleaseView } from './views/ReleaseView'
 import { SearchView } from './views/SearchView'
 import { TastedListView } from './views/TastedListView'
 
@@ -100,6 +101,9 @@ export default function App() {
       break
     case 'pitstop':
       content = <PitStopView day={route.day} notes={notes} onUpdate={updateNote} />
+      break
+    case 'release':
+      content = <ReleaseView />
       break
     default:
       content = (

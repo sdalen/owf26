@@ -9737,5 +9737,74 @@ export const vinmonopolet: Record<string, VmpInfo> = {
         "value": 1
       }
     ]
+  },
+  "engelstad-18": {
+    "code": "10892501",
+    "name": "Pearse Lyons 12 YO Irish Single Malt",
+    "price": 899.9,
+    "volumeCl": 70.0,
+    "country": "Irland",
+    "category": "Whisky"
+  },
+  "michters-1": {
+    "code": "8166501",
+    "name": "Michter's 10 YO Straight Bourbon",
+    "price": 2949.9,
+    "volumeCl": 70.0,
+    "country": "USA",
+    "category": "Whisky"
+  },
+  "brand-partners-19": {
+    "code": "19213201",
+    "name": "Blue Spot 7 YO Cask Strength Single Pot Still Irish Whiskey",
+    "price": 979.1,
+    "volumeCl": 70.0,
+    "country": "Irland",
+    "category": "Whisky"
+  },
+  "moestue-8": {
+    "code": "16755301",
+    "name": "Lagg Heavily Peated Kilmory",
+    "price": 958.1,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Islands",
+    "category": "Whisky"
+  },
+  "moestue-23": {
+    "code": "17509601",
+    "name": "Kilkerran H.P Batch 9",
+    "price": 1073.9,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Campbeltown",
+    "category": "Whisky"
+  },
+  "moestue-24": {
+    "code": "17509501",
+    "name": "Kilkerran H.P Batch 10",
+    "price": 1073.9,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Campbeltown",
+    "category": "Whisky"
+  },
+  "det-norske-brenneri-17": {
+    "code": "10272201",
+    "name": "Finlaggan Port Finished",
+    "price": 891.2,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Islay",
+    "category": "Whisky"
+  },
+  "det-norske-brenneri-18": {
+    "code": "10272301",
+    "name": "Finlaggan Sherry Finished",
+    "price": 829.8,
+    "volumeCl": 70.0,
+    "country": "Skottland",
+    "region": "Islay",
+    "category": "Whisky"
   }
 }

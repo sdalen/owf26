@@ -187,7 +187,7 @@ function VmpDetails({ info }: { info: VmpInfo }) {
 }
 
 /** Flaskebilde fra Polet – caches av service workeren. Plassholder når bilde mangler, så navnene står på linje. */
-function BottleImage({ vmp }: { vmp?: VmpInfo }) {
+export function BottleImage({ vmp }: { vmp?: VmpInfo }) {
   const [failed, setFailed] = useState(false)
   if (!vmp || failed) return <span aria-hidden className="h-20 w-14 shrink-0 rounded-lg bg-malt-800/60" />
   return (
@@ -202,7 +202,7 @@ function BottleImage({ vmp }: { vmp?: VmpInfo }) {
 }
 
 /** Kort-URL-en videresender til produktsiden */
-function vinmonopoletUrl(code: string): string {
+export function vinmonopoletUrl(code: string): string {
   return `https://www.vinmonopolet.no/p/${code}`
 }
 

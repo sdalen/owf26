@@ -18,6 +18,7 @@ export type Route =
   | { view: 'tastedList' }
   | { view: 'search' }
   | { view: 'pitstop'; day: PitStopDay }
+  | { view: 'release' }
 
 export type ListShow = 'must' | 'maybe' | 'tasted'
 
@@ -44,6 +45,8 @@ function parse(hash: string): Route {
       return { view: 'search' }
     case 'pit-stop':
       return { view: 'pitstop', day: a === 'lor' ? 'lør' : 'fre' }
+    case 'spesialslipp':
+      return { view: 'release' }
     default:
       return { view: 'home' }
   }
@@ -67,6 +70,8 @@ export function href(route: Route): string {
       return '#/sok'
     case 'pitstop':
       return `#/pit-stop/${route.day === 'lør' ? 'lor' : 'fre'}`
+    case 'release':
+      return '#/spesialslipp'
   }
 }
 

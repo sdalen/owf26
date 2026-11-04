@@ -7,6 +7,7 @@ import { PitStopBanner } from "../components/PitStopBanner";
 import { bars } from "../data/bars";
 import { PIT_STOPS } from "../data/pitStops";
 import { allWhiskies } from "../data/lookup";
+import { specialRelease } from "../data/specialRelease";
 import { statsFor } from "../noteStatus";
 import type { Notes } from "../types";
 import { href } from "../useRoute";
@@ -93,6 +94,7 @@ export function HomeView({
         <NavButton href={href({ view: 'floors' })} icon="🥃" title="Barer" subtitle={`${bars.length} barer fordelt på 3 etasjer`} />
         <NavButton href={href({ view: 'wishlist' })} icon="♥" accent="amber" title="Min liste" subtitle="Vil smake, kanskje og smakt – med score, notater og eksport" />
         <NavButton href={href({ view: 'search' })} icon="⌕" title="Søk i all whisky" subtitle={`${allWhiskies.length} whisky · filter på bar, bonger og pit-stop`} />
+        <NavButton href={href({ view: 'release' })} icon="★" title="Spesialslippet nov 26" subtitle={`${specialRelease.length} whisky fra Polets slipp · lenker til de som er på OWF`} />
       </nav>
 
       <div className="mt-6 space-y-2 text-center">
