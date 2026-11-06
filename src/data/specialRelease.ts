@@ -1,6 +1,6 @@
 import type { VmpInfo } from '../types'
 
-// Vinmonopolets spesialslipp november 2026, hentet fra Aperitifs pollisten
+// Vinmonopolets spesialslipp november 2026 – whiskyene fra Polets lanseringsliste
 export const specialRelease: VmpInfo[] = [
   {
     "code": "21237101",
@@ -296,5 +296,37 @@ export const specialRelease: VmpInfo[] = [
     "country": "Skottland",
     "category": "Whisky",
     "importer": "Moestue Grape Selections AS"
+  },
+  {
+    "code": "19213201",
+    "name": "Blue Spot 7 YO Cask Strength Single Pot Still Irish Whiskey",
+    "price": 979.1,
+    "volumeCl": 70.0,
+    "abv": "58,2%",
+    "country": "Irland",
+    "category": "Whisky",
+    "importer": "Brand Partners AS"
+  },
+  {
+    "code": "19237801",
+    "name": "Heaven Hill Bottled-in-Bond Kentucky 7YO Straight Bourbon Whiskey",
+    "price": 975.0,
+    "volumeCl": 70.0,
+    "abv": "50%",
+    "country": "USA",
+    "region": "Kentucky",
+    "category": "Whisky",
+    "importer": "Interbrands Spirits Norway AS"
+  },
+  {
+    "code": "20890301",
+    "name": "Old Fitzgerald Bottled-In-Bond 7 YO",
+    "price": 930.0,
+    "volumeCl": 70.0,
+    "abv": "50%",
+    "country": "USA",
+    "region": "Kentucky",
+    "category": "Whisky",
+    "importer": "Interbrands Spirits Norway AS"
   }
 ]
